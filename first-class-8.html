@@ -1,0 +1,1846 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>First Class 8 — Association de Classe</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,300;0,600;0,800;0,900;1,800&family=Barlow:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --red: #e8001d;
+  --red-dark: #a80015;
+  --white: #f2f2f0;
+  --off: #e0ddd8;
+  --black: #0a0a08;
+  --dark: #111110;
+  --mid: #1e1e1c;
+  --gray: #3a3a38;
+  --muted: #7a7a78;
+  --light: #b0afa8;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Barlow', sans-serif;
+  background: var(--black);
+  color: var(--white);
+  overflow-x: hidden;
+  cursor: crosshair;
+}
+
+/* ── GRID OVERLAY ── */
+body::before {
+  content:'';
+  position:fixed;
+  inset:0;
+  background-image:
+    linear-gradient(rgba(232,0,29,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(232,0,29,0.03) 1px, transparent 1px);
+  background-size: 80px 80px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top:0; left:0; right:0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 3rem;
+  height: 64px;
+  background: rgba(10,10,8,0.95);
+  border-bottom: 1px solid rgba(232,0,29,0.3);
+  backdrop-filter: blur(8px);
+}
+
+.nav-logo {
+  display: flex;
+  align-items: baseline;
+  gap: 0.8rem;
+}
+
+.nav-logo .fc {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: 1.4rem;
+  letter-spacing: 0.05em;
+  color: var(--white);
+  text-transform: uppercase;
+}
+
+.nav-logo .num {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: 1.4rem;
+  color: var(--red);
+}
+
+.nav-logo .sub {
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 300;
+}
+
+nav ul {
+  display: flex;
+  gap: 0;
+  list-style: none;
+}
+
+nav a {
+  display: block;
+  padding: 0 1.4rem;
+  height: 64px;
+  line-height: 64px;
+  text-decoration: none;
+  color: var(--muted);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  border-left: 1px solid rgba(232,0,29,0.1);
+  transition: all 0.2s;
+}
+
+nav a:hover {
+  color: var(--white);
+  background: rgba(232,0,29,0.08);
+}
+
+nav .nav-cta {
+  background: var(--red);
+  color: var(--white);
+  border-left: none;
+}
+
+nav .nav-cta:hover { background: var(--red-dark); }
+
+/* ── HERO ── */
+#hero {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  position: relative;
+  overflow: hidden;
+  padding-top: 64px;
+}
+
+.hero-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 5rem 3rem 5rem 5rem;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.hero-eyebrow span {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--red);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.hero-eyebrow::before {
+  content:'';
+  display: block;
+  width: 40px;
+  height: 2px;
+  background: var(--red);
+}
+
+.hero-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  line-height: 0.88;
+  text-transform: uppercase;
+  margin-bottom: 2.5rem;
+}
+
+.hero-title .line1 {
+  font-size: clamp(5rem, 10vw, 8rem);
+  color: var(--white);
+  display: block;
+  font-style: italic;
+}
+
+.hero-title .line2 {
+  font-size: clamp(7rem, 14vw, 12rem);
+  color: var(--red);
+  display: block;
+  letter-spacing: -0.02em;
+}
+
+.hero-title .line3 {
+  font-size: clamp(3rem, 6vw, 5rem);
+  color: var(--muted);
+  display: block;
+  font-weight: 300;
+  font-style: normal;
+  letter-spacing: 0.1em;
+}
+
+.hero-desc {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--light);
+  max-width: 420px;
+  margin-bottom: 3rem;
+  font-weight: 300;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.btn-red {
+  padding: 1rem 2.5rem;
+  background: var(--red);
+  color: var(--white);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 2px solid var(--red);
+  transition: all 0.2s;
+  cursor: crosshair;
+}
+
+.btn-red:hover { background: transparent; color: var(--red); }
+
+.btn-outline {
+  padding: 1rem 2.5rem;
+  background: transparent;
+  color: var(--white);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 2px solid rgba(255,255,255,0.2);
+  transition: all 0.2s;
+  cursor: crosshair;
+}
+
+.btn-outline:hover { border-color: var(--white); }
+
+.hero-right {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-right::before {
+  content:'';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(232,0,29,0.05) 0%, transparent 60%);
+}
+
+/* Animated boat SVG hero */
+.boat-hero-wrap {
+  position: relative;
+  z-index: 2;
+  animation: heroFloat 5s ease-in-out infinite;
+}
+
+@keyframes heroFloat {
+  0%,100% { transform: translateY(0) rotate(-1.5deg); }
+  50% { transform: translateY(-25px) rotate(1.5deg); }
+}
+
+/* Speed lines decoration */
+.speed-lines {
+  position: absolute;
+  left: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.speed-line {
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--red));
+  animation: speedIn 2s ease infinite;
+}
+
+.speed-line:nth-child(1) { width: 60px; animation-delay: 0s; }
+.speed-line:nth-child(2) { width: 40px; animation-delay: 0.2s; }
+.speed-line:nth-child(3) { width: 80px; animation-delay: 0.4s; }
+.speed-line:nth-child(4) { width: 30px; animation-delay: 0.1s; }
+.speed-line:nth-child(5) { width: 55px; animation-delay: 0.3s; }
+
+@keyframes speedIn {
+  0% { opacity:0; transform: scaleX(0); transform-origin: right; }
+  50% { opacity: 1; }
+  100% { opacity: 0; transform: scaleX(1); }
+}
+
+/* Stats bar hero bottom */
+.hero-stats {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid rgba(232,0,29,0.3);
+  z-index: 10;
+}
+
+.hero-stat {
+  padding: 1.5rem 2rem;
+  border-right: 1px solid rgba(232,0,29,0.15);
+  background: rgba(10,10,8,0.9);
+}
+
+.hero-stat:last-child { border-right: none; }
+
+.hs-value {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800;
+  font-size: 2rem;
+  color: var(--red);
+  line-height: 1;
+}
+
+.hs-label {
+  font-size: 0.65rem;
+  color: var(--muted);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-top: 0.3rem;
+}
+
+/* ── SECTIONS ── */
+section { position: relative; z-index: 1; }
+
+.s-pad { padding: 7rem 5rem; }
+
+.s-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--red);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+
+.s-eyebrow::before {
+  content:'';
+  display: block;
+  width: 30px;
+  height: 2px;
+  background: var(--red);
+  flex-shrink: 0;
+}
+
+.s-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  line-height: 0.9;
+  text-transform: uppercase;
+  color: var(--white);
+  margin-bottom: 0.5rem;
+}
+
+.s-title em { color: var(--red); font-style: italic; }
+
+.s-subtitle {
+  font-size: 1rem;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+  margin-bottom: 4rem;
+  font-weight: 300;
+}
+
+/* ── FLOTTE / CARTE ── */
+#flotte {
+  background: var(--dark);
+  border-top: 3px solid var(--red);
+}
+
+.fleet-layout {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+/* Racing map */
+.marina-map {
+  background: var(--mid);
+  border: 1px solid rgba(232,0,29,0.2);
+  aspect-ratio: 4/3;
+  position: relative;
+  overflow: hidden;
+}
+
+.map-grid-overlay {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(232,0,29,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(232,0,29,0.05) 1px, transparent 1px);
+  background-size: 30px 30px;
+}
+
+.water-zone {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 38%;
+  background: linear-gradient(to bottom, rgba(0,60,120,0.15), rgba(0,40,90,0.3));
+  border-top: 1px solid rgba(0,100,200,0.3);
+}
+
+.dock-line {
+  position: absolute;
+  background: rgba(232,0,29,0.4);
+  border: 1px solid rgba(232,0,29,0.6);
+}
+
+.dl1 { width: 200px; height: 8px; left: 10%; top: 33%; }
+.dl2 { width: 180px; height: 8px; left: 13%; top: 50%; }
+.dl3 { width: 160px; height: 8px; left: 55%; top: 25%; }
+
+.slip {
+  position: absolute;
+  width: 20px;
+  height: 7px;
+  background: var(--gray);
+  border: 1px solid var(--muted);
+  cursor: crosshair;
+  transition: all 0.15s;
+}
+
+.slip:hover, .slip.on { background: var(--red); border-color: var(--red); z-index: 5; }
+
+.slip.on::after {
+  content: attr(data-name);
+  position: absolute;
+  bottom: 130%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--black);
+  color: var(--red);
+  padding: 0.25rem 0.5rem;
+  font-size: 0.6rem;
+  white-space: nowrap;
+  border: 1px solid var(--red);
+  font-family: 'Space Mono', monospace;
+  letter-spacing: 0.05em;
+}
+
+.s1{left:14%;top:22%;} .s2{left:22%;top:25%;} .s3{left:30%;top:28%;}
+.s4{left:14%;top:40%;} .s5{left:22%;top:43%;} .s6{left:30%;top:46%;}
+.s7{left:57%;top:17%;} .s8{left:65%;top:20%;} .s9{left:73%;top:23%;}
+.s10{left:57%;top:31%;}
+
+.map-tag {
+  position: absolute;
+  top: 0.8rem; left: 0.8rem;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.55rem;
+  color: var(--red);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  background: rgba(10,10,8,0.8);
+  padding: 0.3rem 0.6rem;
+  border: 1px solid rgba(232,0,29,0.3);
+}
+
+.map-legend {
+  position: absolute;
+  bottom: 0.8rem; right: 0.8rem;
+  display: flex;
+  gap: 1rem;
+  font-size: 0.55rem;
+  color: var(--muted);
+  font-family: 'Space Mono', monospace;
+  background: rgba(10,10,8,0.8);
+  padding: 0.4rem 0.7rem;
+  border: 1px solid rgba(232,0,29,0.15);
+}
+
+.map-legend span { color: var(--red); }
+
+/* Boat list */
+.fleet-table {
+  border-top: 2px solid var(--red);
+}
+
+.ft-header {
+  display: grid;
+  grid-template-columns: 2.5rem 1fr 5rem 4rem;
+  gap: 1rem;
+  padding: 0.6rem 1rem;
+  background: var(--mid);
+  font-family: 'Space Mono', monospace;
+  font-size: 0.55rem;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.ft-row {
+  display: grid;
+  grid-template-columns: 2.5rem 1fr 5rem 4rem;
+  gap: 1rem;
+  padding: 1rem;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  align-items: center;
+  cursor: crosshair;
+  transition: background 0.15s;
+}
+
+.ft-row:hover { background: rgba(232,0,29,0.06); }
+
+.ft-num {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--red);
+}
+
+.ft-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.ft-skipper {
+  font-size: 0.75rem;
+  color: var(--muted);
+  font-weight: 300;
+}
+
+.ft-length {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--light);
+  text-align: right;
+}
+
+.ft-badge {
+  display: inline-block;
+  padding: 0.15rem 0.5rem;
+  font-size: 0.55rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-family: 'Barlow Condensed', sans-serif;
+}
+
+.badge-a { background: var(--red); color: var(--white); }
+.badge-b { background: var(--gray); color: var(--light); }
+
+/* ── AGENDA ── */
+#agenda {
+  background: var(--black);
+}
+
+.agenda-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+}
+
+.season-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800;
+  font-size: 1.2rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 2px solid rgba(232,0,29,0.3);
+}
+
+.ev {
+  display: flex;
+  gap: 0;
+  border-left: 3px solid var(--gray);
+  margin-bottom: 0.5rem;
+  transition: border-color 0.2s;
+  cursor: crosshair;
+}
+
+.ev:hover { border-left-color: var(--red); }
+
+.ev-date {
+  min-width: 5rem;
+  padding: 1.2rem 1rem;
+  background: var(--mid);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.ev-day {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: 2.2rem;
+  line-height: 1;
+  color: var(--white);
+}
+
+.ev-month {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.55rem;
+  color: var(--red);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-top: 0.2rem;
+}
+
+.ev-body {
+  padding: 1.2rem 1.5rem;
+  flex: 1;
+  background: rgba(30,30,28,0.4);
+}
+
+.ev-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 1.15rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--white);
+  margin-bottom: 0.3rem;
+}
+
+.ev-desc {
+  font-size: 0.82rem;
+  color: var(--muted);
+  line-height: 1.5;
+  font-weight: 300;
+}
+
+.ev-tag {
+  display: inline-block;
+  margin-top: 0.6rem;
+  padding: 0.1rem 0.5rem;
+  font-size: 0.55rem;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.t-race { background: var(--red); color: var(--white); }
+.t-champ { background: transparent; color: var(--red); border: 1px solid var(--red); }
+.t-train { background: transparent; color: var(--light); border: 1px solid var(--gray); }
+.t-social { background: var(--gray); color: var(--light); }
+
+/* ── TECHNIQUE ── */
+#technique {
+  background: var(--dark);
+  border-top: 1px solid rgba(232,0,29,0.2);
+}
+
+.tech-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: start;
+}
+
+.spec-block {
+  margin-bottom: 3rem;
+}
+
+.spec-block h4 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 1.2rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid rgba(232,0,29,0.2);
+}
+
+.spec-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 0.7rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+
+.spec-key {
+  font-size: 0.82rem;
+  color: var(--muted);
+  font-weight: 300;
+}
+
+.spec-val {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.82rem;
+  color: var(--white);
+  text-align: right;
+}
+
+.spec-val strong {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--white);
+}
+
+.spec-val em {
+  font-style: normal;
+  font-size: 0.65rem;
+  color: var(--muted);
+  margin-left: 0.3rem;
+}
+
+/* Boat side-view SVG panel */
+.boat-tech-panel {
+  background: var(--mid);
+  border: 1px solid rgba(232,0,29,0.15);
+  padding: 3rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.boat-tech-svg {
+  animation: gentleRock 6s ease-in-out infinite;
+}
+
+@keyframes gentleRock {
+  0%,100% { transform: rotate(-1deg); }
+  50% { transform: rotate(1deg); }
+}
+
+.annotation {
+  display: flex;
+  gap: 3rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.ann-item {
+  text-align: center;
+}
+
+.ann-val {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: 2rem;
+  color: var(--red);
+  line-height: 1;
+}
+
+.ann-label {
+  font-size: 0.6rem;
+  color: var(--muted);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-family: 'Space Mono', monospace;
+}
+
+/* ── JAUGE ── */
+#jauge {
+  background: var(--black);
+}
+
+.jauge-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: start;
+}
+
+.jauge-panel {
+  border: 2px solid rgba(232,0,29,0.3);
+  padding: 3rem;
+  background: var(--mid);
+  position: relative;
+}
+
+.jauge-panel::before {
+  content: 'MONOTYPE';
+  position: absolute;
+  top: -0.6rem; left: 2rem;
+  background: var(--mid);
+  padding: 0 0.5rem;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.55rem;
+  color: var(--red);
+  letter-spacing: 0.3em;
+}
+
+.jauge-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: 6rem;
+  line-height: 1;
+  color: var(--white);
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.jauge-title span { color: var(--red); }
+
+.jauge-sub {
+  font-size: 0.7rem;
+  color: var(--muted);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  font-family: 'Space Mono', monospace;
+  margin-bottom: 3rem;
+}
+
+.rule-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.rule-item {
+  display: flex;
+  gap: 1rem;
+  padding: 1.2rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  align-items: start;
+}
+
+.rule-num {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--red);
+  min-width: 1.5rem;
+  margin-top: 0.2rem;
+}
+
+.rule-text {
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: var(--light);
+  font-weight: 300;
+}
+
+.rule-text strong { color: var(--white); font-weight: 500; }
+
+.jauge-text p {
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: var(--light);
+  margin-bottom: 1.5rem;
+  font-weight: 300;
+}
+
+.formula-block {
+  background: var(--mid);
+  border-left: 3px solid var(--red);
+  padding: 1.5rem 2rem;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.85rem;
+  color: var(--white);
+  margin-top: 2rem;
+}
+
+.formula-block .f-label {
+  font-size: 0.55rem;
+  color: var(--red);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  margin-bottom: 0.8rem;
+}
+
+/* ── BATEAU / PRÉSENTATION ── */
+#bateau {
+  background: var(--dark);
+  border-top: 3px solid var(--red);
+}
+
+.bateau-hero {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 5rem;
+  align-items: center;
+  margin-bottom: 5rem;
+}
+
+.bateau-info h3 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: clamp(3rem, 5vw, 4.5rem);
+  text-transform: uppercase;
+  color: var(--white);
+  line-height: 0.9;
+  margin-bottom: 0.5rem;
+}
+
+.bateau-info h3 em { color: var(--red); font-style: italic; }
+
+.bateau-info .bsub {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--muted);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+}
+
+.bateau-info p {
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: var(--light);
+  font-weight: 300;
+  margin-bottom: 1.2rem;
+}
+
+.boat-main-visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--mid);
+  border: 1px solid rgba(232,0,29,0.2);
+  aspect-ratio: 1;
+  position: relative;
+}
+
+.boat-main-visual .corner-tag {
+  position: absolute;
+  top: 1rem; right: 1rem;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.55rem;
+  color: var(--red);
+  letter-spacing: 0.2em;
+}
+
+/* ── HISTORIQUE ── */
+#historique {
+  background: var(--black);
+}
+
+.tl {
+  position: relative;
+  max-width: 900px;
+}
+
+.tl::before {
+  content:'';
+  position: absolute;
+  left: 7rem;
+  top: 0; bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--red), rgba(232,0,29,0.1));
+}
+
+.tl-item {
+  display: grid;
+  grid-template-columns: 7rem 4rem 1fr;
+  margin-bottom: 0;
+  align-items: stretch;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+
+.tl-year {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: 1.6rem;
+  color: var(--red);
+  text-align: right;
+  padding: 2.5rem 1.5rem 2.5rem 0;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.tl-node {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.tl-node::after {
+  content:'';
+  width: 12px;
+  height: 12px;
+  background: var(--red);
+  border: 3px solid var(--black);
+  box-shadow: 0 0 0 1px var(--red);
+  display: block;
+}
+
+.tl-content {
+  padding: 2rem 0 2rem 2rem;
+}
+
+.tl-content h4 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 1.2rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--white);
+  margin-bottom: 0.5rem;
+}
+
+.tl-content p {
+  font-size: 0.88rem;
+  line-height: 1.7;
+  color: var(--muted);
+  font-weight: 300;
+}
+
+/* ── TICKER ── */
+.ticker {
+  background: var(--red);
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 0.7rem 0;
+  position: relative;
+  z-index: 5;
+}
+
+.ticker-inner {
+  display: inline-block;
+  animation: ticker 30s linear infinite;
+}
+
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.ticker-inner span {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--white);
+  padding: 0 2.5rem;
+}
+
+.ticker-inner span::after {
+  content: '//';
+  margin-left: 2.5rem;
+  opacity: 0.5;
+}
+
+/* ── FOOTER ── */
+footer {
+  background: var(--dark);
+  border-top: 2px solid rgba(232,0,29,0.3);
+  padding: 4rem 5rem;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  gap: 4rem;
+}
+
+footer h5 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 1.2rem;
+}
+
+footer p, footer a {
+  font-size: 0.85rem;
+  color: var(--muted);
+  line-height: 2;
+  text-decoration: none;
+  display: block;
+  font-weight: 300;
+  transition: color 0.2s;
+}
+
+footer a:hover { color: var(--white); }
+
+.foot-logo {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: 3.5rem;
+  line-height: 1;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.foot-logo em { color: var(--red); font-style: italic; }
+
+.foot-tagline {
+  font-size: 0.75rem;
+  color: var(--muted);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+
+.foot-bottom {
+  grid-column: 1/-1;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.foot-bottom p {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.6rem;
+  color: var(--gray);
+  letter-spacing: 0.1em;
+}
+
+/* scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--black); }
+::-webkit-scrollbar-thumb { background: var(--red); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <div>
+      <div><span class="fc">First Class</span><span class="num"> 8</span></div>
+      <div class="sub">Association Nationale de Classe</div>
+    </div>
+  </div>
+  <ul>
+    <li><a href="#flotte">Flotte</a></li>
+    <li><a href="#agenda">Agenda</a></li>
+    <li><a href="#technique">Technique</a></li>
+    <li><a href="#jauge">Jauge</a></li>
+    <li><a href="#bateau">Le Bateau</a></li>
+    <li><a href="#historique">Historique</a></li>
+    <li><a href="#" class="nav-cta">Adhérer</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow"><span>Bénéteau × Groupe Finot — 1982</span></div>
+    <h1 class="hero-title">
+      <span class="line1">First</span>
+      <span class="line2">Class 8</span>
+      <span class="line3">Monotype de régate</span>
+    </h1>
+    <p class="hero-desc">
+      Le référentiel du monotype côtier français. 7,85 mètres de pur plaisir de régate, 
+      conçu pour naviguer en équipage, taillé pour la compétition. Depuis 1982, 
+      il forme des générations de régatiers.
+    </p>
+    <div class="hero-actions">
+      <a href="#bateau" class="btn-red">Découvrir le bateau</a>
+      <a href="#agenda" class="btn-outline">Agenda 2025</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="speed-lines">
+      <div class="speed-line"></div>
+      <div class="speed-line"></div>
+      <div class="speed-line"></div>
+      <div class="speed-line"></div>
+      <div class="speed-line"></div>
+    </div>
+    <div class="boat-hero-wrap">
+      <!-- FC8 side-view SVG -->
+      <svg width="400" height="480" viewBox="0 0 400 480" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Mast -->
+        <line x1="185" y1="40" x2="185" y2="310" stroke="#f2f2f0" stroke-width="3.5"/>
+        <!-- Boom -->
+        <line x1="185" y1="255" x2="290" y2="278" stroke="#f2f2f0" stroke-width="2.5"/>
+        <!-- Shrouds -->
+        <line x1="185" y1="80" x2="155" y2="270" stroke="rgba(232,0,29,0.4)" stroke-width="1.5" stroke-dasharray="4 3"/>
+        <line x1="185" y1="80" x2="215" y2="270" stroke="rgba(232,0,29,0.4)" stroke-width="1.5" stroke-dasharray="4 3"/>
+        <!-- Backstay -->
+        <line x1="185" y1="40" x2="280" y2="275" stroke="rgba(242,242,240,0.2)" stroke-width="1"/>
+        <!-- Main sail -->
+        <path d="M185 42 L290 280 L185 258 Z" fill="rgba(232,0,29,0.12)" stroke="#e8001d" stroke-width="1.5"/>
+        <!-- Jib -->
+        <path d="M185 95 L90 275 L185 268 Z" fill="rgba(242,242,240,0.06)" stroke="rgba(242,242,240,0.5)" stroke-width="1.5"/>
+        <!-- Hull - sleek racing shape -->
+        <path d="M90 300 Q100 288 185 282 Q265 288 295 305 Q290 338 260 358 Q230 372 185 375 Q140 372 110 358 Q85 338 90 300Z"
+              fill="#1e1e1c" stroke="#e8001d" stroke-width="2"/>
+        <!-- Racing stripe -->
+        <path d="M95 308 Q185 298 290 310" stroke="#e8001d" stroke-width="3" fill="none"/>
+        <!-- Keel -->
+        <path d="M175 373 L165 430 L185 438 L205 430 L195 373 Z"
+              fill="rgba(232,0,29,0.3)" stroke="#e8001d" stroke-width="1.5"/>
+        <!-- Bulb -->
+        <ellipse cx="185" cy="440" rx="22" ry="9" fill="rgba(232,0,29,0.5)" stroke="#e8001d" stroke-width="1"/>
+        <!-- Waterline indicator -->
+        <line x1="85" y1="318" x2="300" y2="318" stroke="rgba(0,150,255,0.4)" stroke-width="1" stroke-dasharray="6 4"/>
+        <!-- Cockpit detail -->
+        <ellipse cx="215" cy="294" rx="25" ry="8" fill="rgba(0,0,0,0.4)" stroke="rgba(242,242,240,0.2)" stroke-width="1"/>
+        <!-- Wind indicator at top -->
+        <line x1="185" y1="40" x2="205" y2="30" stroke="#e8001d" stroke-width="2"/>
+        <polygon points="205,30 215,28 208,36" fill="#e8001d"/>
+        <!-- FC8 number on sail -->
+        <text x="230" y="190" font-family="Barlow Condensed" font-weight="900" font-size="22" fill="rgba(232,0,29,0.6)" transform="rotate(10,230,190)">FC8</text>
+      </svg>
+    </div>
+  </div>
+
+  <!-- Stats bar -->
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="hs-value">7.85<span style="font-size:1rem;">m</span></div>
+      <div class="hs-label">Longueur hors-tout</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hs-value">980</div>
+      <div class="hs-label">Unités produites</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hs-value">1982</div>
+      <div class="hs-label">Année de création</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hs-value">+100</div>
+      <div class="hs-label">Bateaux au GP Agde 1992</div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span>Bénéteau First Class 8</span>
+    <span>Monotype de régate</span>
+    <span>Groupe Finot</span>
+    <span>1982 – 1997</span>
+    <span>Sloop fractionné</span>
+    <span>Quille relevable</span>
+    <span>Équipage complet</span>
+    <span>Championnats de France 25 ans</span>
+    <span>Bénéteau First Class 8</span>
+    <span>Monotype de régate</span>
+    <span>Groupe Finot</span>
+    <span>1982 – 1997</span>
+    <span>Sloop fractionné</span>
+    <span>Quille relevable</span>
+    <span>Équipage complet</span>
+    <span>Championnats de France 25 ans</span>
+  </div>
+</div>
+
+<!-- FLOTTE -->
+<section id="flotte" class="s-pad">
+  <div class="s-eyebrow">01 — Recensement de la flotte</div>
+  <h2 class="s-title">Les <em>bateaux</em><br>du club</h2>
+  <p class="s-subtitle">Cliquez sur un emplacement pour identifier le voilier</p>
+  <div class="fleet-layout">
+    <div>
+      <div class="marina-map">
+        <div class="map-grid-overlay"></div>
+        <div class="water-zone"></div>
+        <div class="dock-line dl1"></div>
+        <div class="dock-line dl2"></div>
+        <div class="dock-line dl3"></div>
+        <div class="slip s1 on" data-name="ARCANE · #FC8-014" onclick="this.classList.toggle('on')"></div>
+        <div class="slip s2" data-name="BRAVO ZULU · #FC8-027" onclick="this.classList.toggle('on')"></div>
+        <div class="slip s3" data-name="CORMORAN · #FC8-031" onclick="this.classList.toggle('on')"></div>
+        <div class="slip s4" data-name="DELTA · #FC8-042" onclick="this.classList.toggle('on')"></div>
+        <div class="slip s5 on" data-name="ÉPHÉMÈRE · #FC8-055" onclick="this.classList.toggle('on')"></div>
+        <div class="slip s6" data-name="FOIL · #FC8-063" onclick="this.classList.toggle('on')"></div>
+        <div class="slip s7" data-name="GYBE · #FC8-071" onclick="this.classList.toggle('on')"></div>
+        <div class="slip s8 on" data-name="HURACAN · #FC8-082" onclick="this.classList.toggle('on')"></div>
+        <div class="slip s9" data-name="IMPACT · #FC8-091" onclick="this.classList.toggle('on')"></div>
+        <div class="slip s10" data-name="JIBE · #FC8-099" onclick="this.classList.toggle('on')"></div>
+        <div class="map-tag">Port de la Société de Voile</div>
+        <div class="map-legend"><span>■</span> actif &nbsp;&nbsp;<span style="color:var(--gray)">■</span> sélectionner</div>
+      </div>
+    </div>
+    <div>
+      <div class="fleet-table">
+        <div class="ft-header">
+          <span>#</span><span>Nom / Numéro</span><span>Skipper</span><span>Ponton</span>
+        </div>
+        <div class="ft-row">
+          <span class="ft-num">014</span>
+          <div><div class="ft-name">Arcane</div><div class="ft-skipper">M. Bertrand</div></div>
+          <span class="ft-badge badge-a">A</span>
+          <span class="ft-length">A-03</span>
+        </div>
+        <div class="ft-row">
+          <span class="ft-num">027</span>
+          <div><div class="ft-name">Bravo Zulu</div><div class="ft-skipper">Mme Ferreira</div></div>
+          <span class="ft-badge badge-a">A</span>
+          <span class="ft-length">A-07</span>
+        </div>
+        <div class="ft-row">
+          <span class="ft-num">031</span>
+          <div><div class="ft-name">Cormoran</div><div class="ft-skipper">M. Perrin</div></div>
+          <span class="ft-badge badge-a">A</span>
+          <span class="ft-length">A-11</span>
+        </div>
+        <div class="ft-row">
+          <span class="ft-num">042</span>
+          <div><div class="ft-name">Delta</div><div class="ft-skipper">M. Leconte</div></div>
+          <span class="ft-badge badge-b">B</span>
+          <span class="ft-length">B-02</span>
+        </div>
+        <div class="ft-row">
+          <span class="ft-num">055</span>
+          <div><div class="ft-name">Éphémère</div><div class="ft-skipper">M. Garnier</div></div>
+          <span class="ft-badge badge-b">B</span>
+          <span class="ft-length">B-05</span>
+        </div>
+        <div class="ft-row">
+          <span class="ft-num">063</span>
+          <div><div class="ft-name">Foil</div><div class="ft-skipper">Mme Dupont</div></div>
+          <span class="ft-badge badge-b">B</span>
+          <span class="ft-length">B-08</span>
+        </div>
+        <div class="ft-row">
+          <span class="ft-num">071</span>
+          <div><div class="ft-name">Gybe</div><div class="ft-skipper">M. Rousseau</div></div>
+          <span class="ft-badge badge-b">C</span>
+          <span class="ft-length">C-01</span>
+        </div>
+        <div class="ft-row">
+          <span class="ft-num">082</span>
+          <div><div class="ft-name">Huracan</div><div class="ft-skipper">Mme Martin</div></div>
+          <span class="ft-badge badge-a">C</span>
+          <span class="ft-length">C-04</span>
+        </div>
+        <div class="ft-row">
+          <span class="ft-num">091</span>
+          <div><div class="ft-name">Impact</div><div class="ft-skipper">M. Vidal</div></div>
+          <span class="ft-badge badge-b">C</span>
+          <span class="ft-length">C-07</span>
+        </div>
+        <div class="ft-row">
+          <span class="ft-num">099</span>
+          <div><div class="ft-name">Jibe</div><div class="ft-skipper">M. Chassagne</div></div>
+          <span class="ft-badge badge-b">C</span>
+          <span class="ft-length">C-09</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AGENDA -->
+<section id="agenda" class="s-pad">
+  <div class="s-eyebrow">02 — Saison 2025</div>
+  <h2 class="s-title">Calendrier<br><em>des courses</em></h2>
+  <p class="s-subtitle">Programme officiel — Association Nationale de Classe FC8</p>
+  <div class="agenda-layout">
+    <div>
+      <div class="season-title">Printemps / Été</div>
+      <div class="ev">
+        <div class="ev-date"><div class="ev-day">08</div><div class="ev-month">Mar</div></div>
+        <div class="ev-body">
+          <div class="ev-title">Reprise de saison & rassemblement</div>
+          <div class="ev-desc">Remise en eau collective, vérification des certificats de jauge et briefing de la saison 2025.</div>
+          <span class="ev-tag t-social">Rassemblement</span>
+        </div>
+      </div>
+      <div class="ev">
+        <div class="ev-date"><div class="ev-day">29</div><div class="ev-month">Mar</div></div>
+        <div class="ev-body">
+          <div class="ev-title">Grand Prix d'Ouverture</div>
+          <div class="ev-desc">3 manches — parcours trapézoïdal côtier. Première manche comptant pour le championnat.</div>
+          <span class="ev-tag t-race">Course</span>
+        </div>
+      </div>
+      <div class="ev">
+        <div class="ev-date"><div class="ev-day">24</div><div class="ev-month">Avr</div></div>
+        <div class="ev-body">
+          <div class="ev-title">Stage réglages — Gréement fractionné</div>
+          <div class="ev-desc">Journée technique animée par l'équipe nationale. Réglages de mât, quête, bastaques et étai.</div>
+          <span class="ev-tag t-train">Formation</span>
+        </div>
+      </div>
+      <div class="ev">
+        <div class="ev-date"><div class="ev-day">17</div><div class="ev-month">Mai</div></div>
+        <div class="ev-body">
+          <div class="ev-title">Régates Régionales — Manche 2 & 3</div>
+          <div class="ev-desc">Circuit régional inter-clubs. Classement cumulé sur 3 régates du week-end.</div>
+          <span class="ev-tag t-champ">Championnat</span>
+        </div>
+      </div>
+      <div class="ev">
+        <div class="ev-date"><div class="ev-day">28</div><div class="ev-month">Juin</div></div>
+        <div class="ev-body">
+          <div class="ev-title">Grand Prix d'Été — Nocturne</div>
+          <div class="ev-desc">Course de nuit sur parcours côtier de 25 milles. Départ 21h. Résultats en temps réel.</div>
+          <span class="ev-tag t-race">Course</span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="season-title">Automne / Clôture</div>
+      <div class="ev">
+        <div class="ev-date"><div class="ev-day">06</div><div class="ev-month">Sep</div></div>
+        <div class="ev-body">
+          <div class="ev-title">Championnat de France FC8 — J1</div>
+          <div class="ev-desc">Manches 1 à 4. Qualifications ouvertes à tous les membres certifiés. Arbitrage FFVoile.</div>
+          <span class="ev-tag t-champ">Championnat National</span>
+        </div>
+      </div>
+      <div class="ev">
+        <div class="ev-date"><div class="ev-day">07</div><div class="ev-month">Sep</div></div>
+        <div class="ev-body">
+          <div class="ev-title">Championnat de France FC8 — J2</div>
+          <div class="ev-desc">Manches 5 à 8 + finale. Remise des trophées en soirée. Podium des trois classes d'âge.</div>
+          <span class="ev-tag t-champ">Championnat National</span>
+        </div>
+      </div>
+      <div class="ev">
+        <div class="ev-date"><div class="ev-day">18</div><div class="ev-month">Oct</div></div>
+        <div class="ev-body">
+          <div class="ev-title">Dernière Manche du Championnat Régional</div>
+          <div class="ev-desc">Clôture du circuit régional. Attribution des points bonus. Classement définitif publié sous 48h.</div>
+          <span class="ev-tag t-race">Course</span>
+        </div>
+      </div>
+      <div class="ev">
+        <div class="ev-date"><div class="ev-day">15</div><div class="ev-month">Nov</div></div>
+        <div class="ev-body">
+          <div class="ev-title">AG & Gala de fin de saison</div>
+          <div class="ev-desc">Assemblée générale de l'association, remise des prix annuels et bilan de la classe 2025.</div>
+          <span class="ev-tag t-social">Social</span>
+        </div>
+      </div>
+      <div class="ev">
+        <div class="ev-date"><div class="ev-day">06</div><div class="ev-month">Déc</div></div>
+        <div class="ev-body">
+          <div class="ev-title">Atelier hivernage & antifouling</div>
+          <div class="ev-desc">Journée pratique chantier : carénage, vérification de la quille relevable et entretien du gréement.</div>
+          <span class="ev-tag t-train">Formation</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TECHNIQUE -->
+<section id="technique" class="s-pad">
+  <div class="s-eyebrow">03 — Fiche technique officielle</div>
+  <h2 class="s-title">Architecture<br><em>& mesures</em></h2>
+  <p class="s-subtitle">Données certifiées — Groupe Finot × Chantier Bénéteau</p>
+
+  <div class="tech-split">
+    <div>
+      <div class="spec-block">
+        <h4>Dimensions principales</h4>
+        <div class="spec-row">
+          <span class="spec-key">Longueur hors-tout</span>
+          <span class="spec-val"><strong>7.85</strong><em>m</em></span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-key">Largeur maximale</span>
+          <span class="spec-val"><strong>2.49</strong><em>m</em></span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-key">Tirant d'eau (quille basse)</span>
+          <span class="spec-val"><strong>1.75</strong><em>m</em></span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-key">Tirant d'eau (quille relevée)</span>
+          <span class="spec-val"><strong>0.45</strong><em>m</em></span>
+        </div>
+      </div>
+
+      <div class="spec-block">
+        <h4>Poids & lest</h4>
+        <div class="spec-row">
+          <span class="spec-key">Déplacement lège</span>
+          <span class="spec-val"><strong>1 750</strong><em>kg</em></span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-key">Poids du lest (quille)</span>
+          <span class="spec-val"><strong>700</strong><em>kg</em></span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-key">Rapport lest / déplacement</span>
+          <span class="spec-val"><strong>40</strong><em>%</em></span>
+        </div>
+      </div>
+
+      <div class="spec-block">
+        <h4>Voilure</h4>
+        <div class="spec-row">
+          <span class="spec-key">Surface grand-voile</span>
+          <span class="spec-val"><strong>22.5</strong><em>m²</em></span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-key">Surface génois 110%</span>
+          <span class="spec-val"><strong>18.5</strong><em>m²</em></span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-key">Spinnaker symétrique</span>
+          <span class="spec-val"><strong>55</strong><em>m²</em></span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-key">Surface totale au près</span>
+          <span class="spec-val"><strong>41</strong><em>m²</em></span>
+        </div>
+      </div>
+
+      <div class="spec-block">
+        <h4>Gréement & structure</h4>
+        <div class="spec-row">
+          <span class="spec-key">Type de gréement</span>
+          <span class="spec-val">Sloop fractionné 7/8</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-key">Hauteur du mât (pont)</span>
+          <span class="spec-val"><strong>11.2</strong><em>m</em></span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-key">Type de quille</span>
+          <span class="spec-val">Relevable pivotante</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-key">Matériau coque</span>
+          <span class="spec-val">Polyester stratifié</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-key">Architectes</span>
+          <span class="spec-val">Finot / Fauroux</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-key">Équipage recommandé</span>
+          <span class="spec-val"><strong>3 – 5</strong><em>pers.</em></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="boat-tech-panel">
+      <div class="boat-tech-svg">
+        <svg width="280" height="360" viewBox="0 0 280 360" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Mast line with fractional rig indicator -->
+          <line x1="130" y1="30" x2="130" y2="255" stroke="rgba(242,242,240,0.9)" stroke-width="3"/>
+          <!-- 7/8 fractional mark -->
+          <line x1="118" y1="63" x2="145" y2="63" stroke="#e8001d" stroke-width="2"/>
+          <text x="150" y="67" font-family="Space Mono" font-size="8" fill="#e8001d">7/8</text>
+          <!-- Boom -->
+          <line x1="130" y1="205" x2="220" y2="220" stroke="rgba(242,242,240,0.9)" stroke-width="2.5"/>
+          <!-- Shrouds -->
+          <line x1="130" y1="75" x2="105" y2="218" stroke="rgba(232,0,29,0.5)" stroke-width="1.5" stroke-dasharray="3 3"/>
+          <line x1="130" y1="75" x2="155" y2="218" stroke="rgba(232,0,29,0.5)" stroke-width="1.5" stroke-dasharray="3 3"/>
+          <!-- Backstay -->
+          <line x1="130" y1="30" x2="215" y2="222" stroke="rgba(242,242,240,0.15)" stroke-width="1"/>
+          <!-- Main sail -->
+          <path d="M130 32 L220 222 L130 207 Z" fill="rgba(232,0,29,0.1)" stroke="#e8001d" stroke-width="1.5"/>
+          <!-- Jib - smaller, fractional -->
+          <path d="M130 68 L65 220 L130 215 Z" fill="rgba(242,242,240,0.05)" stroke="rgba(242,242,240,0.6)" stroke-width="1.5"/>
+          <!-- Hull -->
+          <path d="M65 242 Q75 233 130 228 Q185 233 205 248 Q200 275 178 290 Q158 300 130 302 Q102 300 82 290 Q60 275 65 242Z"
+                fill="#1e1e1c" stroke="#e8001d" stroke-width="2"/>
+          <!-- Racing stripe -->
+          <path d="M68 250 Q130 242 202 252" stroke="#e8001d" stroke-width="2.5" fill="none"/>
+          <!-- Keel pivot indicator -->
+          <rect x="122" y="298" width="16" height="4" fill="rgba(232,0,29,0.4)" stroke="#e8001d" stroke-width="1"/>
+          <!-- Keel down -->
+          <path d="M124 302 L116 345 L130 350 L144 345 L136 302 Z" fill="rgba(232,0,29,0.3)" stroke="#e8001d" stroke-width="1.5"/>
+          <!-- Keel up (dashed) -->
+          <path d="M127 302 L125 315 L130 317 L135 315 L133 302" stroke="rgba(232,0,29,0.25)" stroke-width="1" stroke-dasharray="3 2" fill="none"/>
+          <!-- Waterline -->
+          <line x1="58" y1="258" x2="210" y2="258" stroke="rgba(0,150,255,0.5)" stroke-width="1.5" stroke-dasharray="8 4"/>
+          <text x="215" y="262" font-family="Space Mono" font-size="7" fill="rgba(0,150,255,0.7)">LWL</text>
+          <!-- LOA dimension arrow -->
+          <line x1="58" y1="310" x2="210" y2="310" stroke="rgba(242,242,240,0.2)" stroke-width="1"/>
+          <line x1="58" y1="305" x2="58" y2="315" stroke="rgba(242,242,240,0.2)" stroke-width="1"/>
+          <line x1="210" y1="305" x2="210" y2="315" stroke="rgba(242,242,240,0.2)" stroke-width="1"/>
+          <text x="110" y="322" font-family="Space Mono" font-size="7" fill="rgba(242,242,240,0.4)">7.85m</text>
+        </svg>
+      </div>
+      <div class="annotation">
+        <div class="ann-item">
+          <div class="ann-val">7/8</div>
+          <div class="ann-label">Gréement</div>
+        </div>
+        <div class="ann-item">
+          <div class="ann-val">3–5</div>
+          <div class="ann-label">Équipiers</div>
+        </div>
+        <div class="ann-item">
+          <div class="ann-val">41m²</div>
+          <div class="ann-label">Voilure</div>
+        </div>
+        <div class="ann-item">
+          <div class="ann-val">55m²</div>
+          <div class="ann-label">Spinnaker</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- JAUGE -->
+<section id="jauge" class="s-pad">
+  <div class="s-eyebrow">04 — Système de jauge</div>
+  <h2 class="s-title">Un seul bateau.<br><em>Zéro compromis.</em></h2>
+  <p class="s-subtitle">Le monotype : l'équité absolue de la régate</p>
+  <div class="jauge-layout">
+    <div class="jauge-panel">
+      <div class="jauge-title">MONO<span>TYPE</span></div>
+      <div class="jauge-sub">Jauge de classe contraignante — FFVoile</div>
+      <div class="rule-list">
+        <div class="rule-item">
+          <span class="rule-num">01</span>
+          <p class="rule-text"><strong>Coque strictement identique</strong> — Toutes les coques sortent des mêmes moules du chantier Bénéteau. Aucune modification structurelle n'est tolérée.</p>
+        </div>
+        <div class="rule-item">
+          <span class="rule-num">02</span>
+          <p class="rule-text"><strong>Gréement contrôlé</strong> — La longueur du mât, la section des barres de flèches et la position du point d'écoute du génois sont réglementés au centimètre.</p>
+        </div>
+        <div class="rule-item">
+          <span class="rule-num">03</span>
+          <p class="rule-text"><strong>Voilerie certifiée</strong> — Les voiles doivent répondre aux surfaces et matériaux définis dans la jauge de classe. Contrôle possible à tout moment par les mesureurs officiels.</p>
+        </div>
+        <div class="rule-item">
+          <span class="rule-num">04</span>
+          <p class="rule-text"><strong>Poids minimum garanti</strong> — Le déplacement lège est contrôlé. Aucun allègement sauvage n'est autorisé. L'équité commence par la balance.</p>
+        </div>
+        <div class="rule-item">
+          <span class="rule-num">05</span>
+          <p class="rule-text"><strong>Classement en temps réel</strong> — Pas de handicap appliqué. Le premier à franchir la ligne gagne. La tactique et l'équipage font la différence.</p>
+        </div>
+      </div>
+    </div>
+    <div class="jauge-text">
+      <p>
+        Le First Class 8 est un <strong style="color:var(--white)">monotype pur</strong>. Tous les bateaux sont strictement identiques — même coque, même gréement, même voilure. Ce principe élimine l'avantage technologique et financier, ne laissant place qu'à <strong style="color:var(--white)">la technicité de l'équipage</strong>.
+      </p>
+      <p>
+        C'est le système le plus équitable de la régate : le classement est établi <strong style="color:var(--white)">en temps réel, sans correction</strong>. Le premier à franchir l'arrivée est le vainqueur. Pas de calculs, pas de coefficients. Juste la vitesse, la tactique et l'intelligence collective.
+      </p>
+      <p>
+        La jauge de classe est administrée par la <strong style="color:var(--white)">Fédération Française de Voile</strong> et vérifiée par des mesureurs accrédités. Toute modification non autorisée entraîne disqualification et retrait du certificat.
+      </p>
+      <div class="formula-block">
+        <div class="f-label">Principe fondateur</div>
+        Même bateau × Meilleur équipage = Victoire
+      </div>
+      <p style="margin-top:2rem;">
+        Ce format a permis au FC8 d'être le <strong style="color:var(--white)">support des championnats de France Espoir</strong> pendant plus de 25 ans, formant les meilleurs régatiers français dans des conditions d'équité totale.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- BATEAU -->
+<section id="bateau" class="s-pad">
+  <div class="s-eyebrow">05 — Présentation du voilier</div>
+  <h2 class="s-title">First Class<em> 8</em><br>Le bateau</h2>
+  <p class="s-subtitle">Bénéteau × Groupe Finot — 1982</p>
+  <div class="bateau-hero">
+    <div class="boat-main-visual">
+      <div class="corner-tag">FC8 — Vue 3/4</div>
+      <!-- Larger, detailed perspective SVG -->
+      <svg width="340" height="400" viewBox="0 0 340 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Mast -->
+        <line x1="160" y1="25" x2="160" y2="285" stroke="rgba(242,242,240,0.95)" stroke-width="4"/>
+        <!-- Boom -->
+        <line x1="160" y1="235" x2="270" y2="255" stroke="rgba(242,242,240,0.9)" stroke-width="3"/>
+        <!-- Backstay -->
+        <line x1="160" y1="25" x2="262" y2="258" stroke="rgba(242,242,240,0.2)" stroke-width="1.5"/>
+        <!-- Shrouds -->
+        <line x1="160" y1="72" x2="128" y2="248" stroke="#e8001d" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.6"/>
+        <line x1="160" y1="72" x2="193" y2="248" stroke="#e8001d" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.6"/>
+        <!-- Main sail — large, prominent -->
+        <path d="M160 28 L272 258 L160 237 Z" fill="rgba(232,0,29,0.12)" stroke="#e8001d" stroke-width="2"/>
+        <!-- Reefing lines on main -->
+        <line x1="163" y1="130" x2="215" y2="140" stroke="rgba(232,0,29,0.25)" stroke-width="1" stroke-dasharray="3 3"/>
+        <line x1="163" y1="175" x2="240" y2="188" stroke="rgba(232,0,29,0.25)" stroke-width="1" stroke-dasharray="3 3"/>
+        <!-- Jib -->
+        <path d="M160 78" fill="none"/>
+        <path d="M160 78 L68 250 L160 242 Z" fill="rgba(242,242,240,0.06)" stroke="rgba(242,242,240,0.65)" stroke-width="2"/>
+        <!-- FC8 number on sail -->
+        <text x="200" y="200" font-family="Barlow Condensed" font-weight="900" font-size="28" fill="rgba(232,0,29,0.5)" transform="rotate(8,200,200)">8</text>
+        <!-- Hull — sleek profile -->
+        <path d="M68 270 Q82 258 160 250 Q235 258 265 278 Q258 318 228 340 Q198 355 160 358 Q122 355 92 340 Q62 318 68 270Z"
+              fill="#1e1e1c" stroke="rgba(242,242,240,0.2)" stroke-width="1.5"/>
+        <!-- Red racing stripe -->
+        <path d="M72 278 Q160 263 262 282" stroke="#e8001d" stroke-width="4" fill="none"/>
+        <!-- Secondary stripe -->
+        <path d="M76 286 Q160 273 258 290" stroke="rgba(232,0,29,0.3)" stroke-width="1.5" fill="none"/>
+        <!-- Cockpit -->
+        <ellipse cx="195" cy="262" rx="32" ry="10" fill="rgba(0,0,0,0.5)" stroke="rgba(242,242,240,0.15)" stroke-width="1"/>
+        <!-- Crew positions (dots) -->
+        <circle cx="155" cy="260" r="4" fill="rgba(232,0,29,0.6)"/>
+        <circle cx="175" cy="257" r="4" fill="rgba(232,0,29,0.6)"/>
+        <circle cx="200" cy="258" r="4" fill="rgba(232,0,29,0.6)"/>
+        <circle cx="218" cy="263" r="4" fill="rgba(232,0,29,0.4)"/>
+        <text x="130" y="285" font-family="Space Mono" font-size="7" fill="rgba(232,0,29,0.6)">← ÉQUIPAGE 3-5 PERS</text>
+        <!-- Keel -->
+        <path d="M148 356 L140 398 L160 405 L180 398 L172 356 Z"
+              fill="rgba(232,0,29,0.25)" stroke="#e8001d" stroke-width="1.5"/>
+        <ellipse cx="160" cy="407" rx="21" ry="8" fill="rgba(232,0,29,0.4)" stroke="#e8001d" stroke-width="1"/>
+        <!-- Waterline -->
+        <line x1="60" y1="290" x2="270" y2="290" stroke="rgba(0,100,200,0.5)" stroke-width="1.5" stroke-dasharray="10 5"/>
+      </svg>
+    </div>
+    <div class="bateau-info">
+      <h3><em>First</em><br>Class 8</h3>
+      <div class="bsub">Monotype · Sloop fractionné · Bénéteau 1982</div>
+      <p>
+        Le First Class 8 est né d'une commande de la <strong>Fédération Française de Voile</strong>, qui cherchait en 1982 un support accessible et performant pour ses championnats Espoir. Jean-Marie Finot et Jacques Fauroux relèvent le défi en imaginant un monotype radicalement sportif.
+      </p>
+      <p>
+        Sa signature technique : une <strong>quille relevable pivotante</strong> — innovation de Finot — qui permet à la fois la compétition en mer avec 1,75m de tirant d'eau et le transport sur remorque à moins de 50 cm. Ce système rend le FC8 unique dans sa catégorie.
+      </p>
+      <p>
+        Le <strong>gréement fractionné 7/8</strong> avec bastaques actifs exige un équipage synchronisé et technique. La barre, volontairement réactive, sanctionne immédiatement chaque erreur de réglage — ce qui en fait un formidable outil de progression.
+      </p>
+      <p>
+        Sa carène relativement lourde (1 750 kg) lui confère un comportement marin remarquable dans le clapot et sous forte brise, là où les équipages solides font la différence. Exigeant, mais foncièrement équitable.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- HISTORIQUE -->
+<section id="historique" class="s-pad">
+  <div class="s-eyebrow">06 — Historique de la classe</div>
+  <h2 class="s-title">Quarante ans<br><em>de régate</em></h2>
+  <p class="s-subtitle">Du monotype des championnats Espoir au bateau de légende</p>
+  <div class="tl">
+    <div class="tl-item">
+      <div class="tl-year">1982</div>
+      <div class="tl-node"></div>
+      <div class="tl-content">
+        <h4>Naissance du First Class 8</h4>
+        <p>Bénéteau lance la production du FC8, conçu par Jean-Marie Finot et Jacques Fauroux. Le bateau répond à une demande de la FFVoile pour structurer les championnats Espoir. L'innovation clé : la quille relevable pivotante, inédite dans la catégorie.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">1984</div>
+      <div class="tl-node"></div>
+      <div class="tl-content">
+        <h4>Support des championnats de France</h4>
+        <p>Le FC8 devient officiellement support des championnats de France Espoir. La flotte nationale dépasse rapidement les 200 unités. La concurrence avec le Fun de Jeanneau tourne nettement à l'avantage du FC8 sur les circuits de compétition.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">1988</div>
+      <div class="tl-node"></div>
+      <div class="tl-content">
+        <h4>Apogée de la classe</h4>
+        <p>Plus de 600 unités en flotte active. Les régates regroupent régulièrement 50 à 80 bateaux sur les circuits régionaux. Le FC8 est présent dans tous les grands clubs côtiers français et commence à s'exporter vers l'Espagne et le Portugal.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">1992</div>
+      <div class="tl-node"></div>
+      <div class="tl-content">
+        <h4>Record historique — Cap d'Agde</h4>
+        <p>Le Grand Prix du Cap d'Agde réunit plus de 100 First Class 8 au départ. C'est le sommet historique de la classe et l'un des plus grands rassemblements monotype jamais organisés en France. L'image de cette flotte au départ reste dans toutes les mémoires.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">1997</div>
+      <div class="tl-node"></div>
+      <div class="tl-content">
+        <h4>Fin de production — 980 unités</h4>
+        <p>Bénéteau cesse la production après 15 ans. Le chantier compte exactement 980 exemplaires construits. L'activité de la classe ralentit en France mais les clubs espagnols rachètent massivement les bateaux disponibles, assurant une seconde vie au FC8 sur la péninsule ibérique.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">2005</div>
+      <div class="tl-node"></div>
+      <div class="tl-content">
+        <h4>Succession : le First Class 7.5</h4>
+        <p>La FFVoile adopte le First Class 7.5 comme nouveau support des championnats nationaux. Le FC8 reste actif dans de nombreux clubs sous format régional et inter-clubs, conservant une communauté de régatiers fidèles qui entretiennent leurs bateaux avec soin.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">2025</div>
+      <div class="tl-node"></div>
+      <div class="tl-content">
+        <h4>La classe FC8 aujourd'hui</h4>
+        <p>La classe demeure vivante grâce à l'association nationale et aux réseaux régionaux. Le marché de l'occasion est actif, attirant de jeunes équipages séduits par le prix d'accès et le plaisir de régate intact. Le FC8 reste une école incomparable de la voile en équipage.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="foot-logo">FC<em>8</em></div>
+    <div class="foot-tagline">Association Nationale de Classe · First Class 8</div>
+    <p>Affiliée à la Fédération Française de Voile.<br>Défendre, animer et développer la classe<br>First Class 8 sur tout le territoire.</p>
+  </div>
+  <div>
+    <h5>Navigation</h5>
+    <a href="#flotte">Flotte & Carte</a>
+    <a href="#agenda">Agenda 2025</a>
+    <a href="#technique">Fiche Technique</a>
+    <a href="#jauge">Jauge Monotype</a>
+    <a href="#bateau">Le Bateau</a>
+    <a href="#historique">Historique</a>
+  </div>
+  <div>
+    <h5>Contact</h5>
+    <p>association@firstclass8.fr</p>
+    <p>Secrétariat : 06 00 00 00 00</p>
+    <p style="margin-top:1rem;">Adhésion annuelle : 45 €<br>Certificat de jauge : sur demande</p>
+    <a href="#" style="margin-top:1rem; color:var(--red); font-weight:700; letter-spacing:0.1em; font-family: 'Barlow Condensed', sans-serif; font-size:0.9rem;">→ ADHÉRER EN LIGNE</a>
+  </div>
+  <div class="foot-bottom">
+    <p>© 2025 Association Nationale de Classe First Class 8</p>
+    <p>Bénéteau · Groupe Finot · FFVoile</p>
+  </div>
+</footer>
+
+<script>
+// Smooth nav highlight
+const navLinks = document.querySelectorAll('nav a:not(.nav-cta)');
+window.addEventListener('scroll', () => {
+  let current = '';
+  document.querySelectorAll('section[id]').forEach(s => {
+    if (window.scrollY >= s.offsetTop - 80) current = s.id;
+  });
+  navLinks.forEach(a => {
+    a.style.color = a.getAttribute('href') === `#${current}` ? 'var(--white)' : '';
+    a.style.background = a.getAttribute('href') === `#${current}` ? 'rgba(232,0,29,0.08)' : '';
+  });
+});
+</script>
+</body>
+</html>

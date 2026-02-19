@@ -1,0 +1,1421 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Société Nautique de la Côte d'Azur</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:wght@300;400;600&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0a1628;
+    --deep: #071020;
+    --ocean: #1a3a5c;
+    --teal: #0e7490;
+    --gold: #c9a84c;
+    --gold-light: #e8c97a;
+    --cream: #f5f0e8;
+    --white: #ffffff;
+    --mist: #a8c4d4;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Cormorant Garamond', serif;
+    background: var(--deep);
+    color: var(--cream);
+    overflow-x: hidden;
+  }
+
+  /* ── NAVIGATION ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.2rem 4rem;
+    background: linear-gradient(to bottom, rgba(7,16,32,0.98), transparent);
+    backdrop-filter: blur(6px);
+  }
+
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+    text-transform: uppercase;
+    line-height: 1.2;
+  }
+
+  .logo span { display: block; font-size: 0.7rem; letter-spacing: 0.35em; color: var(--mist); font-family: 'Cormorant Garamond', serif; font-weight: 300; }
+
+  nav ul {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  nav a {
+    text-decoration: none;
+    color: var(--mist);
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+
+  nav a:hover { color: var(--gold); }
+
+  /* ── HERO ── */
+  #hero {
+    height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 80%, rgba(14,116,144,0.15) 0%, transparent 70%),
+      linear-gradient(180deg, var(--deep) 0%, var(--navy) 40%, #0d2240 100%);
+  }
+
+  /* Animated water lines */
+  .waves {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 200px;
+    overflow: hidden;
+  }
+
+  .wave {
+    position: absolute;
+    bottom: 0;
+    width: 200%;
+    height: 100%;
+    animation: waveAnim 8s linear infinite;
+  }
+
+  .wave:nth-child(1) {
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 100'%3E%3Cpath fill='%230e7490' fill-opacity='0.15' d='M0,50 C360,100 720,0 1080,50 C1260,75 1350,62 1440,50 L1440,100 L0,100 Z'/%3E%3C/svg%3E") repeat-x center/50% 100%;
+    animation-duration: 10s;
+  }
+
+  .wave:nth-child(2) {
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 100'%3E%3Cpath fill='%231a3a5c' fill-opacity='0.2' d='M0,30 C240,70 480,10 720,40 C960,70 1200,20 1440,50 L1440,100 L0,100 Z'/%3E%3C/svg%3E") repeat-x center/50% 100%;
+    animation-duration: 14s;
+    animation-direction: reverse;
+  }
+
+  @keyframes waveAnim {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* Star field */
+  .stars {
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(1px 1px at 20% 15%, rgba(255,255,255,0.6) 0%, transparent 100%),
+      radial-gradient(1px 1px at 75% 8%, rgba(255,255,255,0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 45% 25%, rgba(255,255,255,0.4) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 90% 20%, rgba(201,168,76,0.7) 0%, transparent 100%),
+      radial-gradient(1px 1px at 10% 35%, rgba(255,255,255,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 60% 12%, rgba(255,255,255,0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 33% 5%, rgba(255,255,255,0.4) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 55% 30%, rgba(255,255,255,0.6) 0%, transparent 100%);
+  }
+
+  /* Sailboat SVG decoration */
+  .sailboat-deco {
+    position: absolute;
+    right: 8%;
+    bottom: 180px;
+    opacity: 0.12;
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0) rotate(-1deg); }
+    50% { transform: translateY(-20px) rotate(1deg); }
+  }
+
+  .hero-content {
+    position: relative;
+    text-align: center;
+    z-index: 2;
+    animation: fadeUp 1.2s ease both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-eyebrow {
+    font-size: 0.75rem;
+    letter-spacing: 0.5em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    line-height: 1;
+    color: var(--white);
+    margin-bottom: 0.3rem;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+
+  .hero-sub {
+    font-size: 1.4rem;
+    font-weight: 300;
+    color: var(--mist);
+    letter-spacing: 0.15em;
+    margin-bottom: 3rem;
+  }
+
+  .hero-cta {
+    display: inline-flex;
+    gap: 1.5rem;
+    align-items: center;
+  }
+
+  .btn-primary {
+    padding: 0.85rem 2.5rem;
+    background: var(--gold);
+    color: var(--deep);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.3s;
+  }
+
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+  .btn-ghost {
+    padding: 0.85rem 2.5rem;
+    border: 1px solid rgba(201,168,76,0.4);
+    color: var(--gold);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.3s;
+  }
+
+  .btn-ghost:hover { border-color: var(--gold); background: rgba(201,168,76,0.08); }
+
+  /* ── SECTIONS ── */
+  section { padding: 7rem 4rem; }
+
+  .section-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.8rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+  }
+
+  .section-title em { font-style: italic; color: var(--gold-light); }
+
+  .divider {
+    width: 60px;
+    height: 1px;
+    background: var(--gold);
+    margin-bottom: 3rem;
+    opacity: 0.6;
+  }
+
+  /* ── FLEET / MAP ── */
+  #flotte {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--deep) 100%);
+    position: relative;
+  }
+
+  #flotte::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%231a3a5c' fill-opacity='0.3'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    opacity: 0.3;
+  }
+
+  .fleet-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 5rem;
+    align-items: start;
+    position: relative;
+  }
+
+  /* Fake interactive map */
+  .marina-map {
+    background: linear-gradient(135deg, #0a2540, #0d3360);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 4px;
+    aspect-ratio: 4/3;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.5), inset 0 0 60px rgba(14,116,144,0.1);
+  }
+
+  .map-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(14,116,144,0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(14,116,144,0.08) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  .dock {
+    position: absolute;
+    background: rgba(201,168,76,0.3);
+    border: 1px solid rgba(201,168,76,0.5);
+  }
+
+  .dock-a { width: 180px; height: 12px; left: 15%; top: 35%; transform: rotate(15deg); }
+  .dock-b { width: 160px; height: 12px; left: 18%; top: 52%; transform: rotate(15deg); }
+  .dock-c { width: 140px; height: 12px; left: 55%; top: 28%; transform: rotate(-10deg); }
+
+  .berth {
+    position: absolute;
+    width: 22px;
+    height: 8px;
+    background: rgba(14,116,144,0.6);
+    border: 1px solid var(--teal);
+    border-radius: 1px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .berth:hover, .berth.active { background: var(--gold); border-color: var(--gold-light); z-index: 10; }
+  .berth.active::after {
+    content: attr(data-name);
+    position: absolute;
+    bottom: 120%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--navy);
+    color: var(--gold);
+    padding: 0.3rem 0.6rem;
+    font-size: 0.65rem;
+    white-space: nowrap;
+    border: 1px solid var(--gold);
+    letter-spacing: 0.1em;
+  }
+
+  /* Berth positions */
+  .b1 { left: 20%; top: 25%; }
+  .b2 { left: 28%; top: 28%; }
+  .b3 { left: 20%; top: 42%; }
+  .b4 { left: 28%; top: 45%; }
+  .b5 { left: 36%; top: 48%; }
+  .b6 { left: 58%; top: 20%; }
+  .b7 { left: 66%; top: 22%; }
+  .b8 { left: 58%; top: 34%; }
+  .b9 { left: 66%; top: 37%; }
+  .b10 { left: 74%; top: 25%; }
+
+  .map-water {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 35%;
+    background: linear-gradient(to bottom, rgba(14,116,144,0.15), rgba(14,116,144,0.3));
+  }
+
+  .map-compass {
+    position: absolute;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    width: 50px;
+    height: 50px;
+    border: 1px solid rgba(201,168,76,0.4);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    color: var(--gold);
+    letter-spacing: 0.05em;
+  }
+
+  .map-label {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    color: var(--mist);
+    text-transform: uppercase;
+  }
+
+  .fleet-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .boat-entry {
+    display: grid;
+    grid-template-columns: 3rem 1fr auto;
+    gap: 1rem;
+    align-items: center;
+    padding: 1.2rem 0;
+    border-bottom: 1px solid rgba(201,168,76,0.1);
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .boat-entry:hover { padding-left: 0.5rem; border-bottom-color: rgba(201,168,76,0.4); }
+
+  .boat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    color: rgba(201,168,76,0.3);
+    line-height: 1;
+  }
+
+  .boat-info h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: var(--cream);
+    font-weight: 400;
+  }
+
+  .boat-info p {
+    font-size: 0.8rem;
+    color: var(--mist);
+    letter-spacing: 0.05em;
+  }
+
+  .boat-type {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    padding: 0.2rem 0.6rem;
+    border: 1px solid rgba(201,168,76,0.3);
+  }
+
+  /* ── CALENDAR ── */
+  #agenda {
+    background: var(--deep);
+  }
+
+  .calendar-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+  }
+
+  .month-header {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    letter-spacing: 0.2em;
+    color: var(--ocean);
+    margin-bottom: 1.5rem;
+  }
+
+  .event-card {
+    display: flex;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    border-left: 2px solid var(--gold);
+    background: rgba(26,58,92,0.2);
+    margin-bottom: 1rem;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .event-card::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 0;
+    background: rgba(201,168,76,0.05);
+    transition: width 0.3s;
+  }
+
+  .event-card:hover::before { width: 100%; }
+  .event-card:hover { border-left-color: var(--gold-light); transform: translateX(4px); }
+
+  .event-date {
+    text-align: center;
+    min-width: 3.5rem;
+  }
+
+  .event-date .day {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.5rem;
+    line-height: 1;
+    color: var(--gold);
+  }
+
+  .event-date .month {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--mist);
+  }
+
+  .event-body h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    color: var(--cream);
+    margin-bottom: 0.3rem;
+  }
+
+  .event-body p {
+    font-size: 0.85rem;
+    color: var(--mist);
+    line-height: 1.5;
+  }
+
+  .event-tag {
+    display: inline-block;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 0.15rem 0.5rem;
+    margin-top: 0.5rem;
+  }
+
+  .tag-race { color: #ef4444; border: 1px solid rgba(239,68,68,0.4); }
+  .tag-training { color: #22c55e; border: 1px solid rgba(34,197,94,0.4); }
+  .tag-social { color: var(--gold); border: 1px solid rgba(201,168,76,0.4); }
+  .tag-regatta { color: #a78bfa; border: 1px solid rgba(167,139,250,0.4); }
+
+  /* ── BOAT PRESENTATION ── */
+  #bateau {
+    background: linear-gradient(180deg, var(--deep) 0%, var(--navy) 100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .boat-hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+    margin-bottom: 6rem;
+  }
+
+  .boat-drawing {
+    position: relative;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* SVG Sailboat */
+  .boat-svg-wrap {
+    animation: gentleFloat 8s ease-in-out infinite;
+  }
+
+  @keyframes gentleFloat {
+    0%, 100% { transform: translateY(0) rotate(-0.5deg); }
+    50% { transform: translateY(-12px) rotate(0.5deg); }
+  }
+
+  .boat-specs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: rgba(201,168,76,0.1);
+    margin-top: 3rem;
+  }
+
+  .spec-cell {
+    background: var(--deep);
+    padding: 1.5rem;
+    transition: background 0.3s;
+  }
+
+  .spec-cell:hover { background: rgba(26,58,92,0.4); }
+
+  .spec-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.4rem;
+  }
+
+  .spec-value {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    color: var(--white);
+    line-height: 1;
+  }
+
+  .spec-unit {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.9rem;
+    color: var(--mist);
+  }
+
+  /* ── JAUGE ── */
+  #jauge {
+    background: var(--deep);
+  }
+
+  .jauge-layout {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .jauge-visual {
+    background: linear-gradient(135deg, rgba(26,58,92,0.3), rgba(7,16,32,0.5));
+    border: 1px solid rgba(201,168,76,0.15);
+    padding: 3rem;
+    position: relative;
+  }
+
+  .rating-display {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .rating-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 6rem;
+    line-height: 1;
+    color: var(--gold);
+    text-shadow: 0 0 40px rgba(201,168,76,0.3);
+  }
+
+  .rating-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--mist);
+  }
+
+  .gauge-bars {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+
+  .gauge-bar-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .gauge-bar-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    color: var(--mist);
+    letter-spacing: 0.1em;
+  }
+
+  .gauge-bar-track {
+    height: 4px;
+    background: rgba(201,168,76,0.1);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .gauge-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--teal), var(--gold));
+    border-radius: 2px;
+    transition: width 1.5s ease;
+  }
+
+  .jauge-text p {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--mist);
+    margin-bottom: 1.5rem;
+  }
+
+  .formula-box {
+    background: rgba(26,58,92,0.2);
+    border: 1px solid rgba(201,168,76,0.2);
+    padding: 1.5rem;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+    text-align: center;
+  }
+
+  /* ── HISTORY ── */
+  #historique {
+    background: linear-gradient(135deg, var(--navy), var(--deep));
+    position: relative;
+  }
+
+  .timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 5rem;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, var(--gold) 10%, var(--gold) 90%, transparent);
+    opacity: 0.3;
+  }
+
+  .timeline-item {
+    display: grid;
+    grid-template-columns: 5rem 3rem 1fr;
+    gap: 0;
+    margin-bottom: 3rem;
+    align-items: start;
+    opacity: 0;
+    animation: slideIn 0.6s ease forwards;
+  }
+
+  .timeline-item:nth-child(1) { animation-delay: 0.1s; }
+  .timeline-item:nth-child(2) { animation-delay: 0.2s; }
+  .timeline-item:nth-child(3) { animation-delay: 0.3s; }
+  .timeline-item:nth-child(4) { animation-delay: 0.4s; }
+  .timeline-item:nth-child(5) { animation-delay: 0.5s; }
+  .timeline-item:nth-child(6) { animation-delay: 0.6s; }
+
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateX(-20px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  .tl-year {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2rem;
+    letter-spacing: 0.1em;
+    color: var(--gold);
+    text-align: right;
+    padding-top: 0.1rem;
+    padding-right: 1.5rem;
+  }
+
+  .tl-dot {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .tl-dot::before {
+    content: '';
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--gold);
+    border: 2px solid var(--deep);
+    box-shadow: 0 0 10px rgba(201,168,76,0.5);
+    margin-top: 0.3rem;
+  }
+
+  .tl-content {
+    padding-left: 1.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .tl-content h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--cream);
+    margin-bottom: 0.5rem;
+  }
+
+  .tl-content p {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: var(--mist);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--deep);
+    border-top: 1px solid rgba(201,168,76,0.15);
+    padding: 4rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 3rem;
+  }
+
+  footer h5 {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.85rem;
+    color: var(--gold);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  footer p, footer a {
+    font-size: 0.9rem;
+    color: var(--mist);
+    line-height: 1.8;
+    text-decoration: none;
+    display: block;
+  }
+
+  footer a:hover { color: var(--cream); }
+
+  .footer-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+  }
+
+  .footer-brand-sub {
+    font-size: 0.75rem;
+    letter-spacing: 0.3em;
+    color: var(--mist);
+    text-transform: uppercase;
+  }
+
+  .footer-bottom {
+    grid-column: 1 / -1;
+    border-top: 1px solid rgba(201,168,76,0.1);
+    padding-top: 2rem;
+    text-align: center;
+    font-size: 0.75rem;
+    color: rgba(168,196,212,0.4);
+    letter-spacing: 0.2em;
+  }
+
+  /* ── TECHNICAL DESC ── */
+  #technique {
+    background: var(--navy);
+  }
+
+  .tech-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(201,168,76,0.1);
+    margin-top: 3rem;
+  }
+
+  .tech-card {
+    background: var(--deep);
+    padding: 2.5rem 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+  }
+
+  .tech-card:hover { background: rgba(10,22,40,0.8); }
+
+  .tech-card::before {
+    content: attr(data-num);
+    position: absolute;
+    top: -0.5rem;
+    right: 1rem;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 6rem;
+    color: rgba(201,168,76,0.04);
+    line-height: 1;
+  }
+
+  .tech-icon {
+    font-size: 2rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .tech-card h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--cream);
+    margin-bottom: 1rem;
+  }
+
+  .tech-card p {
+    font-size: 0.88rem;
+    line-height: 1.7;
+    color: var(--mist);
+  }
+
+  /* scrollbar */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--deep); }
+  ::-webkit-scrollbar-thumb { background: rgba(201,168,76,0.3); border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav>
+  <div class="logo">
+    SNCA
+    <span>Société Nautique · Côte d'Azur</span>
+  </div>
+  <ul>
+    <li><a href="#flotte">Flotte</a></li>
+    <li><a href="#agenda">Agenda</a></li>
+    <li><a href="#technique">Technique</a></li>
+    <li><a href="#jauge">Jauge</a></li>
+    <li><a href="#bateau">Le Voilier</a></li>
+    <li><a href="#historique">Historique</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="stars"></div>
+  <svg class="sailboat-deco" width="300" height="400" viewBox="0 0 300 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M150 20 L150 280" stroke="white" stroke-width="2"/>
+    <path d="M150 20 L60 220 L150 220 Z" fill="white"/>
+    <path d="M150 60 L240 240 L150 240 Z" fill="rgba(255,255,255,0.5)"/>
+    <path d="M50 290 Q150 310 250 290 Q200 340 100 340 Z" fill="white"/>
+    <line x1="50" y1="295" x2="250" y2="295" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
+  </svg>
+  <div class="waves">
+    <div class="wave"></div>
+    <div class="wave"></div>
+  </div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Fondée en 1924 · Port de Saint-Jean-de-Luz</p>
+    <h1 class="hero-title">Société <em>Nautique</em><br>Côte d'Azur</h1>
+    <p class="hero-sub">L'art de naviguer, la passion de la mer</p>
+    <div class="hero-cta">
+      <a href="#flotte" class="btn-primary">Explorer la flotte</a>
+      <a href="#agenda" class="btn-ghost">Agenda 2025</a>
+    </div>
+  </div>
+</section>
+
+<!-- FLOTTE / CARTE -->
+<section id="flotte">
+  <div class="section-label">01 — La Flotte</div>
+  <h2 class="section-title">Recensement<br>des <em>Bateaux</em></h2>
+  <div class="divider"></div>
+  <div class="fleet-layout">
+    <!-- Map -->
+    <div>
+      <div class="marina-map">
+        <div class="map-grid"></div>
+        <div class="map-water"></div>
+        <div class="dock dock-a"></div>
+        <div class="dock dock-b"></div>
+        <div class="dock dock-c"></div>
+        <!-- Berths -->
+        <div class="berth b1 active" data-name="Aquilon · S01" onclick="this.classList.toggle('active')"></div>
+        <div class="berth b2" data-name="Belle Étoile · S02" onclick="this.classList.toggle('active')"></div>
+        <div class="berth b3 active" data-name="Caravelle · S03" onclick="this.classList.toggle('active')"></div>
+        <div class="berth b4" data-name="Douce France · S04" onclick="this.classList.toggle('active')"></div>
+        <div class="berth b5" data-name="Étrave · S05" onclick="this.classList.toggle('active')"></div>
+        <div class="berth b6" data-name="Fortuna · S06" onclick="this.classList.toggle('active')"></div>
+        <div class="berth b7 active" data-name="Galatée · S07" onclick="this.classList.toggle('active')"></div>
+        <div class="berth b8" data-name="Hestia · S08" onclick="this.classList.toggle('active')"></div>
+        <div class="berth b9" data-name="Icare · S09" onclick="this.classList.toggle('active')"></div>
+        <div class="berth b10" data-name="Junon · S10" onclick="this.classList.toggle('active')"></div>
+        <div class="map-compass">N</div>
+        <div class="map-label">Marina SNCA · Port Vieux</div>
+      </div>
+      <p style="font-size:0.75rem; color: var(--mist); margin-top:0.8rem; letter-spacing:0.1em;">
+        ↑ Cliquez sur un emplacement pour identifier le voilier
+      </p>
+    </div>
+    <!-- List -->
+    <div>
+      <p style="font-size:1.1rem; line-height:1.8; color:var(--mist); margin-bottom:2rem;">
+        La flotte de la SNCA regroupe <strong style="color:var(--cream)">28 voiliers</strong> répartis dans les 
+        différents pontons du port. Du sloop classique au multicoque moderne, chaque embarcation porte 
+        l'histoire et la passion de son propriétaire.
+      </p>
+      <div class="fleet-list">
+        <div class="boat-entry">
+          <span class="boat-num">01</span>
+          <div class="boat-info"><h4>Aquilon</h4><p>Ponton A · Emplacement 3 · 12,5 m</p></div>
+          <span class="boat-type">Sloop</span>
+        </div>
+        <div class="boat-entry">
+          <span class="boat-num">02</span>
+          <div class="boat-info"><h4>Belle Étoile</h4><p>Ponton A · Emplacement 7 · 9,8 m</p></div>
+          <span class="boat-type">Ketch</span>
+        </div>
+        <div class="boat-entry">
+          <span class="boat-num">03</span>
+          <div class="boat-info"><h4>Caravelle</h4><p>Ponton B · Emplacement 2 · 11,2 m</p></div>
+          <span class="boat-type">Yawl</span>
+        </div>
+        <div class="boat-entry">
+          <span class="boat-num">04</span>
+          <div class="boat-info"><h4>Douce France</h4><p>Ponton B · Emplacement 5 · 15,0 m</p></div>
+          <span class="boat-type">Sloop</span>
+        </div>
+        <div class="boat-entry">
+          <span class="boat-num">05</span>
+          <div class="boat-info"><h4>Fortuna</h4><p>Ponton C · Emplacement 1 · 8,6 m</p></div>
+          <span class="boat-type">Dériveur</span>
+        </div>
+        <div class="boat-entry">
+          <span class="boat-num">06</span>
+          <div class="boat-info"><h4>Galatée</h4><p>Ponton C · Emplacement 4 · 13,4 m</p></div>
+          <span class="boat-type">Catamaran</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AGENDA -->
+<section id="agenda">
+  <div class="section-label">02 — Agenda</div>
+  <h2 class="section-title">Calendrier des<br><em>Événements</em> 2025</h2>
+  <div class="divider"></div>
+  <div class="calendar-grid">
+    <div>
+      <div class="month-header">Printemps</div>
+      <div class="event-card">
+        <div class="event-date"><div class="day">15</div><div class="month">Mars</div></div>
+        <div class="event-body">
+          <h4>Ouverture de Saison</h4>
+          <p>Sortie collective en flotte, apéritif du port et cérémonie des pavillons.</p>
+          <span class="event-tag tag-social">Social</span>
+        </div>
+      </div>
+      <div class="event-card">
+        <div class="event-date"><div class="day">05</div><div class="month">Avr</div></div>
+        <div class="event-body">
+          <h4>Régates de Printemps</h4>
+          <p>Circuit côtier — 3 manches, toutes jauges IRC et Osiris confondues.</p>
+          <span class="event-tag tag-regatta">Régate</span>
+        </div>
+      </div>
+      <div class="event-card">
+        <div class="event-date"><div class="day">18</div><div class="month">Mai</div></div>
+        <div class="event-body">
+          <h4>Stage Météo Marine</h4>
+          <p>Formation de 2 jours animée par Météo-France — tous niveaux.</p>
+          <span class="event-tag tag-training">Formation</span>
+        </div>
+      </div>
+      <div class="event-card">
+        <div class="event-date"><div class="day">28</div><div class="month">Juin</div></div>
+        <div class="event-body">
+          <h4>Grand Prix SNCA</h4>
+          <p>Course officielle du club — trophée et remise des prix le soir au port.</p>
+          <span class="event-tag tag-race">Course</span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="month-header">Automne</div>
+      <div class="event-card">
+        <div class="event-date"><div class="day">12</div><div class="month">Sep</div></div>
+        <div class="event-body">
+          <h4>Transvasion Côtière</h4>
+          <p>Raid nocturne de 80 milles — départ 22h, arrivée le lendemain matin.</p>
+          <span class="event-tag tag-race">Course</span>
+        </div>
+      </div>
+      <div class="event-card">
+        <div class="event-date"><div class="day">04</div><div class="month">Oct</div></div>
+        <div class="event-body">
+          <h4>Championnat du Club</h4>
+          <p>Clôture du championnat annuel — 6 manches pour le classement final.</p>
+          <span class="event-tag tag-regatta">Régate</span>
+        </div>
+      </div>
+      <div class="event-card">
+        <div class="event-date"><div class="day">22</div><div class="month">Nov</div></div>
+        <div class="event-body">
+          <h4>Gala de Fin de Saison</html>
+          <p>Remise des trophées, dîner de gala et projection des temps forts de l'année.</p>
+          <span class="event-tag tag-social">Social</span>
+        </div>
+      </div>
+      <div class="event-card">
+        <div class="event-date"><div class="day">10</div><div class="month">Déc</div></div>
+        <div class="event-body">
+          <h4>Stage Hivernage & Entretien</h4>
+          <p>Atelier pratique antifouling, accastillage et maintenance hivernale.</p>
+          <span class="event-tag tag-training">Formation</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TECHNIQUE -->
+<section id="technique">
+  <div class="section-label">03 — Descriptions Techniques</div>
+  <h2 class="section-title">Architecture<br><em>Nautique</em></h2>
+  <div class="divider"></div>
+  <p style="max-width:700px; font-size:1.05rem; line-height:1.8; color:var(--mist);">
+    Les voiliers de la SNCA couvrent un large spectre de typologies constructives, 
+    du monotype en polyester aux grandes unités en aluminium. Voici les principales catégories représentées.
+  </p>
+  <div class="tech-grid">
+    <div class="tech-card" data-num="01">
+      <div class="tech-icon">⚓</div>
+      <h4>Coque & Carène</h4>
+      <p>La carène long-keel favorise la stabilité de route sur les longues traversées. 
+      Les formes modernes fin-keel avec safran séparé offrent une meilleure manœuvrabilité 
+      et des performances améliorées au près serré. La profondeur du tirant d'eau 
+      conditionne l'accès aux mouillages.</p>
+    </div>
+    <div class="tech-card" data-num="02">
+      <div class="tech-icon">🌬</div>
+      <h4>Gréement & Voilure</h4>
+      <p>Le gréement Masthead développe une surface de voile maximale, idéal pour les 
+      régates légères. Le gréement fractionné 7/8 ou 3/4 améliore la rigidité du mât 
+      et la puissance dans le clapot. Surface totale de voilure : entre 45 m² et 120 m² 
+      selon les unités.</p>
+    </div>
+    <div class="tech-card" data-num="03">
+      <div class="tech-icon">🧭</div>
+      <h4>Navigation & Électronique</h4>
+      <p>Traceur chartplotter multi-écrans, AIS classe B, VHF DSC, girouette-anémomètre 
+      et loch-sondeur constituent l'équipement de base. Les unités de régate sont 
+      équipées de systèmes B&G ou Garmin avec liaison polaires et routage météo intégré.</p>
+    </div>
+    <div class="tech-card" data-num="04">
+      <div class="tech-icon">⚙️</div>
+      <h4>Motorisation Auxiliaire</h4>
+      <p>Moteurs diesel inboard de 15 à 55 CV selon la taille du voilier. 
+      Plusieurs unités sont équipées de propulseurs d'étrave pour les manœuvres portuaires. 
+      Tendance croissante aux auxiliaires hybrides et aux moteurs électriques silencieux 
+      pour les courts déplacements.</p>
+    </div>
+    <div class="tech-card" data-num="05">
+      <div class="tech-icon">🪝</div>
+      <h4>Accastillage & Pont</h4>
+      <p>Winchs auto-vireurs, bloqueurs de drisses et écoutes, rail de foc réglable, 
+      vang hydraulique sur les unités de course. Matériaux : inox 316, aluminium anodisé 
+      et composite carbone pour les voiliers les plus performants du club.</p>
+    </div>
+    <div class="tech-card" data-num="06">
+      <div class="tech-icon">🛡️</div>
+      <h4>Sécurité & Équipement</h4>
+      <p>Radeau de survie homologué, harnais et longes, balise EPIRB 406 MHz, 
+      extincteurs, fusées éclairantes et pharmacie de bord complète selon les normes 
+      CROSS. La SNCA organise chaque année une revue de sécurité collective 
+      en début de saison.</p>
+    </div>
+  </div>
+</section>
+
+<!-- BATEAU / JAUGE -->
+<section id="bateau">
+  <div class="section-label">04 — Présentation du Voilier Vedette</div>
+  <h2 class="section-title"><em>Aquilon</em><br>IRC 1 · Sloop Bermudien</h2>
+  <div class="divider"></div>
+  <div class="boat-hero">
+    <div>
+      <p style="font-size:1.1rem; line-height:1.8; color:var(--mist); margin-bottom:2rem;">
+        <strong style="color:var(--cream)">Aquilon</strong> est le voilier phare de la SNCA. 
+        Ce sloop bermudien de 12,5 mètres, dessiné par l'architecte Marc Lombard, 
+        conjugue performance de régate et confort de croisière. Sa carène fine-keel 
+        avec bulbe lesteur lui confère une excellente stabilité de forme et une 
+        vitesse remarquable dans toutes les conditions.
+      </p>
+      <p style="font-size:1.1rem; line-height:1.8; color:var(--mist); margin-bottom:2rem;">
+        Construit en 2018 au chantier Jeanneau, il dispose d'un intérieur soigné 
+        pour 6 personnes et d'un pont de travail optimisé pour la course en équipage 
+        réduit. Son gréement fractionné 7/8 avec étai largable permet de virer 
+        rapidement entre les configurations vent arrière et près serré.
+      </p>
+    </div>
+    <div class="boat-drawing">
+      <div class="boat-svg-wrap">
+        <svg width="280" height="380" viewBox="0 0 280 380" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Mast -->
+          <line x1="140" y1="30" x2="140" y2="260" stroke="rgba(201,168,76,0.9)" stroke-width="3"/>
+          <!-- Boom -->
+          <line x1="140" y1="200" x2="215" y2="220" stroke="rgba(201,168,76,0.7)" stroke-width="2"/>
+          <!-- Shrouds -->
+          <line x1="140" y1="60" x2="105" y2="215" stroke="rgba(168,196,212,0.3)" stroke-width="1"/>
+          <line x1="140" y1="60" x2="175" y2="215" stroke="rgba(168,196,212,0.3)" stroke-width="1"/>
+          <!-- Main sail -->
+          <path d="M140 35 L215 225 L140 205 Z" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+          <!-- Jib -->
+          <path d="M140 80 L65 220 L140 210 Z" fill="rgba(14,116,144,0.2)" stroke="rgba(168,196,212,0.5)" stroke-width="1.5"/>
+          <!-- Hull outline -->
+          <path d="M80 250 Q90 235 140 230 Q190 235 200 250 Q195 280 170 295 Q155 305 140 308 Q125 305 110 295 Q85 280 80 250Z" 
+                fill="rgba(26,58,92,0.6)" stroke="rgba(201,168,76,0.6)" stroke-width="1.5"/>
+          <!-- Keel -->
+          <path d="M130 305 L120 355 L140 360 L160 355 L150 305 Z" 
+                fill="rgba(14,116,144,0.5)" stroke="rgba(14,116,144,0.8)" stroke-width="1"/>
+          <!-- Bulb -->
+          <ellipse cx="140" cy="362" rx="22" ry="8" fill="rgba(14,116,144,0.7)" stroke="rgba(14,116,144,0.9)" stroke-width="1"/>
+          <!-- Deck line -->
+          <line x1="80" y1="248" x2="200" y2="248" stroke="rgba(201,168,76,0.4)" stroke-width="1"/>
+          <!-- Waterline glow -->
+          <ellipse cx="140" cy="260" rx="65" ry="5" fill="none" stroke="rgba(14,116,144,0.4)" stroke-width="1"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- Specs -->
+  <div class="boat-specs">
+    <div class="spec-cell">
+      <div class="spec-label">Longueur hors-tout</div>
+      <div class="spec-value">12.5<span class="spec-unit"> m</span></div>
+    </div>
+    <div class="spec-cell">
+      <div class="spec-label">Largeur maximale</div>
+      <div class="spec-value">3.95<span class="spec-unit"> m</span></div>
+    </div>
+    <div class="spec-cell">
+      <div class="spec-label">Tirant d'eau</div>
+      <div class="spec-value">2.10<span class="spec-unit"> m</span></div>
+    </div>
+    <div class="spec-cell">
+      <div class="spec-label">Déplacement lège</div>
+      <div class="spec-value">7 800<span class="spec-unit"> kg</span></div>
+    </div>
+    <div class="spec-cell">
+      <div class="spec-label">Surface de voilure</div>
+      <div class="spec-value">82<span class="spec-unit"> m²</span></div>
+    </div>
+    <div class="spec-cell">
+      <div class="spec-label">Lest / Déplacement</div>
+      <div class="spec-value">42<span class="spec-unit"> %</span></div>
+    </div>
+    <div class="spec-cell">
+      <div class="spec-label">Motorisation</div>
+      <div class="spec-value">40<span class="spec-unit"> CV</span></div>
+    </div>
+    <div class="spec-cell">
+      <div class="spec-label">Capacité équipage</div>
+      <div class="spec-value">6<span class="spec-unit"> pers.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- JAUGE -->
+<section id="jauge">
+  <div class="section-label">05 — La Jauge</div>
+  <h2 class="section-title">Jauge IRC<br><em>& Classement</em></h2>
+  <div class="divider"></div>
+  <div class="jauge-layout">
+    <div class="jauge-visual">
+      <div class="rating-display">
+        <div class="rating-num">1.032</div>
+        <div class="rating-label">TCC — Time Correction Coefficient</div>
+      </div>
+      <div class="gauge-bars">
+        <div class="gauge-bar-item">
+          <div class="gauge-bar-label"><span>Vitesse potentielle</span><span>87 %</span></div>
+          <div class="gauge-bar-track"><div class="gauge-bar-fill" style="width:87%"></div></div>
+        </div>
+        <div class="gauge-bar-item">
+          <div class="gauge-bar-label"><span>Rapport poids/voilure</span><span>74 %</span></div>
+          <div class="gauge-bar-track"><div class="gauge-bar-fill" style="width:74%"></div></div>
+        </div>
+        <div class="gauge-bar-item">
+          <div class="gauge-bar-label"><span>Stabilité de forme</span><span>92 %</span></div>
+          <div class="gauge-bar-track"><div class="gauge-bar-fill" style="width:92%"></div></div>
+        </div>
+        <div class="gauge-bar-item">
+          <div class="gauge-bar-label"><span>Performance au près</span><span>80 %</span></div>
+          <div class="gauge-bar-track"><div class="gauge-bar-fill" style="width:80%"></div></div>
+        </div>
+        <div class="gauge-bar-item">
+          <div class="gauge-bar-label"><span>Performance au portant</span><span>95 %</span></div>
+          <div class="gauge-bar-track"><div class="gauge-bar-fill" style="width:95%"></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="jauge-text">
+      <p>
+        La <strong style="color:var(--cream)">jauge IRC</strong> (International Rating Certificate) est 
+        le système de handicap le plus répandu en Europe pour les régates de croisière-course. 
+        Elle attribue à chaque voilier un coefficient de correction temporel (TCC) 
+        calculé sur la base de ses caractéristiques mesurées.
+      </p>
+      <p>
+        Le TCC permet d'établir un classement corrigé en multipliant le temps réel 
+        de parcours par ce coefficient. Un bateau rapide recevra un handicap plus 
+        élevé, nivelant ainsi les performances entre des voiliers de types très différents.
+      </p>
+      <div class="formula-box">
+        Temps corrigé = Temps réel × TCC
+      </div>
+      <p style="margin-top:1.5rem;">
+        Le certificat IRC d'<em style="color:var(--cream)">Aquilon</em> est renouvelé chaque année 
+        auprès des jaugeurs officiels de la FFVOILE. Son coefficient de 1.032 
+        le place en milieu de flotte IRC 1, en compétition avec les 
+        12-14 mètres les plus performants du circuit régional.
+      </p>
+      <p>
+        La SNCA utilise également la jauge <strong style="color:var(--cream)">Osiris</strong> 
+        pour les régates locales, un système simplifié basé uniquement sur les 
+        dimensions principales et accessible sans mesurages formels.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- HISTORIQUE -->
+<section id="historique">
+  <div class="section-label">06 — Historique</div>
+  <h2 class="section-title">Cent Ans de<br><em>Navigation</em></h2>
+  <div class="divider"></div>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="tl-year">1924</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <h4>Fondation de la SNCA</h4>
+        <p>Un groupe de douze passionnés se réunit au café du port et signe les statuts 
+        de la Société Nautique de la Côte d'Azur. Le premier pavillon est hissé le 
+        14 juillet. La flotte initiale compte 4 canots à voile latine.</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="tl-year">1938</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <h4>Construction du Ponton A</h4>
+        <p>Face à l'essor de la voile de croisière, la municipalité accorde la concession 
+        du premier ponton permanent. La flotte atteint 18 bateaux. Le premier 
+        championnat officiel est remporté par <em>L'Épervier</em> de M. Durand.</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="tl-year">1962</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <h4>Ère des Grandes Régates</h4>
+        <p>La SNCA co-organise pour la première fois la Transat Méditerranée-Atlantique. 
+        Cette décennie marque l'âge d'or du club avec deux victoires nationales consécutives 
+        en jauge CHS et l'entrée de 40 nouveaux membres.</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="tl-year">1985</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <h4>Passage à la Jauge IRC</h4>
+        <p>Adoption du système de handicap international IRC. Rénovation complète 
+        de la capitainerie et installation des premiers équipements VHF fixes sur le quai. 
+        La flotte se modernise avec l'arrivée des premiers coques en polyester stratifié.</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="tl-year">2003</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <h4>Inauguration du Nouveau Port</h4>
+        <p>Après trois ans de travaux, le nouveau port d'attache est inauguré avec 
+        120 places de mouillage. Installation d'un carénage couvert et d'un atelier 
+        de maintenance pour les membres. La SNCA accueille son premier voilier de plus de 18 mètres.</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="tl-year">2024</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <h4>Centenaire du Club</h4>
+        <p>Pour ses 100 ans, la SNCA organise une grande régate internationale réunissant 
+        84 voiliers venus de 12 nations. Lancement du programme jeunesse pour sensibiliser 
+        200 élèves à la voile chaque année. Acquisition d'<em>Aquilon</em>, fleuron 
+        de la flotte moderne.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-brand">SNCA</div>
+    <div class="footer-brand-sub">Société Nautique · Côte d'Azur</div>
+    <p style="margin-top:1rem;">Fondée en 1924<br>Port de Saint-Jean-de-Luz<br>64500 Pyrénées-Atlantiques</p>
+  </div>
+  <div>
+    <h5>Navigation</h5>
+    <a href="#flotte">La Flotte</a>
+    <a href="#agenda">Agenda 2025</a>
+    <a href="#technique">Fiches Techniques</a>
+    <a href="#jauge">Jauge IRC</a>
+    <a href="#bateau">Le Voilier Vedette</a>
+    <a href="#historique">Historique</a>
+  </div>
+  <div>
+    <h5>Contact</h5>
+    <p>Capitainerie : +33 5 59 00 00 00</p>
+    <p>contact@snca-voile.fr</p>
+    <p style="margin-top:1rem; font-size:0.8rem; color:rgba(168,196,212,0.5);">
+      Ouvert du mardi au dimanche<br>9h00 – 18h00 (saison)
+    </p>
+  </div>
+  <div class="footer-bottom">
+    © 2025 Société Nautique de la Côte d'Azur · Tous droits réservés · Fait avec passion pour la mer
+  </div>
+</footer>
+
+<script>
+  // Animate gauge bars on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.querySelectorAll('.gauge-bar-fill').forEach(bar => {
+          bar.style.width = bar.style.width;
+        });
+      }
+    });
+  }, { threshold: 0.3 });
+
+  document.querySelectorAll('#jauge').forEach(el => observer.observe(el));
+
+  // Smooth active nav
+  const navLinks = document.querySelectorAll('nav a');
+  window.addEventListener('scroll', () => {
+    const sections = document.querySelectorAll('section[id]');
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 100) current = s.id;
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === `#${current}` 
+        ? 'var(--gold)' : '';
+    });
+  });
+</script>
+</body>
+</html>
