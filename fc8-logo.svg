@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1486 1050" width="200" height="141">
+  <title>First Class 8 — Logo bleu blanc rouge</title>
+
+  <!-- Voile rouge (grand-voile) -->
+  <polygon fill="#DA121A" points="636.75,1029.95 1485.75,269.38 1273.5,1029.95"/>
+
+  <!-- Voile blanche (foc) -->
+  <polygon fill="#FFFFFF" stroke="#000099" stroke-width="0.27" stroke-miterlimit="22.9256"
+           points="459.87,764.63 1308.87,4.07 1096.62,764.63"/>
+
+  <!-- Voile bleue (trinquette / spinnaker) -->
+  <polygon fill="#000099" points="0,870.76 849,110.20 636.75,870.76"/>
+</svg>
