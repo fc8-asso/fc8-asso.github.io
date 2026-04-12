@@ -147,7 +147,7 @@
     .sb-link-list a{display:flex;align-items:center;gap:.6rem;padding:.55rem .3rem;font-size:.85rem;color:var(--ink-mid);transition:color .15s;}
     .sb-link-list a::before{content:'›';color:var(--blue);font-size:1.1rem;line-height:1;}
     .sb-link-list a:hover{color:var(--blue);text-decoration:none;}
-    .btn-full{display:block;width:100%;text-align:center;padding:.7rem;background:var(--red);color:#fff;font-weight:700;font-size:.88rem;border-radius:var(--radius);transition:background .2s;margin-top:.8rem;}
+    .btn-full{display:block;width:auto;text-align:center;padding:.7rem;background:var(--red);color:#fff;font-weight:700;font-size:.88rem;border-radius:var(--radius);transition:background .2s;margin-top:.8rem;}
     .btn-full:hover{background:#a50016;text-decoration:none;}
     .btn-full-blue{background:var(--blue);}
     .btn-full-blue:hover{background:#001d45;}
@@ -220,6 +220,62 @@
     .tag-bl{background:var(--blue-lt);color:var(--blue);}
     .tag-rd{background:var(--red-lt);color:var(--red);}
     .sep{height:1px;background:var(--border);margin:2rem 0;}
+
+    /* ── HAMBURGER ── */
+    .nav-toggle{display:none;flex-direction:column;justify-content:center;gap:5px;background:none;border:none;cursor:pointer;padding:.5rem;margin-left:auto;flex-shrink:0;}
+    .nav-toggle span{display:block;width:22px;height:2px;background:var(--ink);border-radius:2px;transition:transform .25s,opacity .25s;}
+    .nav-toggle.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+    .nav-toggle.open span:nth-child(2){opacity:0;}
+    .nav-toggle.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+    .nav-mobile-adhesion{display:none;background:var(--red);color:#fff;font-weight:700;text-align:center;border-radius:var(--radius);}
+
+    /* ── RESPONSIVE : tablet (≤ 900px) ── */
+    @media(max-width:900px){
+      .nav-toggle{display:flex;}
+      .btn-adhesion-nav{display:none;}
+      .main-nav{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;background:var(--white);border-bottom:3px solid var(--blue);box-shadow:var(--sh-md);z-index:200;}
+      .main-nav.open{display:flex;}
+      .nav-item{border-bottom:1px solid var(--gray-1);}
+      .nav-link{padding:.9rem 1.5rem;margin-bottom:0;border-bottom:none;}
+      .nav-link:hover,.nav-link.active{border-bottom:none;border-left:3px solid var(--blue);padding-left:calc(1.5rem - 3px);color:var(--blue);}
+      .nav-mobile-adhesion{display:block;}
+
+      .hero-inner{grid-template-columns:1fr;gap:2rem;}
+      .hero h1{font-size:2rem;}
+
+      .two-col{grid-template-columns:1fr;}
+
+      .boat-presentation{grid-template-columns:1fr;}
+
+      .news-grid{grid-template-columns:repeat(2,1fr);}
+
+      .staff-grid{grid-template-columns:repeat(3,1fr);}
+
+      .footer-inner{grid-template-columns:1fr 1fr;gap:2rem;}
+    }
+
+    /* ── RESPONSIVE : mobile (≤ 600px) ── */
+    @media(max-width:600px){
+      .topbar-links{display:none;}
+
+      .hero h1{font-size:1.7rem;}
+      .hero-inner{padding:2rem 1.5rem 1.5rem;}
+      .hero-stats{grid-template-columns:repeat(2,1fr);}
+
+      .cal-item{grid-template-columns:60px 1fr;}
+      .cal-badge{grid-column:2;}
+
+      .news-grid{grid-template-columns:1fr;}
+
+      .staff-grid{grid-template-columns:repeat(2,1fr);}
+
+      .jauge-box{grid-template-columns:1fr;}
+      .jauge-num{display:none;}
+
+      .footer-inner{grid-template-columns:1fr;}
+
+      .doc-size{display:none;}
+    }
     </style>
   </head>
   <body>
@@ -240,6 +296,10 @@
             <span class="l2">Association Nationale de Classe</span>
           </div>
         </a>
+
+        <button class="nav-toggle" aria-label="Menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
 
         <!-- Nav -->
         <nav class="main-nav">
@@ -282,6 +342,7 @@
           <div class="hero-actions">
             <a href="#presentation" class="btn-white">Découvrir la classe</a>
             <a href="#calendrier" class="btn-outline-w">Calendrier 2026</a>
+            <a href="https://www.helloasso.com/associations/association-des-proprietaires-de-first-class8/adhesions/adhesion-2026" class="btn-white nav-mobile-adhesion">Adhérer — 60 €/an</a>
           </div>
         </div>
         <div>
@@ -558,6 +619,22 @@
     </footer>
 
     <script>
+      // Mobile nav toggle
+      const navToggle = document.querySelector('.nav-toggle');
+      const mainNav = document.querySelector('.main-nav');
+      navToggle.addEventListener('click', () => {
+        const open = mainNav.classList.toggle('open');
+        navToggle.classList.toggle('open', open);
+        navToggle.setAttribute('aria-expanded', open);
+      });
+      mainNav.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => {
+          mainNav.classList.remove('open');
+          navToggle.classList.remove('open');
+          navToggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+
       // Active nav on scroll
       const sections = document.querySelectorAll('[id]');
       const navLinks = document.querySelectorAll('.nav-link');
