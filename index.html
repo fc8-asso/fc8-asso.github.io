@@ -207,19 +207,6 @@ header{background:var(--white);border-bottom:3px solid var(--blue);box-shadow:va
 .jr-t{font-size:.85rem;color:rgba(255,255,255,.82);line-height:1.55;}
 .jr-t strong{color:#fff;}
 
-
-/* ── PETITES ANNONCES ── */
-.annonces-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;}
-.annonce-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1rem;box-shadow:var(--sh);display:flex;gap:1rem;}
-.ann-badge{width:48px;height:48px;border-radius:var(--radius);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-weight:700;font-size:.7rem;text-transform:uppercase;letter-spacing:.05em;}
-.ann-vente{background:var(--blue-lt);color:var(--blue);}
-.ann-achat{background:#e8f5e9;color:#1b5e20;}
-.ann-loc{background:#fff3e0;color:#e65100;}
-.ann-body h4{font-size:.9rem;font-weight:700;color:var(--ink);margin-bottom:.2rem;}
-.ann-price{font-family:'Source Serif 4',serif;font-size:1.15rem;font-weight:700;color:var(--red);margin-bottom:.2rem;}
-.ann-detail{font-size:.78rem;color:var(--ink-lt);line-height:1.4;}
-.ann-date{font-size:.7rem;color:var(--ink-lt);margin-top:.4rem;}
-
 /* ── DOCUMENTS ── */
 .docs-list{display:flex;flex-direction:column;gap:.5rem;}
 .doc-item{display:flex;align-items:center;gap:.8rem;padding:.7rem 1rem;background:var(--white);border:1px solid var(--border);border-radius:var(--radius);transition:background .15s;}
@@ -336,9 +323,6 @@ footer a:hover{color:#fff;text-decoration:none;}
           <a href="#technique">Fiche technique</a>
           <a href="#historique">Historique de la classe</a>
         </div>
-      </div>
-      <div class="nav-item">
-        <a href="#annonces" class="nav-link">Petites annonces</a>
       </div>
       <div class="nav-item">
         <span class="nav-link">Médias <svg viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none"/></svg></span>
@@ -626,51 +610,6 @@ footer a:hover{color:#fff;text-decoration:none;}
         </div>
       </div>
 
-      <!-- PETITES ANNONCES -->
-      <div class="page-section" id="annonces">
-        <h2 class="section-title">Petites Annonces <span>Occasion &amp; matériel</span></h2>
-        <div class="annonces-grid">
-          <div class="annonce-card">
-            <div class="ann-badge ann-vente">Vente</div>
-            <div class="ann-body">
-              <h4>First Class 8 — #FC8-055 « Éphémère »</h4>
-              <div class="ann-price">5 800 €</div>
-              <p class="ann-detail">1989 · Bon état général · Voiles récentes 2021 · Gréement révisé · Bassin Atlantique — La Rochelle</p>
-              <div class="ann-date">Publié le 5 mars 2025 · Contacter : M. Garnier</div>
-            </div>
-          </div>
-          <div class="annonce-card">
-            <div class="ann-badge ann-vente">Vente</div>
-            <div class="ann-body">
-              <h4>Jeu de voiles FC8 — GV + génois + spi</h4>
-              <div class="ann-price">1 200 €</div>
-              <p class="ann-detail">GV 2019, génois 2020, spi asymétrique 2018 · Peu utilisés · Bassin Méditerranée — Sète</p>
-              <div class="ann-date">Publié le 28 février 2025 · Contacter : CN Sète</div>
-            </div>
-          </div>
-          <div class="annonce-card">
-            <div class="ann-badge ann-achat">Achat</div>
-            <div class="ann-body">
-              <h4>Recherche FC8 en bon état — Budget 6 000€</h4>
-              <div class="ann-price">Budget 6 000 €</div>
-              <p class="ann-detail">Équipage expérimenté cherche FC8 pour rejoindre circuit régional Manche. Préférence : voiles récentes.</p>
-              <div class="ann-date">Publié le 20 février 2025 · YC Brest</div>
-            </div>
-          </div>
-          <div class="annonce-card">
-            <div class="ann-badge ann-loc">Location</div>
-            <div class="ann-body">
-              <h4>FC8 à louer — Week-ends régates Méditerranée</h4>
-              <div class="ann-price">250 €/WE</div>
-              <p class="ann-detail">Bateau prêt à régater · Voiles en bon état · Disponible mai–septembre · CN Marseille</p>
-              <div class="ann-date">Publié le 15 février 2025 · Mme Martin</div>
-            </div>
-          </div>
-        </div>
-        <a href="#" class="view-all">Toutes les annonces</a>
-        <a href="#" class="btn-full btn-full-blue" style="max-width:220px;margin-top:.8rem;">Déposer une annonce</a>
-      </div>
-
       <!-- DOCUMENTS -->
       <div class="page-section" id="docs">
         <h2 class="section-title">Documents <span>Téléchargements</span></h2>
@@ -784,7 +723,6 @@ footer a:hover{color:#fff;text-decoration:none;}
       <a href="#bateau">Le bateau</a>
       <a href="#historique">Historique</a>
       <a href="#carte">Flotte en Europe</a>
-      <a href="#annonces">Petites annonces</a>
       <a href="#docs">Documents</a>
     </div>
     <div>
