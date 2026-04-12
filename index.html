@@ -1,748 +1,749 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Association de Classe First Class 8</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Source+Serif+4:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
-<style>
-:root {
-  --blue:    #002f6c;
-  --blue2:   #0051a8;
-  --blue-lt: #e8eef7;
-  --red:     #c8001b;
-  --red-lt:  #fceced;
-  --white:   #ffffff;
-  --gray-bg: #f4f5f7;
-  --gray-1:  #e8e9ec;
-  --gray-2:  #c4c6cc;
-  --gray-3:  #8a8c94;
-  --ink:     #1a1c22;
-  --ink-mid: #3a3d48;
-  --ink-lt:  #6b6e7a;
-  --border:  #dddfe5;
-  --radius:  6px;
-  --sh:      0 2px 8px rgba(0,47,108,.07);
-  --sh-md:   0 4px 20px rgba(0,47,108,.11);
-}
-*{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;font-size:15px;}
-body{font-family:'Source Sans 3',sans-serif;background:var(--gray-bg);color:var(--ink);line-height:1.6;}
-a{color:var(--blue2);text-decoration:none;}
-a:hover{text-decoration:underline;}
-img{max-width:100%;display:block;}
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Association de Classe First Class 8</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Source+Serif+4:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+    <style>
+    :root {
+    --blue:    #002f6c;
+    --blue2:   #0051a8;
+    --blue-lt: #e8eef7;
+    --red:     #c8001b;
+    --red-lt:  #fceced;
+    --white:   #ffffff;
+    --gray-bg: #f4f5f7;
+    --gray-1:  #e8e9ec;
+    --gray-2:  #c4c6cc;
+    --gray-3:  #8a8c94;
+    --ink:     #1a1c22;
+    --ink-mid: #3a3d48;
+    --ink-lt:  #6b6e7a;
+    --border:  #dddfe5;
+    --radius:  6px;
+    --sh:      0 2px 8px rgba(0,47,108,.07);
+    --sh-md:   0 4px 20px rgba(0,47,108,.11);
+    }
+    *{margin:0;padding:0;box-sizing:border-box;}
+    html{scroll-behavior:smooth;font-size:15px;}
+    body{font-family:'Source Sans 3',sans-serif;background:var(--gray-bg);color:var(--ink);line-height:1.6;}
+    a{color:var(--blue2);text-decoration:none;}
+    a:hover{text-decoration:underline;}
+    img{max-width:100%;display:block;}
 
-/* ── TOP BAR ── */
-.topbar{background:var(--blue);color:rgba(255,255,255,.75);font-size:.8rem;padding:.35rem 0;}
-.topbar-inner{max-width:1180px;margin:0 auto;padding:0 1.5rem;display:flex;justify-content:space-between;align-items:center;gap:1rem;}
-.topbar a{color:rgba(255,255,255,.75);font-size:.8rem;}
-.topbar a:hover{color:#fff;text-decoration:none;}
-.topbar-links{display:flex;gap:1.5rem;align-items:center;}
-.btn-topbar{background:var(--red);color:#fff !important;padding:.25rem .8rem;border-radius:3px;font-weight:600;letter-spacing:.03em;transition:background .2s;}
-.btn-topbar:hover{background:#a50016;text-decoration:none !important;}
+    /* ── TOP BAR ── */
+    .topbar{background:var(--blue);color:rgba(255,255,255,.75);font-size:.8rem;padding:.35rem 0;}
+    .topbar-inner{max-width:1180px;margin:0 auto;padding:0 1.5rem;display:flex;justify-content:space-between;align-items:center;gap:1rem;}
+    .topbar a{color:rgba(255,255,255,.75);font-size:.8rem;}
+    .topbar a:hover{color:#fff;text-decoration:none;}
+    .topbar-links{display:flex;gap:1.5rem;align-items:center;}
+    .btn-topbar{background:var(--red);color:#fff !important;padding:.25rem .8rem;border-radius:3px;font-weight:600;letter-spacing:.03em;transition:background .2s;}
+    .btn-topbar:hover{background:#a50016;text-decoration:none !important;}
 
-/* ── HEADER ── */
-header{background:var(--white);border-bottom:3px solid var(--blue);box-shadow:var(--sh);position:sticky;top:0;z-index:100;}
-.header-inner{max-width:1180px;margin:0 auto;padding:0 1.5rem;display:flex;align-items:center;gap:2rem;}
-.logo-wrap{display:flex;align-items:center;gap:.9rem;padding:.8rem 0;text-decoration:none !important;flex-shrink:0;}
-.logo-wrap:hover{text-decoration:none;}
-.logo-txt .l1{font-family:'Source Serif 4',serif;font-weight:700;font-size:1.25rem;color:var(--blue);line-height:1.1;display:block;}
-.logo-txt .l2{font-size:.65rem;color:var(--ink-lt);letter-spacing:.15em;text-transform:uppercase;display:block;}
+    /* ── HEADER ── */
+    header{background:var(--white);border-bottom:3px solid var(--blue);box-shadow:var(--sh);position:sticky;top:0;z-index:100;}
+    .header-inner{max-width:1180px;margin:0 auto;padding:0 1.5rem;display:flex;align-items:center;gap:2rem;}
+    .logo-wrap{display:flex;align-items:center;gap:.9rem;padding:.8rem 0;text-decoration:none !important;flex-shrink:0;}
+    .logo-wrap:hover{text-decoration:none;}
+    .logo-txt .l1{font-family:'Source Serif 4',serif;font-weight:700;font-size:1.25rem;color:var(--blue);line-height:1.1;display:block;}
+    .logo-txt .l2{font-size:.65rem;color:var(--ink-lt);letter-spacing:.15em;text-transform:uppercase;display:block;}
 
-/* Main nav */
-.main-nav{display:flex;align-items:stretch;flex:1;gap:0;}
-.nav-item{position:relative;}
-.nav-link{display:flex;align-items:center;gap:.25rem;padding:.8rem 1rem;font-size:.85rem;font-weight:600;color:var(--ink-mid);white-space:nowrap;border-bottom:3px solid transparent;margin-bottom:-3px;transition:color .2s,border-color .2s;cursor:pointer;}
-.nav-link:hover,.nav-link.active{color:var(--blue);border-bottom-color:var(--blue);text-decoration:none;}
-.nav-link svg{width:10px;height:10px;flex-shrink:0;opacity:.5;}
-.dropdown{position:absolute;top:100%;left:0;min-width:200px;background:var(--white);border:1px solid var(--border);border-top:3px solid var(--blue);box-shadow:var(--sh-md);display:none;z-index:200;}
-.nav-item:hover .dropdown{display:block;}
-.dropdown a{display:block;padding:.6rem 1.1rem;font-size:.85rem;color:var(--ink-mid);border-bottom:1px solid var(--gray-1);transition:background .15s;}
-.dropdown a:hover{background:var(--blue-lt);color:var(--blue);text-decoration:none;}
-.dropdown a:last-child{border-bottom:none;}
+    /* Main nav */
+    .main-nav{display:flex;align-items:stretch;flex:1;gap:0;}
+    .nav-item{position:relative;}
+    .nav-link{display:flex;align-items:center;gap:.25rem;padding:.8rem 1rem;font-size:.85rem;font-weight:600;color:var(--ink-mid);white-space:nowrap;border-bottom:3px solid transparent;margin-bottom:-3px;transition:color .2s,border-color .2s;cursor:pointer;}
+    .nav-link:hover,.nav-link.active{color:var(--blue);border-bottom-color:var(--blue);text-decoration:none;}
+    .nav-link svg{width:10px;height:10px;flex-shrink:0;opacity:.5;}
+    .dropdown{position:absolute;top:100%;left:0;min-width:200px;background:var(--white);border:1px solid var(--border);border-top:3px solid var(--blue);box-shadow:var(--sh-md);display:none;z-index:200;}
+    .nav-item:hover .dropdown{display:block;}
+    .dropdown a{display:block;padding:.6rem 1.1rem;font-size:.85rem;color:var(--ink-mid);border-bottom:1px solid var(--gray-1);transition:background .15s;}
+    .dropdown a:hover{background:var(--blue-lt);color:var(--blue);text-decoration:none;}
+    .dropdown a:last-child{border-bottom:none;}
 
-/* ── HERO ── */
-.hero{background:var(--blue);color:#fff;position:relative;overflow:hidden;}
-.hero::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,rgba(255,255,255,.015) 0,rgba(255,255,255,.015) 1px,transparent 1px,transparent 40px);}
-.hero-inner{max-width:1180px;margin:0 auto;padding:3.5rem 1.5rem 3rem;display:grid;grid-template-columns:1fr 420px;gap:3rem;align-items:center;position:relative;z-index:1;}
-.hero-tag{display:inline-block;background:var(--red);color:#fff;font-size:.7rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:.25rem .75rem;border-radius:2px;margin-bottom:1rem;}
-.hero h1{font-family:'Source Serif 4',serif;font-size:2.6rem;font-weight:700;line-height:1.1;margin-bottom:1rem;}
-.hero h1 em{font-style:italic;color:rgba(255,255,255,.7);}
-.hero-desc{font-size:1.05rem;color:rgba(255,255,255,.82);line-height:1.7;margin-bottom:2rem;max-width:480px;}
-.hero-actions{display:flex;gap:.8rem;flex-wrap:wrap;}
-.btn-white{background:#fff;color:var(--blue);padding:.7rem 1.6rem;font-weight:700;font-size:.88rem;border-radius:var(--radius);transition:all .2s;}
-.btn-white:hover{background:var(--blue-lt);text-decoration:none;}
-.btn-outline-w{background:transparent;color:#fff;padding:.7rem 1.6rem;font-weight:700;font-size:.88rem;border-radius:var(--radius);border:2px solid rgba(255,255,255,.45);transition:all .2s;}
-.btn-outline-w:hover{border-color:#fff;text-decoration:none;}
-.hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.1);border-radius:var(--radius);overflow:hidden;}
-.hstat{padding:1.2rem 1rem;text-align:center;background:rgba(255,255,255,.05);}
-.hstat-val{font-family:'Source Serif 4',serif;font-weight:700;font-size:2rem;color:#fff;line-height:1;}
-.hstat-lab{font-size:.7rem;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:.1em;margin-top:.3rem;}
-.triband{height:4px;display:flex;}
-.triband div{flex:1;}
-.triband div:nth-child(1){background:var(--blue);}
-.triband div:nth-child(2){background:#fff;}
-.triband div:nth-child(3){background:var(--red);}
+    /* ── HERO ── */
+    .hero{background:var(--blue);color:#fff;position:relative;overflow:hidden;}
+    .hero::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,rgba(255,255,255,.015) 0,rgba(255,255,255,.015) 1px,transparent 1px,transparent 40px);}
+    .hero-inner{max-width:1180px;margin:0 auto;padding:3.5rem 1.5rem 3rem;display:grid;grid-template-columns:1fr 420px;gap:3rem;align-items:center;position:relative;z-index:1;}
+    .hero-tag{display:inline-block;background:var(--red);color:#fff;font-size:.7rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:.25rem .75rem;border-radius:2px;margin-bottom:1rem;}
+    .hero h1{font-family:'Source Serif 4',serif;font-size:2.6rem;font-weight:700;line-height:1.1;margin-bottom:1rem;}
+    .hero h1 em{font-style:italic;color:rgba(255,255,255,.7);}
+    .hero-desc{font-size:1.05rem;color:rgba(255,255,255,.82);line-height:1.7;margin-bottom:2rem;max-width:480px;}
+    .hero-actions{display:flex;gap:.8rem;flex-wrap:wrap;}
+    .btn-white{background:#fff;color:var(--blue);padding:.7rem 1.6rem;font-weight:700;font-size:.88rem;border-radius:var(--radius);transition:all .2s;}
+    .btn-white:hover{background:var(--blue-lt);text-decoration:none;}
+    .btn-outline-w{background:transparent;color:#fff;padding:.7rem 1.6rem;font-weight:700;font-size:.88rem;border-radius:var(--radius);border:2px solid rgba(255,255,255,.45);transition:all .2s;}
+    .btn-outline-w:hover{border-color:#fff;text-decoration:none;}
+    .hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.1);border-radius:var(--radius);overflow:hidden;}
+    .hstat{padding:1.2rem 1rem;text-align:center;background:rgba(255,255,255,.05);}
+    .hstat-val{font-family:'Source Serif 4',serif;font-weight:700;font-size:2rem;color:#fff;line-height:1;}
+    .hstat-lab{font-size:.7rem;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:.1em;margin-top:.3rem;}
+    .triband{height:4px;display:flex;}
+    .triband div{flex:1;}
+    .triband div:nth-child(1){background:var(--blue);}
+    .triband div:nth-child(2){background:#fff;}
+    .triband div:nth-child(3){background:var(--red);}
 
-/* ── LAYOUT ── */
-.page-wrap{max-width:1180px;margin:0 auto;padding:2.5rem 1.5rem;}
-.two-col{display:grid;grid-template-columns:1fr 300px;gap:2rem;align-items:start;}
-.section-title{font-family:'Source Serif 4',serif;font-size:1.55rem;font-weight:700;color:var(--blue);margin-bottom:1.2rem;padding-bottom:.7rem;border-bottom:2px solid var(--blue-lt);}
-.section-title span{font-size:.75rem;font-weight:400;color:var(--ink-lt);font-family:'Source Sans 3',sans-serif;letter-spacing:.1em;text-transform:uppercase;margin-left:.8rem;}
+    /* ── LAYOUT ── */
+    .page-wrap{max-width:1180px;margin:0 auto;padding:2.5rem 1.5rem;}
+    .two-col{display:grid;grid-template-columns:1fr 300px;gap:2rem;align-items:start;}
+    .section-title{font-family:'Source Serif 4',serif;font-size:1.55rem;font-weight:700;color:var(--blue);margin-bottom:1.2rem;padding-bottom:.7rem;border-bottom:2px solid var(--blue-lt);}
+    .section-title span{font-size:.75rem;font-weight:400;color:var(--ink-lt);font-family:'Source Sans 3',sans-serif;letter-spacing:.1em;text-transform:uppercase;margin-left:.8rem;}
 
-/* ── SECTION HEADER BANNER ── */
-.section-banner{background:var(--white);border-bottom:1px solid var(--border);padding:1.2rem 0;}
-.section-banner-inner{max-width:1180px;margin:0 auto;padding:0 1.5rem;display:flex;align-items:center;gap:.8rem;}
-.section-banner h2{font-family:'Source Serif 4',serif;font-size:1.4rem;font-weight:700;color:var(--blue);}
-.section-banner p{font-size:.88rem;color:var(--ink-lt);}
-.breadcrumb{font-size:.78rem;color:var(--ink-lt);}
-.breadcrumb a{color:var(--blue2);}
+    /* ── SECTION HEADER BANNER ── */
+    .section-banner{background:var(--white);border-bottom:1px solid var(--border);padding:1.2rem 0;}
+    .section-banner-inner{max-width:1180px;margin:0 auto;padding:0 1.5rem;display:flex;align-items:center;gap:.8rem;}
+    .section-banner h2{font-family:'Source Serif 4',serif;font-size:1.4rem;font-weight:700;color:var(--blue);}
+    .section-banner p{font-size:.88rem;color:var(--ink-lt);}
+    .breadcrumb{font-size:.78rem;color:var(--ink-lt);}
+    .breadcrumb a{color:var(--blue2);}
 
-/* ── NEWS CARDS ── */
-.news-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;}
-.news-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;box-shadow:var(--sh);transition:box-shadow .2s,transform .2s;}
-.news-card:hover{box-shadow:var(--sh-md);transform:translateY(-2px);}
-.news-img{height:150px;background:var(--blue-lt);display:flex;align-items:center;justify-content:center;overflow:hidden;}
-.news-img svg{opacity:.2;}
-.news-body{padding:1rem;}
-.news-cat{display:inline-block;font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:.15rem .5rem;border-radius:2px;margin-bottom:.5rem;}
-.cat-actu{background:var(--blue-lt);color:var(--blue);}
-.cat-result{background:#e8f5e9;color:#1b5e20;}
-.cat-course{background:var(--red-lt);color:var(--red);}
-.cat-classe{background:#fff3e0;color:#e65100;}
-.news-date{font-size:.72rem;color:var(--ink-lt);margin-bottom:.3rem;}
-.news-title{font-weight:700;font-size:.95rem;color:var(--ink);line-height:1.35;margin-bottom:.5rem;}
-.news-title a{color:var(--ink);}
-.news-title a:hover{color:var(--blue);text-decoration:none;}
-.news-excerpt{font-size:.82rem;color:var(--ink-lt);line-height:1.5;}
-.news-more{display:inline-block;margin-top:.7rem;font-size:.8rem;font-weight:600;color:var(--blue2);}
+    /* ── NEWS CARDS ── */
+    .news-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;}
+    .news-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;box-shadow:var(--sh);transition:box-shadow .2s,transform .2s;}
+    .news-card:hover{box-shadow:var(--sh-md);transform:translateY(-2px);}
+    .news-img{height:150px;background:var(--blue-lt);display:flex;align-items:center;justify-content:center;overflow:hidden;}
+    .news-img svg{opacity:.2;}
+    .news-body{padding:1rem;}
+    .news-cat{display:inline-block;font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:.15rem .5rem;border-radius:2px;margin-bottom:.5rem;}
+    .cat-actu{background:var(--blue-lt);color:var(--blue);}
+    .cat-result{background:#e8f5e9;color:#1b5e20;}
+    .cat-course{background:var(--red-lt);color:var(--red);}
+    .cat-classe{background:#fff3e0;color:#e65100;}
+    .news-date{font-size:.72rem;color:var(--ink-lt);margin-bottom:.3rem;}
+    .news-title{font-weight:700;font-size:.95rem;color:var(--ink);line-height:1.35;margin-bottom:.5rem;}
+    .news-title a{color:var(--ink);}
+    .news-title a:hover{color:var(--blue);text-decoration:none;}
+    .news-excerpt{font-size:.82rem;color:var(--ink-lt);line-height:1.5;}
+    .news-more{display:inline-block;margin-top:.7rem;font-size:.8rem;font-weight:600;color:var(--blue2);}
 
-/* ── CALENDAR ── */
-.cal-list{display:flex;flex-direction:column;gap:.8rem;}
-.cal-item{background:var(--white);border:1px solid var(--border);border-left:4px solid var(--blue);border-radius:var(--radius);padding:1rem 1.2rem;display:grid;grid-template-columns:70px 1fr auto;gap:1rem;align-items:center;box-shadow:var(--sh);transition:border-left-color .2s;}
-.cal-item:hover{border-left-color:var(--red);}
-.cal-date{text-align:center;}
-.cal-day{font-family:'Source Serif 4',serif;font-size:1.9rem;font-weight:700;color:var(--blue);line-height:1;}
-.cal-mon{font-size:.65rem;text-transform:uppercase;letter-spacing:.12em;color:var(--ink-lt);font-weight:600;}
-.cal-name{font-weight:700;font-size:.95rem;color:var(--ink);margin-bottom:.2rem;}
-.cal-detail{font-size:.8rem;color:var(--ink-lt);}
-.cal-badge{padding:.2rem .65rem;border-radius:2px;font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;white-space:nowrap;}
-.cb-nat{background:var(--blue);color:#fff;}
-.cb-reg{background:var(--blue-lt);color:var(--blue);}
-.cb-gp{background:var(--red-lt);color:var(--red);}
-.cb-form{background:#e8f5e9;color:#1b5e20;}
+    /* ── CALENDAR ── */
+    .cal-list{display:flex;flex-direction:column;gap:.8rem;}
+    .cal-item{background:var(--white);border:1px solid var(--border);border-left:4px solid var(--blue);border-radius:var(--radius);padding:1rem 1.2rem;display:grid;grid-template-columns:70px 1fr auto;gap:1rem;align-items:center;box-shadow:var(--sh);transition:border-left-color .2s;}
+    .cal-item:hover{border-left-color:var(--red);}
+    .cal-date{text-align:center;}
+    .cal-day{font-family:'Source Serif 4',serif;font-size:1.9rem;font-weight:700;color:var(--blue);line-height:1;}
+    .cal-mon{font-size:.65rem;text-transform:uppercase;letter-spacing:.12em;color:var(--ink-lt);font-weight:600;}
+    .cal-name{font-weight:700;font-size:.95rem;color:var(--ink);margin-bottom:.2rem;}
+    .cal-detail{font-size:.8rem;color:var(--ink-lt);}
+    .cal-badge{padding:.2rem .65rem;border-radius:2px;font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;white-space:nowrap;}
+    .cb-nat{background:var(--blue);color:#fff;}
+    .cb-reg{background:var(--blue-lt);color:var(--blue);}
+    .cb-gp{background:var(--red-lt);color:var(--red);}
+    .cb-form{background:#e8f5e9;color:#1b5e20;}
 
-/* ── SIDEBAR ── */
-.sidebar-block{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:1.5rem;box-shadow:var(--sh);}
-.sb-head{background:var(--blue);color:#fff;padding:.7rem 1rem;font-weight:700;font-size:.85rem;letter-spacing:.05em;text-transform:uppercase;}
-.sb-body{padding:1rem;}
-.sb-body p{font-size:.85rem;color:var(--ink-mid);line-height:1.6;margin-bottom:.8rem;}
-.sb-body p:last-child{margin-bottom:0;}
-.sb-link-list{list-style:none;}
-.sb-link-list li{border-bottom:1px solid var(--gray-1);}
-.sb-link-list li:last-child{border-bottom:none;}
-.sb-link-list a{display:flex;align-items:center;gap:.6rem;padding:.55rem .3rem;font-size:.85rem;color:var(--ink-mid);transition:color .15s;}
-.sb-link-list a::before{content:'›';color:var(--blue);font-size:1.1rem;line-height:1;}
-.sb-link-list a:hover{color:var(--blue);text-decoration:none;}
-.btn-full{display:block;width:100%;text-align:center;padding:.7rem;background:var(--red);color:#fff;font-weight:700;font-size:.88rem;border-radius:var(--radius);transition:background .2s;margin-top:.8rem;}
-.btn-full:hover{background:#a50016;text-decoration:none;}
-.btn-full-blue{background:var(--blue);}
-.btn-full-blue:hover{background:#001d45;}
+    /* ── SIDEBAR ── */
+    .sidebar-block{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:1.5rem;box-shadow:var(--sh);}
+    .sb-head{background:var(--blue);color:#fff;padding:.7rem 1rem;font-weight:700;font-size:.85rem;letter-spacing:.05em;text-transform:uppercase;}
+    .sb-body{padding:1rem;}
+    .sb-body p{font-size:.85rem;color:var(--ink-mid);line-height:1.6;margin-bottom:.8rem;}
+    .sb-body p:last-child{margin-bottom:0;}
+    .sb-link-list{list-style:none;}
+    .sb-link-list li{border-bottom:1px solid var(--gray-1);}
+    .sb-link-list li:last-child{border-bottom:none;}
+    .sb-link-list a{display:flex;align-items:center;gap:.6rem;padding:.55rem .3rem;font-size:.85rem;color:var(--ink-mid);transition:color .15s;}
+    .sb-link-list a::before{content:'›';color:var(--blue);font-size:1.1rem;line-height:1;}
+    .sb-link-list a:hover{color:var(--blue);text-decoration:none;}
+    .btn-full{display:block;width:100%;text-align:center;padding:.7rem;background:var(--red);color:#fff;font-weight:700;font-size:.88rem;border-radius:var(--radius);transition:background .2s;margin-top:.8rem;}
+    .btn-full:hover{background:#a50016;text-decoration:none;}
+    .btn-full-blue{background:var(--blue);}
+    .btn-full-blue:hover{background:#001d45;}
 
-/* ── BASSINS ── */
-.bassins-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:1.5rem;}
-.bassin-card{background:var(--white);border:1px solid var(--border);border-top:4px solid var(--blue);border-radius:var(--radius);padding:1.4rem 1.2rem;box-shadow:var(--sh);transition:box-shadow .2s;}
-.bassin-card:hover{box-shadow:var(--sh-md);}
-.bassin-card h3{font-family:'Source Serif 4',serif;font-weight:700;font-size:1.1rem;color:var(--blue);margin-bottom:.6rem;}
-.bassin-card p{font-size:.85rem;color:var(--ink-mid);line-height:1.55;margin-bottom:.8rem;}
-.bassin-count{display:flex;align-items:baseline;gap:.4rem;margin-bottom:.8rem;}
-.bc-num{font-family:'Source Serif 4',serif;font-size:2rem;font-weight:700;color:var(--blue);line-height:1;}
-.bc-lab{font-size:.75rem;color:var(--ink-lt);}
-.bassin-links{display:flex;gap:.6rem;flex-wrap:wrap;}
-.bassin-link{font-size:.78rem;font-weight:600;color:var(--blue2);padding:.2rem .6rem;border:1px solid var(--blue-lt);border-radius:3px;transition:all .2s;}
-.bassin-link:hover{background:var(--blue);color:#fff;border-color:var(--blue);text-decoration:none;}
+    /* ── BASSINS ── */
+    .bassins-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:1.5rem;}
+    .bassin-card{background:var(--white);border:1px solid var(--border);border-top:4px solid var(--blue);border-radius:var(--radius);padding:1.4rem 1.2rem;box-shadow:var(--sh);transition:box-shadow .2s;}
+    .bassin-card:hover{box-shadow:var(--sh-md);}
+    .bassin-card h3{font-family:'Source Serif 4',serif;font-weight:700;font-size:1.1rem;color:var(--blue);margin-bottom:.6rem;}
+    .bassin-card p{font-size:.85rem;color:var(--ink-mid);line-height:1.55;margin-bottom:.8rem;}
+    .bassin-count{display:flex;align-items:baseline;gap:.4rem;margin-bottom:.8rem;}
+    .bc-num{font-family:'Source Serif 4',serif;font-size:2rem;font-weight:700;color:var(--blue);line-height:1;}
+    .bc-lab{font-size:.75rem;color:var(--ink-lt);}
+    .bassin-links{display:flex;gap:.6rem;flex-wrap:wrap;}
+    .bassin-link{font-size:.78rem;font-weight:600;color:var(--blue2);padding:.2rem .6rem;border:1px solid var(--blue-lt);border-radius:3px;transition:all .2s;}
+    .bassin-link:hover{background:var(--blue);color:#fff;border-color:var(--blue);text-decoration:none;}
 
-/* ── CARTE EUROPE ── */
-.map-section{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;box-shadow:var(--sh);}
-.map-header{background:var(--blue);color:#fff;padding:.8rem 1.2rem;display:flex;align-items:center;justify-content:space-between;}
-.map-header h3{font-size:.9rem;font-weight:700;letter-spacing:.04em;}
-.map-header span{font-size:.75rem;opacity:.75;}
-.map-body{display:grid;grid-template-columns:1fr 180px;}
-.map-svg-wrap{padding:.5rem;background:#e8eef7;position:relative;}
-.map-legend{padding:1rem;display:flex;flex-direction:column;gap:.4rem;border-left:1px solid var(--border);}
-.ml-title{font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-lt);margin-bottom:.3rem;}
-.ml-item{display:flex;align-items:center;gap:.6rem;padding:.35rem .4rem;border-radius:3px;cursor:pointer;transition:background .15s;font-size:.8rem;}
-.ml-item:hover{background:var(--blue-lt);}
-.ml-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
-.ml-name{flex:1;color:var(--ink-mid);}
-.ml-count{font-weight:700;color:var(--ink);}
-.map-total{margin-top:.5rem;padding:.7rem .4rem;border-top:1px solid var(--border);}
-.map-total .t-val{font-family:'Source Serif 4',serif;font-size:1.6rem;font-weight:700;color:var(--blue);line-height:1;}
-.map-total .t-lab{font-size:.68rem;color:var(--ink-lt);text-transform:uppercase;letter-spacing:.1em;}
+    /* ── CARTE EUROPE ── */
+    .map-section{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;box-shadow:var(--sh);}
+    .map-header{background:var(--blue);color:#fff;padding:.8rem 1.2rem;display:flex;align-items:center;justify-content:space-between;}
+    .map-header h3{font-size:.9rem;font-weight:700;letter-spacing:.04em;}
+    .map-header span{font-size:.75rem;opacity:.75;}
+    .map-body{display:grid;grid-template-columns:1fr 180px;}
+    .map-svg-wrap{padding:.5rem;background:#e8eef7;position:relative;}
+    .map-legend{padding:1rem;display:flex;flex-direction:column;gap:.4rem;border-left:1px solid var(--border);}
+    .ml-title{font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-lt);margin-bottom:.3rem;}
+    .ml-item{display:flex;align-items:center;gap:.6rem;padding:.35rem .4rem;border-radius:3px;cursor:pointer;transition:background .15s;font-size:.8rem;}
+    .ml-item:hover{background:var(--blue-lt);}
+    .ml-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+    .ml-name{flex:1;color:var(--ink-mid);}
+    .ml-count{font-weight:700;color:var(--ink);}
+    .map-total{margin-top:.5rem;padding:.7rem .4rem;border-top:1px solid var(--border);}
+    .map-total .t-val{font-family:'Source Serif 4',serif;font-size:1.6rem;font-weight:700;color:var(--blue);line-height:1;}
+    .map-total .t-lab{font-size:.68rem;color:var(--ink-lt);text-transform:uppercase;letter-spacing:.1em;}
 
-/* ── LE BATEAU (présentation) ── */
-.boat-presentation{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:center;}
-.boat-svg-panel{background:var(--blue-lt);border:1px solid var(--border);border-radius:var(--radius);padding:2rem;display:flex;flex-direction:column;align-items:center;gap:1.5rem;}
-.boat-svg-anim{animation:boatRock 7s ease-in-out infinite;}
-@keyframes boatRock{0%,100%{transform:rotate(-1deg) translateY(0);}50%{transform:rotate(1deg) translateY(-10px);}}
-.specs-mini{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:4px;overflow:hidden;width:100%;}
-.sm-cell{background:var(--white);padding:.7rem .8rem;}
-.sm-label{font-size:.65rem;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-lt);font-weight:600;}
-.sm-val{font-family:'Source Serif 4',serif;font-size:1.3rem;font-weight:700;color:var(--blue);line-height:1.1;}
-.sm-unit{font-size:.72rem;color:var(--ink-lt);font-family:'Source Sans 3',sans-serif;font-weight:400;}
-.boat-text h3{font-family:'Source Serif 4',serif;font-size:1.4rem;font-weight:700;color:var(--blue);margin-bottom:.5rem;}
-.boat-text .boat-subtitle{font-size:.78rem;text-transform:uppercase;letter-spacing:.15em;color:var(--ink-lt);margin-bottom:1.2rem;font-weight:600;}
-.boat-text p{font-size:.9rem;color:var(--ink-mid);line-height:1.7;margin-bottom:1rem;}
-.more-link{display:inline-flex;align-items:center;gap:.4rem;font-weight:700;font-size:.85rem;color:var(--blue2);}
+    /* ── LE BATEAU (présentation) ── */
+    .boat-presentation{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:center;}
+    .boat-svg-panel{background:var(--blue-lt);border:1px solid var(--border);border-radius:var(--radius);padding:2rem;display:flex;flex-direction:column;align-items:center;gap:1.5rem;}
+    .boat-svg-anim{animation:boatRock 7s ease-in-out infinite;}
+    @keyframes boatRock{0%,100%{transform:rotate(-1deg) translateY(0);}50%{transform:rotate(1deg) translateY(-10px);}}
+    .specs-mini{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:4px;overflow:hidden;width:100%;}
+    .sm-cell{background:var(--white);padding:.7rem .8rem;}
+    .sm-label{font-size:.65rem;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-lt);font-weight:600;}
+    .sm-val{font-family:'Source Serif 4',serif;font-size:1.3rem;font-weight:700;color:var(--blue);line-height:1.1;}
+    .sm-unit{font-size:.72rem;color:var(--ink-lt);font-family:'Source Sans 3',sans-serif;font-weight:400;}
+    .boat-text h3{font-family:'Source Serif 4',serif;font-size:1.4rem;font-weight:700;color:var(--blue);margin-bottom:.5rem;}
+    .boat-text .boat-subtitle{font-size:.78rem;text-transform:uppercase;letter-spacing:.15em;color:var(--ink-lt);margin-bottom:1.2rem;font-weight:600;}
+    .boat-text p{font-size:.9rem;color:var(--ink-mid);line-height:1.7;margin-bottom:1rem;}
+    .more-link{display:inline-flex;align-items:center;gap:.4rem;font-weight:700;font-size:.85rem;color:var(--blue2);}
 
-/* ── JAUGE ── */
-.jauge-box{background:var(--blue);color:#fff;border-radius:var(--radius);padding:2rem;display:grid;grid-template-columns:auto 1fr;gap:2rem;align-items:start;}
-.jauge-num{font-family:'Source Serif 4',serif;font-size:5rem;font-weight:700;line-height:1;color:rgba(255,255,255,.15);writing-mode:vertical-lr;text-orientation:upright;letter-spacing:-.2em;}
-.jauge-content h3{font-family:'Source Serif 4',serif;font-size:1.3rem;font-weight:700;margin-bottom:.3rem;}
-.jauge-content .j-sub{font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:1.2rem;}
-.jauge-rules{display:flex;flex-direction:column;gap:.7rem;}
-.jrule{display:flex;gap:.8rem;align-items:flex-start;}
-.jr-n{font-size:.68rem;font-weight:700;color:var(--red);background:rgba(255,255,255,.1);padding:.15rem .45rem;border-radius:2px;flex-shrink:0;margin-top:.1rem;}
-.jr-t{font-size:.85rem;color:rgba(255,255,255,.82);line-height:1.55;}
-.jr-t strong{color:#fff;}
+    /* ── JAUGE ── */
+    .jauge-box{background:var(--blue);color:#fff;border-radius:var(--radius);padding:2rem;display:grid;grid-template-columns:auto 1fr;gap:2rem;align-items:start;}
+    .jauge-num{font-family:'Source Serif 4',serif;font-size:5rem;font-weight:700;line-height:1;color:rgba(255,255,255,.15);writing-mode:vertical-lr;text-orientation:upright;letter-spacing:-.2em;}
+    .jauge-content h3{font-family:'Source Serif 4',serif;font-size:1.3rem;font-weight:700;margin-bottom:.3rem;}
+    .jauge-content .j-sub{font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:1.2rem;}
+    .jauge-rules{display:flex;flex-direction:column;gap:.7rem;}
+    .jrule{display:flex;gap:.8rem;align-items:flex-start;}
+    .jr-n{font-size:.68rem;font-weight:700;color:var(--red);background:rgba(255,255,255,.1);padding:.15rem .45rem;border-radius:2px;flex-shrink:0;margin-top:.1rem;}
+    .jr-t{font-size:.85rem;color:rgba(255,255,255,.82);line-height:1.55;}
+    .jr-t strong{color:#fff;}
 
-/* ── DOCUMENTS ── */
-.docs-list{display:flex;flex-direction:column;gap:.5rem;}
-.doc-item{display:flex;align-items:center;gap:.8rem;padding:.7rem 1rem;background:var(--white);border:1px solid var(--border);border-radius:var(--radius);transition:background .15s;}
-.doc-item:hover{background:var(--blue-lt);}
-.doc-icon{width:32px;height:32px;border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:var(--red-lt);}
-.doc-name{font-size:.87rem;font-weight:600;color:var(--ink);flex:1;}
-.doc-size{font-size:.72rem;color:var(--ink-lt);}
-.doc-dl{font-size:.75rem;font-weight:700;color:var(--blue2);}
+    /* ── DOCUMENTS ── */
+    .docs-list{display:flex;flex-direction:column;gap:.5rem;}
+    .doc-item{display:flex;align-items:center;gap:.8rem;padding:.7rem 1rem;background:var(--white);border:1px solid var(--border);border-radius:var(--radius);transition:background .15s;}
+    .doc-item:hover{background:var(--blue-lt);}
+    .doc-icon{width:32px;height:32px;border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:var(--red-lt);}
+    .doc-name{font-size:.87rem;font-weight:600;color:var(--ink);flex:1;}
+    .doc-size{font-size:.72rem;color:var(--ink-lt);}
+    .doc-dl{font-size:.75rem;font-weight:700;color:var(--blue2);}
 
-/* ── STAFF ── */
-.staff-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;}
-.staff-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1.2rem 1rem;text-align:center;box-shadow:var(--sh);}
-.staff-avatar{width:56px;height:56px;border-radius:50%;background:var(--blue);margin:0 auto .8rem;display:flex;align-items:center;justify-content:center;font-family:'Source Serif 4',serif;font-weight:700;font-size:1.3rem;color:#fff;}
-.staff-name{font-weight:700;font-size:.9rem;color:var(--ink);margin-bottom:.2rem;}
-.staff-role{font-size:.75rem;color:var(--ink-lt);}
-.staff-basin{display:inline-block;margin-top:.4rem;font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.15rem .5rem;border-radius:2px;}
-.sb-atl{background:var(--blue-lt);color:var(--blue);}
-.sb-med{background:var(--red-lt);color:var(--red);}
-.sb-nat{background:#e8f5e9;color:#1b5e20;}
+    /* ── STAFF ── */
+    .staff-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;}
+    .staff-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1.2rem 1rem;text-align:center;box-shadow:var(--sh);}
+    .staff-avatar{width:56px;height:56px;border-radius:50%;background:var(--blue);margin:0 auto .8rem;display:flex;align-items:center;justify-content:center;font-family:'Source Serif 4',serif;font-weight:700;font-size:1.3rem;color:#fff;}
+    .staff-name{font-weight:700;font-size:.9rem;color:var(--ink);margin-bottom:.2rem;}
+    .staff-role{font-size:.75rem;color:var(--ink-lt);}
+    .staff-basin{display:inline-block;margin-top:.4rem;font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.15rem .5rem;border-radius:2px;}
+    .sb-atl{background:var(--blue-lt);color:var(--blue);}
+    .sb-med{background:var(--red-lt);color:var(--red);}
+    .sb-nat{background:#e8f5e9;color:#1b5e20;}
 
-/* ── FOOTER ── */
-footer{background:var(--ink);color:rgba(255,255,255,.65);padding:3rem 0 1.5rem;}
-.footer-inner{max-width:1180px;margin:0 auto;padding:0 1.5rem;display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:3rem;}
-.footer-brand .fb-logo{font-family:'Source Serif 4',serif;font-size:1.4rem;font-weight:700;color:#fff;margin-bottom:.4rem;}
-.footer-brand .fb-logo em{color:rgba(255,255,255,.45);font-style:italic;}
-.footer-brand p{font-size:.82rem;color:rgba(255,255,255,.5);line-height:1.6;}
-footer h5{font-size:.72rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:.8rem;}
-footer a{display:block;font-size:.85rem;color:rgba(255,255,255,.55);margin-bottom:.35rem;transition:color .2s;}
-footer a:hover{color:#fff;text-decoration:none;}
-.footer-bottom{max-width:1180px;margin:2rem auto 0;padding:1.2rem 1.5rem 0;border-top:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-between;align-items:center;}
-.footer-bottom p{font-size:.75rem;color:rgba(255,255,255,.3);}
-.footer-flags{display:flex;gap:.4rem;align-items:center;}
-.flag-fr{display:flex;border-radius:2px;overflow:hidden;width:22px;height:15px;}
-.flag-fr div{flex:1;}
-.flag-fr div:nth-child(1){background:#002f6c;}
-.flag-fr div:nth-child(2){background:#fff;}
-.flag-fr div:nth-child(3){background:#c8001b;}
-.flag-es{display:flex;flex-direction:column;border-radius:2px;overflow:hidden;width:22px;height:15px;}
-.flag-es div:nth-child(1){background:#c60b1e;flex:1;}
-.flag-es div:nth-child(2){background:#ffc400;flex:1.5;}
-.flag-es div:nth-child(3){background:#c60b1e;flex:1;}
-.flag-pt{display:flex;border-radius:2px;overflow:hidden;width:22px;height:15px;}
-.flag-pt div:nth-child(1){background:#006600;flex:2;}
-.flag-pt div:nth-child(2){background:#ff0000;flex:3;}
-.flag-ch{display:flex;align-items:center;justify-content:center;width:15px;height:15px;background:#d52b1e;border-radius:2px;flex-shrink:0;}
-.flag-ch::after{content:'+';color:#fff;font-size:.75rem;font-weight:700;line-height:1;}
+    /* ── FOOTER ── */
+    footer{background:var(--ink);color:rgba(255,255,255,.65);padding:3rem 0 1.5rem;}
+    .footer-inner{max-width:1180px;margin:0 auto;padding:0 1.5rem;display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:3rem;}
+    .footer-brand .fb-logo{font-family:'Source Serif 4',serif;font-size:1.4rem;font-weight:700;color:#fff;margin-bottom:.4rem;}
+    .footer-brand .fb-logo em{color:rgba(255,255,255,.45);font-style:italic;}
+    .footer-brand p{font-size:.82rem;color:rgba(255,255,255,.5);line-height:1.6;}
+    footer h5{font-size:.72rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:.8rem;}
+    footer a{display:block;font-size:.85rem;color:rgba(255,255,255,.55);margin-bottom:.35rem;transition:color .2s;}
+    footer a:hover{color:#fff;text-decoration:none;}
+    .footer-bottom{max-width:1180px;margin:2rem auto 0;padding:1.2rem 1.5rem 0;border-top:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-between;align-items:center;}
+    .footer-bottom p{font-size:.75rem;color:rgba(255,255,255,.3);}
+    .footer-flags{display:flex;gap:.4rem;align-items:center;}
+    .flag-fr{display:flex;border-radius:2px;overflow:hidden;width:22px;height:15px;}
+    .flag-fr div{flex:1;}
+    .flag-fr div:nth-child(1){background:#002f6c;}
+    .flag-fr div:nth-child(2){background:#fff;}
+    .flag-fr div:nth-child(3){background:#c8001b;}
+    .flag-es{display:flex;flex-direction:column;border-radius:2px;overflow:hidden;width:22px;height:15px;}
+    .flag-es div:nth-child(1){background:#c60b1e;flex:1;}
+    .flag-es div:nth-child(2){background:#ffc400;flex:1.5;}
+    .flag-es div:nth-child(3){background:#c60b1e;flex:1;}
+    .flag-pt{display:flex;border-radius:2px;overflow:hidden;width:22px;height:15px;}
+    .flag-pt div:nth-child(1){background:#006600;flex:2;}
+    .flag-pt div:nth-child(2){background:#ff0000;flex:3;}
+    .flag-ch{display:flex;align-items:center;justify-content:center;width:15px;height:15px;background:#d52b1e;border-radius:2px;flex-shrink:0;}
+    .flag-ch::after{content:'+';color:#fff;font-size:.75rem;font-weight:700;line-height:1;}
 
-/* ── MISC ── */
-.page-section{padding:2.5rem 0;border-bottom:1px solid var(--border);}
-.page-section:last-child{border-bottom:none;}
-.bg-white-section{background:var(--white);padding:2.5rem 0;}
-.view-all{display:inline-flex;align-items:center;gap:.4rem;font-size:.83rem;font-weight:700;color:var(--blue2);margin-top:1rem;}
-.view-all::after{content:'→';}
-.tag{display:inline-block;padding:.15rem .55rem;border-radius:2px;font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;}
-.tag-bl{background:var(--blue-lt);color:var(--blue);}
-.tag-rd{background:var(--red-lt);color:var(--red);}
-.sep{height:1px;background:var(--border);margin:2rem 0;}
-</style>
-</head>
-<body>
+    /* ── MISC ── */
+    .page-section{padding:2.5rem 0;border-bottom:1px solid var(--border);}
+    .page-section:last-child{border-bottom:none;}
+    .bg-white-section{background:var(--white);padding:2.5rem 0;}
+    .view-all{display:inline-flex;align-items:center;gap:.4rem;font-size:.83rem;font-weight:700;color:var(--blue2);margin-top:1rem;}
+    .view-all::after{content:'→';}
+    .tag{display:inline-block;padding:.15rem .55rem;border-radius:2px;font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;}
+    .tag-bl{background:var(--blue-lt);color:var(--blue);}
+    .tag-rd{background:var(--red-lt);color:var(--red);}
+    .sep{height:1px;background:var(--border);margin:2rem 0;}
+    </style>
+  </head>
+  <body>
 
-<!-- TOP BAR -->
-<div class="topbar">
-  <div class="topbar-inner">
-    <div class="topbar-links">
-      <span>Association affiliée FFVoile</span>
-      <a href="#">Contact</a>
+    <!-- TOP BAR -->
+    <div class="topbar">
+      <div class="topbar-inner">
+        <div class="topbar-links">
+          <span>Association affiliée FFVoile</span>
+          <a href="#">Contact</a>
+        </div>
+        <div class="topbar-links">
+          <a href="#" class="btn-topbar">Adhérer — 60 €/an</a>
+        </div>
+      </div>
     </div>
-    <div class="topbar-links">
-      <a href="#" class="btn-topbar">Adhérer — 60 €/an</a>
-    </div>
-  </div>
-</div>
 
-<!-- HEADER -->
-<header>
-  <div class="header-inner">
-    <!-- Logo -->
-    <a href="#" class="logo-wrap">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1486 1050" height="50">
-        <polygon fill="#DA121A" points="636.75,1029.95 1485.75,269.38 1273.5,1029.95"/>
-        <polygon fill="#FFFFFF" stroke="#000099" stroke-width="0.27" stroke-miterlimit="22.9256"
-                points="459.87,764.63 1308.87,4.07 1096.62,764.63"/>
-        <polygon fill="#000099" points="0,870.76 849,110.20 636.75,870.76"/>
-      </svg>
-      <div class="logo-txt">
-        <span class="l1">First Class 8</span>
-        <span class="l2">Association Nationale de Classe</span>
-      </div>
-    </a>
+    <!-- HEADER -->
+    <header>
+      <div class="header-inner">
+        <!-- Logo -->
+        <a href="#" class="logo-wrap">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1486 1050" height="50">
+            <polygon fill="#DA121A" points="636.75,1029.95 1485.75,269.38 1273.5,1029.95"/>
+            <polygon fill="#FFFFFF" stroke="#000099" stroke-width="0.27" stroke-miterlimit="22.9256"
+              points="459.87,764.63 1308.87,4.07 1096.62,764.63"/>
+            <polygon fill="#000099" points="0,870.76 849,110.20 636.75,870.76"/>
+          </svg>
+          <div class="logo-txt">
+            <span class="l1">First Class 8</span>
+            <span class="l2">Association Nationale de Classe</span>
+          </div>
+        </a>
 
-    <!-- Nav -->
-    <nav class="main-nav">
-      <div class="nav-item">
-        <a href="#" class="nav-link active">Accueil</a>
+        <!-- Nav -->
+        <nav class="main-nav">
+          <div class="nav-item">
+            <a href="#" class="nav-link active">Accueil</a>
+          </div>
+          <div class="nav-item">
+            <a href="#calendrier" class="nav-link">Calendrier</a>
+          </div>
+          <div class="nav-item">
+            <span class="nav-link">La Classe <svg viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none"/></svg></span>
+            <div class="dropdown">
+              <a href="#presentation">Présentation</a>
+              <a href="#jauge">Règles de classe &amp; Jauge</a>
+              <a href="#staff">Le Staff</a>
+              <a href="#bassins">Représentants de bassins</a>
+              <a href="#">Adhésion &amp; Certificat</a>
+            </div>
+          </div>
+          <div class="nav-item">
+            <span class="nav-link">Le FC8 <svg viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none"/></svg></span>
+            <div class="dropdown">
+              <a href="#bateau">Présentation du bateau</a>
+              <a href="#technique">Fiche technique</a>
+              <a href="#historique">Historique de la classe</a>
+            </div>
+          </div>
+          <div class="nav-item">
+            <span class="nav-link">Médias <svg viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none"/></svg></span>
+            <div class="dropdown">
+              <a href="#">Photothèque</a>
+              <a href="#">Vidéos</a>
+              <a href="#">Facebook</a>
+              <a href="#">Instagram</a>
+            </div>
+          </div>
+          <div class="nav-item">
+            <span class="nav-link">Documents <svg viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none"/></svg></span>
+            <div class="dropdown">
+              <a href="#docs">Documents publics</a>
+              <a href="#">Documents membres</a>
+              <a href="#">Jauge officielle PDF</a>
+            </div>
+          </div>
+          <div class="nav-item">
+            <a href="#" class="nav-link">Contact</a>
+          </div>
+        </nav>
       </div>
-      <div class="nav-item">
-        <a href="#calendrier" class="nav-link">Calendrier</a>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-inner">
+        <div>
+          <div class="hero-tag">Monotype de régate — Bénéteau × Finot</div>
+          <h1>Association Nationale<br>de Classe <em>First Class 8</em></h1>
+          <p class="hero-desc">
+            Défendre, animer et développer la classe FC8 en France et en Europe.<br>
+            Depuis 1982, le voilier de référence de la régate en équipage.
+          </p>
+          <div class="hero-actions">
+            <a href="#presentation" class="btn-white">Découvrir la classe</a>
+            <a href="#calendrier" class="btn-outline-w">Calendrier 2025</a>
+          </div>
+        </div>
+        <div>
+          <div class="hero-stats">
+            <div class="hstat">
+              <div class="hstat-val">106</div>
+              <div class="hstat-lab">Unités en Europe</div>
+            </div>
+            <div class="hstat">
+              <div class="hstat-val">965</div>
+              <div class="hstat-lab">Construits (1982–93)</div>
+            </div>
+            <div class="hstat">
+              <div class="hstat-val">7,85m</div>
+              <div class="hstat-lab">Longueur hors-tout</div>
+            </div>
+            <div class="hstat">
+              <div class="hstat-val">+25</div>
+              <div class="hstat-lab">Ans de championnats</div>
+            </div>
+            <div class="hstat">
+              <div class="hstat-val">3–5</div>
+              <div class="hstat-lab">Équipiers</div>
+            </div>
+            <div class="hstat">
+              <div class="hstat-val">7/8</div>
+              <div class="hstat-lab">Gréement fractionné</div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="nav-item">
-        <span class="nav-link">La Classe <svg viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none"/></svg></span>
-        <div class="dropdown">
+    </section>
+    <div class="triband"><div></div><div></div><div></div></div>
+
+    <!-- MAIN CONTENT -->
+    <div class="page-wrap">
+      <div class="two-col">
+
+        <!-- MAIN COLUMN -->
+        <div>
+
+          <!-- CALENDRIER -->
+          <div class="page-section" id="calendrier">
+            <h2 class="section-title">Calendrier 2026 <span>Épreuves officielles</span></h2>
+            <div class="cal-list">
+              <div class="cal-item">
+                <div class="cal-date"><div class="cal-day">8 - 10</div><div class="cal-mon">Mai</div></div>
+                <div>
+                  <div class="cal-name">Demi National Nord — La Rochelle</div>
+                  <div class="cal-detail">Avis de course (à venir)</div>
+                </div>
+                <span class="cal-badge cb-gp">Demi National</span>
+              </div>
+              <div class="cal-item">
+                <div class="cal-date"><div class="cal-day">8 - 10</div><div class="cal-mon">Mai</div></div>
+                <div>
+                  <div class="cal-name">Demi National Sud — </div>
+                  <div class="cal-detail">Avis de course (à venir)</div>
+                </div>
+                <span class="cal-badge cb-gp">Demi National</span>
+              </div>
+              <div class="cal-item">
+                <div class="cal-date"><div class="cal-day">Fin année</div><div class="cal-mon"></div></div>
+                <div>
+                  <div class="cal-name">National — Sud Ouest</div>
+                  <div class="cal-detail">Date et lieu exact à venir</div>
+                </div>
+                <span class="cal-badge cb-nat">National</span>
+              </div>
+            </div>
+
+            <!-- PRÉSENTATION -->
+            <div class="page-section" id="presentation">
+              <h2 class="section-title">À propos de la classe FC8 <span>Présentation</span></h2>
+              <div class="boat-presentation">
+                <div class="boat-svg-panel">
+                  <svg class="boat-svg-anim" width="240" height="300" viewBox="0 0 240 300" fill="none">
+                    <line x1="115" y1="20" x2="115" y2="210" stroke="#002f6c" stroke-width="3"/>
+                    <line x1="115" y1="178" x2="190" y2="192" stroke="#002f6c" stroke-width="2.5"/>
+                    <line x1="115" y1="20" x2="185" y2="195" stroke="rgba(0,0,0,.1)" stroke-width="1"/>
+                    <line x1="115" y1="52" x2="93" y2="185" stroke="rgba(0,47,108,.35)" stroke-width="1.2" stroke-dasharray="4 3"/>
+                    <line x1="115" y1="52" x2="136" y2="185" stroke="rgba(0,47,108,.35)" stroke-width="1.2" stroke-dasharray="4 3"/>
+                    <line x1="104" y1="42" x2="127" y2="42" stroke="#c8001b" stroke-width="2"/>
+                    <text x="131" y="46" font-family="Source Sans 3" font-size="9" fill="#c8001b">7/8</text>
+                    <path d="M115 22 L190 193 L115 178 Z" fill="rgba(0,47,108,.07)" stroke="#002f6c" stroke-width="1.8"/>
+                    <path d="M115 55 L50 187 L115 182 Z" fill="rgba(200,0,27,.07)" stroke="#c8001b" stroke-width="1.8"/>
+                    <text x="148" y="130" font-family="Source Serif 4" font-weight="700" font-size="22" fill="rgba(0,47,108,.12)" transform="rotate(7,148,130)">FC8</text>
+                    <path d="M50 200 Q65 191 115 185 Q163 191 183 205 Q177 234 152 246 Q135 254 115 256 Q95 254 78 246 Q50 234 50 200Z" fill="white" stroke="#dddfe5" stroke-width="1.5"/>
+                    <path d="M53 208 Q115 197 181 210" stroke="#002f6c" stroke-width="3" fill="none"/>
+                    <path d="M55 214 Q115 203 179 216" stroke="#c8001b" stroke-width="1.2" fill="none"/>
+                    <path d="M107 254 L101 288 L115 293 L129 288 L123 254 Z" fill="#dce8ff" stroke="#002f6c" stroke-width="1.5"/>
+                    <ellipse cx="115" cy="295" rx="15" ry="6" fill="rgba(0,47,108,.45)"/>
+                    <line x1="44" y1="218" x2="188" y2="218" stroke="rgba(0,71,200,.4)" stroke-width="1.2" stroke-dasharray="8 4"/>
+                  </svg>
+                  <div class="specs-mini">
+                    <div class="sm-cell"><div class="sm-label">Longueur</div><div class="sm-val">7.85 <span class="sm-unit">m</span></div></div>
+                    <div class="sm-cell"><div class="sm-label">Largeur</div><div class="sm-val">2.50 <span class="sm-unit">m</span></div></div>
+                    <div class="sm-cell"><div class="sm-label">Tirant d'eau</div><div class="sm-val">1.83 <span class="sm-unit">m</span></div></div>
+                    <div class="sm-cell"><div class="sm-label">Déplacement</div><div class="sm-val">1 467 <span class="sm-unit">kg</span></div></div>
+                    <div class="sm-cell"><div class="sm-label">Voilure au près</div><div class="sm-val">41 <span class="sm-unit">m²</span></div></div>
+                    <div class="sm-cell"><div class="sm-label">Spinnaker</div><div class="sm-val">55 <span class="sm-unit">m²</span></div></div>
+                  </div>
+                </div>
+                <div class="boat-text">
+                  <h3>Le First Class 8</h3>
+                  <div class="boat-subtitle">Bénéteau × Groupe Finot — 1982</div>
+                  <p>Le First Class 8 est né d'une commande de la <strong>Fédération Française de Voile</strong> en 1982. Jean-Marie Finot et Jacques Fauroux conçoivent un monotype radicalement sportif, destiné aux championnats Espoir. Il sera produit à <strong>965 exemplaires</strong>.</p>
+                  <p>Sa signature technique : une <strong>quille relevable pivotante</strong> unique, permettant 1,83 m de tirant d'eau en régate et moins de 50 cm sur remorque. Son gréement fractionné 7/8 avec bastaques actifs exige un équipage synchronisé et technique.</p>
+                  <p>Support des championnats de France pendant <strong>plus de 25 ans</strong>, il reste aujourd'hui une école incomparable de la voile en équipage.</p>
+                  <a href="#" class="more-link">Fiche complète du bateau →</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- JAUGE -->
+            <div class="page-section" id="jauge">
+              <h2 class="section-title">Règles de classe &amp; Jauge <span>Monotype pur</span></h2>
+              <div class="jauge-box">
+                <div class="jauge-num">FC8</div>
+                <div class="jauge-content">
+                  <h3>Un monotype, une équité absolue</h3>
+                  <div class="j-sub">Jauge de classe contraignante — Fédération Française de Voile</div>
+                  <div class="jauge-rules">
+                    <div class="jrule">
+                      <span class="jr-n">01</span>
+                      <p class="jr-t"><strong>Coque strictement identique</strong> — toutes les coques sortent des mêmes moules Bénéteau. Aucune modification structurelle n'est tolérée.</p>
+                    </div>
+                    <div class="jrule">
+                      <span class="jr-n">02</span>
+                      <p class="jr-t"><strong>Gréement contrôlé</strong> — longueur du mât, barres de flèches et position de l'étai réglementés au centimètre.</p>
+                    </div>
+                    <div class="jrule">
+                      <span class="jr-n">03</span>
+                      <p class="jr-t"><strong>Voilerie certifiée</strong> — surfaces et matériaux définis par la jauge. Contrôle par mesureur accrédité à tout moment.</p>
+                    </div>
+                    <div class="jrule">
+                      <span class="jr-n">04</span>
+                      <p class="jr-t"><strong>Classement en temps réel</strong> — pas de coefficient, pas de calcul. Le premier à franchir la ligne <strong>gagne</strong>.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <a href="#" class="view-all">Lire la jauge officielle complète (PDF)</a>
+            </div>
+
+            <!-- STAFF -->
+            <div class="page-section" id="staff">
+              <h2 class="section-title">Le Bureau de l'Association <span>Staff</span></h2>
+              <div class="staff-grid">
+                <div class="staff-card">
+                  <div class="staff-avatar">TB</div>
+                  <div class="staff-name">Jean Paul Figara</div>
+                  <div class="staff-role">Président</div>
+                  <span class="staff-basin sb-nat">Sud</span>
+                </div>
+                <div class="staff-card">
+                  <div class="staff-avatar">AL</div>
+                  <div class="staff-name">Alexandre Lecuyer</div>
+                  <div class="staff-role">Trésorier</div>
+                  <span class="staff-basin sb-atl">Sud Ouest</span>
+                </div>
+                <div class="staff-card">
+                  <div class="staff-avatar">GQ</div>
+                  <div class="staff-name">Gildas Quéméner</div>
+                  <div class="staff-role">Secrétaire</div>
+                  <span class="staff-basin sb-med">Ouest</span>
+                </div>
+                <div class="staff-card">
+                  <div class="staff-avatar">EC</div>
+                  <div class="staff-name">Étienne Clémentin</div>
+                  <div class="staff-role">Responsable Bassin</div>
+                  <span class="staff-basin sb-nat">??</span>
+                </div>
+                <div class="staff-card">
+                  <div class="staff-avatar">EW</div>
+                  <div class="staff-name">Emmanuel Winsback</div>
+                  <div class="staff-role">Responsable Bassin</div>
+                  <span class="staff-basin sb-atl">??</span>
+                </div>
+                <div class="staff-card">
+                  <div class="staff-avatar">BB</div>
+                  <div class="staff-name">Benoit Boucher</div>
+                  <div class="staff-role">Responsable Bassin</div>
+                  <span class="staff-basin sb-nat">??</span>
+                </div>
+                <div class="staff-card">
+                  <div class="staff-avatar">LB</div>
+                  <div class="staff-name">Luc Barais</div>
+                  <div class="staff-role">Responsable Bassin</div>
+                  <span class="staff-basin sb-nat">??</span>
+                </div>
+                <div class="staff-card">
+                  <div class="staff-avatar">PR</div>
+                  <div class="staff-name">Pierre Yves Rollin</div>
+                  <div class="staff-role">Responsable Bassin</div>
+                  <span class="staff-basin sb-nat">??</span>
+                </div>
+                <div class="staff-card">
+                  <div class="staff-avatar">FL</div>
+                  <div class="staff-name">Frédéric Lorente</div>
+                  <div class="staff-role">Responsable Bassin</div>
+                  <span class="staff-basin sb-nat">??</span>
+                </div>
+                <div class="staff-card">
+                  <div class="staff-avatar">RF</div>
+                  <div class="staff-name">Rosalie Fuchs</div>
+                  <div class="staff-role">Responsable Bassin</div>
+                  <span class="staff-basin sb-nat">??</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- BASSINS -->
+            <div class="page-section" id="bassins">
+              <h2 class="section-title">Les Bassins de la Classe <span>Organisation régionale</span></h2>
+              <div class="bassins-grid">
+                <div class="bassin-card">
+                  <h3>⚓ Flotte Manche</h3>
+                  <div class="bassin-count"><span class="bc-num">12</span><span class="bc-lab">unités recensées</span></div>
+                  <p>Circuit Manche — Cherbourg, Brest, Saint-Malo. Représentant : Jean-Claude Morin (CN Cherbourg).</p>
+                  <div class="bassin-links">
+                    <a href="#" class="bassin-link">Programme</a>
+                    <a href="#" class="bassin-link">Contacts</a>
+                    <a href="#" class="bassin-link">Adhérer</a>
+                  </div>
+                </div>
+                <div class="bassin-card">
+                  <h3>🌊 Flotte Atlantique</h3>
+                  <div class="bassin-count"><span class="bc-num">25</span><span class="bc-lab">unités recensées</span></div>
+                  <p>Circuit Atlantique — La Rochelle, Arcachon, Lorient. Représentante : Marie Ferreira (SN La Rochelle).</p>
+                  <div class="bassin-links">
+                    <a href="#" class="bassin-link">Programme</a>
+                    <a href="#" class="bassin-link">Contacts</a>
+                    <a href="#" class="bassin-link">Adhérer</a>
+                  </div>
+                </div>
+                <div class="bassin-card">
+                  <h3>☀️ Flotte Méditerranée</h3>
+                  <div class="bassin-count"><span class="bc-num">15</span><span class="bc-lab">unités recensées</span></div>
+                  <p>Circuit Méditerranée — Sète, Marseille, Toulon, Nice. Représentant : Nicolas Martin (CN Marseille).</p>
+                  <div class="bassin-links">
+                    <a href="#" class="bassin-link">Programme</a>
+                    <a href="#" class="bassin-link">Contacts</a>
+                    <a href="#" class="bassin-link">Adhérer</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- DOCUMENTS -->
+            <div class="page-section" id="docs">
+              <h2 class="section-title">Documents <span>Téléchargements</span></h2>
+              <div class="docs-list">
+                <a href="#" class="doc-item">
+                  <div class="doc-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c8001b" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/></svg></div>
+                  <div class="doc-name">Jauge de classe FC8 — Version 2025 officielle</div>
+                  <div class="doc-size">PDF · 480 Ko</div>
+                  <div class="doc-dl">Télécharger ↓</div>
+                </a>
+                <a href="#" class="doc-item">
+                  <div class="doc-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c8001b" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/></svg></div>
+                  <div class="doc-name">Statuts de l'Association Nationale de Classe FC8</div>
+                  <div class="doc-size">PDF · 125 Ko</div>
+                  <div class="doc-dl">Télécharger ↓</div>
+                </a>
+                <a href="#" class="doc-item">
+                  <div class="doc-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c8001b" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/></svg></div>
+                  <div class="doc-name">Calendrier officiel saison 2025 — Toutes flottes</div>
+                  <div class="doc-size">PDF · 95 Ko</div>
+                  <div class="doc-dl">Télécharger ↓</div>
+                </a>
+                <a href="#" class="doc-item">
+                  <div class="doc-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c8001b" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/></svg></div>
+                  <div class="doc-name">Plan de voilure officiel — FC8 Finot</div>
+                  <div class="doc-size">PDF · 1.2 Mo</div>
+                  <div class="doc-dl">Télécharger ↓</div>
+                </a>
+                <a href="#" class="doc-item">
+                  <div class="doc-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c8001b" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/></svg></div>
+                  <div class="doc-name">Compte-rendu AG 2024</div>
+                  <div class="doc-size">PDF · 210 Ko</div>
+                  <div class="doc-dl">Télécharger ↓</div>
+                </a>
+              </div>
+              <a href="#" class="view-all">Tous les documents</a>
+            </div>
+
+          </div><!-- / main col -->
+        </div>
+
+        <!-- SIDEBAR -->
+        <aside>
+
+          <div class="sidebar-block">
+            <div class="sb-head">Adhésion 2025</div>
+            <div class="sb-body">
+              <p>Rejoignez l'Association Nationale de Classe FC8. Ouverte aux propriétaires et aux sympathisants.</p>
+              <p><strong>Cotisation annuelle : 60 €</strong><br>Paiement sécurisé en ligne via HelloAsso.</p>
+              <a href="#" class="btn-full">Adhérer en ligne →</a>
+            </div>
+          </div>
+
+
+          <div class="sidebar-block">
+            <div class="sb-head">Liens rapides</div>
+            <div class="sb-body" style="padding:.3rem 1rem;">
+              <ul class="sb-link-list">
+                <li><a href="#">Jauge de classe (PDF)</a></li>
+                <li><a href="#">Déposer une annonce</a></li>
+                <li><a href="#">Photothèque</a></li>
+                <li><a href="#">Règles de course (FFVoile)</a></li>
+                <li><a href="#">Annuaire des clubs FC8</a></li>
+                <li><a href="#">Forum de la classe</a></li>
+                <li><a href="#staff">Contacter le bureau</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="sidebar-block">
+            <div class="sb-head">Partenaires &amp; liens</div>
+            <div class="sb-body" style="padding:.3rem 1rem;">
+              <ul class="sb-link-list">
+                <li><a href="https://ffvoile.fr" target="_blank">Fédération Française de Voile</a></li>
+                <li><a href="#" target="_blank">Bénéteau (archives FC8)</a></li>
+                <li><a href="#" target="_blank">Groupe Finot</a></li>
+                <li><a href="#" target="_blank">First Class 7.5 (successeur)</a></li>
+                <li><a href="#" target="_blank">Clase FC8 España</a></li>
+                <li><a href="#" target="_blank">Classe FC8 Portugal</a></li>
+              </ul>
+            </div>
+          </div>
+
+        </aside>
+
+      </div><!-- / two-col -->
+    </div><!-- / page-wrap -->
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <div class="fb-logo"><em>First</em> Class 8</div>
+          <p>Association Nationale de Classe · Affiliée à la Fédération Française de Voile.<br>Promouvoir, animer et préserver la classe FC8 en France et en Europe.</p>
+          <div style="display:flex;gap:.5rem;align-items:center;margin-top:1rem;">
+            <div class="flag-fr"><div></div><div></div><div></div></div>
+            <div class="flag-es"><div></div><div></div><div></div></div>
+            <div class="flag-pt"><div></div><div></div></div>
+            <div class="flag-ch"></div>
+          </div>
+        </div>
+        <div>
+          <h5>La Classe</h5>
           <a href="#presentation">Présentation</a>
-          <a href="#jauge">Règles de classe &amp; Jauge</a>
-          <a href="#staff">Le Staff</a>
-          <a href="#bassins">Représentants de bassins</a>
-          <a href="#">Adhésion &amp; Certificat</a>
+          <a href="#jauge">Règles &amp; Jauge</a>
+          <a href="#staff">Le Bureau</a>
+          <a href="#bassins">Bassins régionaux</a>
+          <a href="#">Adhésion</a>
         </div>
-      </div>
-      <div class="nav-item">
-        <span class="nav-link">Le FC8 <svg viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none"/></svg></span>
-        <div class="dropdown">
-          <a href="#bateau">Présentation du bateau</a>
-          <a href="#technique">Fiche technique</a>
-          <a href="#historique">Historique de la classe</a>
+        <div>
+          <h5>Le FC8</h5>
+          <a href="#bateau">Le bateau</a>
+          <a href="#historique">Historique</a>
+          <a href="#carte">Flotte en Europe</a>
+          <a href="#docs">Documents</a>
         </div>
-      </div>
-      <div class="nav-item">
-        <span class="nav-link">Médias <svg viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none"/></svg></span>
-        <div class="dropdown">
-          <a href="#">Photothèque</a>
-          <a href="#">Vidéos</a>
+        <div>
+          <h5>Contact</h5>
+          <a href="#">association@firstclass8.fr</a>
+          <a href="#">06 00 00 00 00</a>
+          <br>
+          <h5>Médias</h5>
           <a href="#">Facebook</a>
           <a href="#">Instagram</a>
+          <a href="#">Photothèque</a>
         </div>
       </div>
-      <div class="nav-item">
-        <span class="nav-link">Documents <svg viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none"/></svg></span>
-        <div class="dropdown">
-          <a href="#docs">Documents publics</a>
-          <a href="#">Documents membres</a>
-          <a href="#">Jauge officielle PDF</a>
-        </div>
+      <div class="footer-bottom">
+        <p>© 2025 Association Nationale de Classe First Class 8 · Tous droits réservés</p>
+        <p>Bénéteau · Groupe Finot · Fédération Française de Voile</p>
       </div>
-      <div class="nav-item">
-        <a href="#" class="nav-link">Contact</a>
-      </div>
-    </nav>
-  </div>
-</header>
+    </footer>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-inner">
-    <div>
-      <div class="hero-tag">Monotype de régate — Bénéteau × Finot</div>
-      <h1>Association Nationale<br>de Classe <em>First Class 8</em></h1>
-      <p class="hero-desc">
-        Défendre, animer et développer la classe FC8 en France et en Europe.<br>
-        Depuis 1982, le voilier de référence de la régate en équipage.
-      </p>
-      <div class="hero-actions">
-        <a href="#presentation" class="btn-white">Découvrir la classe</a>
-        <a href="#calendrier" class="btn-outline-w">Calendrier 2025</a>
-      </div>
-    </div>
-    <div>
-      <div class="hero-stats">
-        <div class="hstat">
-          <div class="hstat-val">106</div>
-          <div class="hstat-lab">Unités en Europe</div>
-        </div>
-        <div class="hstat">
-          <div class="hstat-val">965</div>
-          <div class="hstat-lab">Construits (1982–93)</div>
-        </div>
-        <div class="hstat">
-          <div class="hstat-val">7,85m</div>
-          <div class="hstat-lab">Longueur hors-tout</div>
-        </div>
-        <div class="hstat">
-          <div class="hstat-val">+25</div>
-          <div class="hstat-lab">Ans de championnats</div>
-        </div>
-        <div class="hstat">
-          <div class="hstat-val">3–5</div>
-          <div class="hstat-lab">Équipiers</div>
-        </div>
-        <div class="hstat">
-          <div class="hstat-val">7/8</div>
-          <div class="hstat-lab">Gréement fractionné</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<div class="triband"><div></div><div></div><div></div></div>
-
-<!-- MAIN CONTENT -->
-<div class="page-wrap">
-  <div class="two-col">
-
-    <!-- MAIN COLUMN -->
-    <div>
-
-      <!-- CALENDRIER -->
-      <div class="page-section" id="calendrier">
-        <h2 class="section-title">Calendrier 2026 <span>Épreuves officielles</span></h2>
-        <div class="cal-list">
-          <div class="cal-item">
-            <div class="cal-date"><div class="cal-day">8 - 10</div><div class="cal-mon">Mai</div></div>
-            <div>
-              <div class="cal-name">Demi National Nord — La Rochelle</div>
-              <div class="cal-detail">Avis de course (à venir)</div>
-            </div>
-            <span class="cal-badge cb-gp">Demi National</span>
-          </div>
-          <div class="cal-item">
-            <div class="cal-date"><div class="cal-day">8 - 10</div><div class="cal-mon">Mai</div></div>
-            <div>
-              <div class="cal-name">Demi National Sud — </div>
-              <div class="cal-detail">Avis de course (à venir)</div>
-            </div>
-            <span class="cal-badge cb-gp">Demi National</span>
-          </div>
-          <div class="cal-item">
-            <div class="cal-date"><div class="cal-day">Fin année</div><div class="cal-mon"></div></div>
-            <div>
-              <div class="cal-name">National — Sud Ouest</div>
-              <div class="cal-detail">Date et lieu exact à venir</div>
-            </div>
-            <span class="cal-badge cb-nat">National</span>
-          </div>
-      </div>
-
-      <!-- PRÉSENTATION -->
-      <div class="page-section" id="presentation">
-        <h2 class="section-title">À propos de la classe FC8 <span>Présentation</span></h2>
-        <div class="boat-presentation">
-          <div class="boat-svg-panel">
-            <svg class="boat-svg-anim" width="240" height="300" viewBox="0 0 240 300" fill="none">
-              <line x1="115" y1="20" x2="115" y2="210" stroke="#002f6c" stroke-width="3"/>
-              <line x1="115" y1="178" x2="190" y2="192" stroke="#002f6c" stroke-width="2.5"/>
-              <line x1="115" y1="20" x2="185" y2="195" stroke="rgba(0,0,0,.1)" stroke-width="1"/>
-              <line x1="115" y1="52" x2="93" y2="185" stroke="rgba(0,47,108,.35)" stroke-width="1.2" stroke-dasharray="4 3"/>
-              <line x1="115" y1="52" x2="136" y2="185" stroke="rgba(0,47,108,.35)" stroke-width="1.2" stroke-dasharray="4 3"/>
-              <line x1="104" y1="42" x2="127" y2="42" stroke="#c8001b" stroke-width="2"/>
-              <text x="131" y="46" font-family="Source Sans 3" font-size="9" fill="#c8001b">7/8</text>
-              <path d="M115 22 L190 193 L115 178 Z" fill="rgba(0,47,108,.07)" stroke="#002f6c" stroke-width="1.8"/>
-              <path d="M115 55 L50 187 L115 182 Z" fill="rgba(200,0,27,.07)" stroke="#c8001b" stroke-width="1.8"/>
-              <text x="148" y="130" font-family="Source Serif 4" font-weight="700" font-size="22" fill="rgba(0,47,108,.12)" transform="rotate(7,148,130)">FC8</text>
-              <path d="M50 200 Q65 191 115 185 Q163 191 183 205 Q177 234 152 246 Q135 254 115 256 Q95 254 78 246 Q50 234 50 200Z" fill="white" stroke="#dddfe5" stroke-width="1.5"/>
-              <path d="M53 208 Q115 197 181 210" stroke="#002f6c" stroke-width="3" fill="none"/>
-              <path d="M55 214 Q115 203 179 216" stroke="#c8001b" stroke-width="1.2" fill="none"/>
-              <path d="M107 254 L101 288 L115 293 L129 288 L123 254 Z" fill="#dce8ff" stroke="#002f6c" stroke-width="1.5"/>
-              <ellipse cx="115" cy="295" rx="15" ry="6" fill="rgba(0,47,108,.45)"/>
-              <line x1="44" y1="218" x2="188" y2="218" stroke="rgba(0,71,200,.4)" stroke-width="1.2" stroke-dasharray="8 4"/>
-            </svg>
-            <div class="specs-mini">
-              <div class="sm-cell"><div class="sm-label">Longueur</div><div class="sm-val">7.85 <span class="sm-unit">m</span></div></div>
-              <div class="sm-cell"><div class="sm-label">Largeur</div><div class="sm-val">2.50 <span class="sm-unit">m</span></div></div>
-              <div class="sm-cell"><div class="sm-label">Tirant d'eau</div><div class="sm-val">1.83 <span class="sm-unit">m</span></div></div>
-              <div class="sm-cell"><div class="sm-label">Déplacement</div><div class="sm-val">1 467 <span class="sm-unit">kg</span></div></div>
-              <div class="sm-cell"><div class="sm-label">Voilure au près</div><div class="sm-val">41 <span class="sm-unit">m²</span></div></div>
-              <div class="sm-cell"><div class="sm-label">Spinnaker</div><div class="sm-val">55 <span class="sm-unit">m²</span></div></div>
-            </div>
-          </div>
-          <div class="boat-text">
-            <h3>Le First Class 8</h3>
-            <div class="boat-subtitle">Bénéteau × Groupe Finot — 1982</div>
-            <p>Le First Class 8 est né d'une commande de la <strong>Fédération Française de Voile</strong> en 1982. Jean-Marie Finot et Jacques Fauroux conçoivent un monotype radicalement sportif, destiné aux championnats Espoir. Il sera produit à <strong>965 exemplaires</strong>.</p>
-            <p>Sa signature technique : une <strong>quille relevable pivotante</strong> unique, permettant 1,83 m de tirant d'eau en régate et moins de 50 cm sur remorque. Son gréement fractionné 7/8 avec bastaques actifs exige un équipage synchronisé et technique.</p>
-            <p>Support des championnats de France pendant <strong>plus de 25 ans</strong>, il reste aujourd'hui une école incomparable de la voile en équipage.</p>
-            <a href="#" class="more-link">Fiche complète du bateau →</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- JAUGE -->
-      <div class="page-section" id="jauge">
-        <h2 class="section-title">Règles de classe &amp; Jauge <span>Monotype pur</span></h2>
-        <div class="jauge-box">
-          <div class="jauge-num">FC8</div>
-          <div class="jauge-content">
-            <h3>Un monotype, une équité absolue</h3>
-            <div class="j-sub">Jauge de classe contraignante — Fédération Française de Voile</div>
-            <div class="jauge-rules">
-              <div class="jrule">
-                <span class="jr-n">01</span>
-                <p class="jr-t"><strong>Coque strictement identique</strong> — toutes les coques sortent des mêmes moules Bénéteau. Aucune modification structurelle n'est tolérée.</p>
-              </div>
-              <div class="jrule">
-                <span class="jr-n">02</span>
-                <p class="jr-t"><strong>Gréement contrôlé</strong> — longueur du mât, barres de flèches et position de l'étai réglementés au centimètre.</p>
-              </div>
-              <div class="jrule">
-                <span class="jr-n">03</span>
-                <p class="jr-t"><strong>Voilerie certifiée</strong> — surfaces et matériaux définis par la jauge. Contrôle par mesureur accrédité à tout moment.</p>
-              </div>
-              <div class="jrule">
-                <span class="jr-n">04</span>
-                <p class="jr-t"><strong>Classement en temps réel</strong> — pas de coefficient, pas de calcul. Le premier à franchir la ligne <strong>gagne</strong>.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <a href="#" class="view-all">Lire la jauge officielle complète (PDF)</a>
-      </div>
-
-      <!-- STAFF -->
-      <div class="page-section" id="staff">
-        <h2 class="section-title">Le Bureau de l'Association <span>Staff</span></h2>
-        <div class="staff-grid">
-          <div class="staff-card">
-            <div class="staff-avatar">TB</div>
-            <div class="staff-name">Jean Paul Figara</div>
-            <div class="staff-role">Président</div>
-            <span class="staff-basin sb-nat">Sud</span>
-          </div>
-          <div class="staff-card">
-            <div class="staff-avatar">AL</div>
-            <div class="staff-name">Alexandre Lecuyer</div>
-            <div class="staff-role">Trésorier</div>
-            <span class="staff-basin sb-atl">Sud Ouest</span>
-          </div>
-          <div class="staff-card">
-            <div class="staff-avatar">GQ</div>
-            <div class="staff-name">Gildas Quéméner</div>
-            <div class="staff-role">Secrétaire</div>
-            <span class="staff-basin sb-med">Ouest</span>
-          </div>
-          <div class="staff-card">
-            <div class="staff-avatar">EC</div>
-            <div class="staff-name">Étienne Clémentin</div>
-            <div class="staff-role">Responsable Bassin</div>
-            <span class="staff-basin sb-nat">??</span>
-          </div>
-          <div class="staff-card">
-            <div class="staff-avatar">EW</div>
-            <div class="staff-name">Emmanuel Winsback</div>
-            <div class="staff-role">Responsable Bassin</div>
-            <span class="staff-basin sb-atl">??</span>
-          </div>
-          <div class="staff-card">
-            <div class="staff-avatar">BB</div>
-            <div class="staff-name">Benoit Boucher</div>
-            <div class="staff-role">Responsable Bassin</div>
-            <span class="staff-basin sb-nat">??</span>
-          </div>
-          <div class="staff-card">
-            <div class="staff-avatar">LB</div>
-            <div class="staff-name">Luc Barais</div>
-            <div class="staff-role">Responsable Bassin</div>
-            <span class="staff-basin sb-nat">??</span>
-          </div>
-          <div class="staff-card">
-            <div class="staff-avatar">PR</div>
-            <div class="staff-name">Pierre Yves Rollin</div>
-            <div class="staff-role">Responsable Bassin</div>
-            <span class="staff-basin sb-nat">??</span>
-          </div>
-          <div class="staff-card">
-            <div class="staff-avatar">FL</div>
-            <div class="staff-name">Frédéric Lorente</div>
-            <div class="staff-role">Responsable Bassin</div>
-            <span class="staff-basin sb-nat">??</span>
-          </div>
-          <div class="staff-card">
-            <div class="staff-avatar">RF</div>
-            <div class="staff-name">Rosalie Fuchs</div>
-            <div class="staff-role">Responsable Bassin</div>
-            <span class="staff-basin sb-nat">??</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- BASSINS -->
-      <div class="page-section" id="bassins">
-        <h2 class="section-title">Les Bassins de la Classe <span>Organisation régionale</span></h2>
-        <div class="bassins-grid">
-          <div class="bassin-card">
-            <h3>⚓ Flotte Manche</h3>
-            <div class="bassin-count"><span class="bc-num">12</span><span class="bc-lab">unités recensées</span></div>
-            <p>Circuit Manche — Cherbourg, Brest, Saint-Malo. Représentant : Jean-Claude Morin (CN Cherbourg).</p>
-            <div class="bassin-links">
-              <a href="#" class="bassin-link">Programme</a>
-              <a href="#" class="bassin-link">Contacts</a>
-              <a href="#" class="bassin-link">Adhérer</a>
-            </div>
-          </div>
-          <div class="bassin-card">
-            <h3>🌊 Flotte Atlantique</h3>
-            <div class="bassin-count"><span class="bc-num">25</span><span class="bc-lab">unités recensées</span></div>
-            <p>Circuit Atlantique — La Rochelle, Arcachon, Lorient. Représentante : Marie Ferreira (SN La Rochelle).</p>
-            <div class="bassin-links">
-              <a href="#" class="bassin-link">Programme</a>
-              <a href="#" class="bassin-link">Contacts</a>
-              <a href="#" class="bassin-link">Adhérer</a>
-            </div>
-          </div>
-          <div class="bassin-card">
-            <h3>☀️ Flotte Méditerranée</h3>
-            <div class="bassin-count"><span class="bc-num">15</span><span class="bc-lab">unités recensées</span></div>
-            <p>Circuit Méditerranée — Sète, Marseille, Toulon, Nice. Représentant : Nicolas Martin (CN Marseille).</p>
-            <div class="bassin-links">
-              <a href="#" class="bassin-link">Programme</a>
-              <a href="#" class="bassin-link">Contacts</a>
-              <a href="#" class="bassin-link">Adhérer</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- DOCUMENTS -->
-      <div class="page-section" id="docs">
-        <h2 class="section-title">Documents <span>Téléchargements</span></h2>
-        <div class="docs-list">
-          <a href="#" class="doc-item">
-            <div class="doc-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c8001b" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/></svg></div>
-            <div class="doc-name">Jauge de classe FC8 — Version 2025 officielle</div>
-            <div class="doc-size">PDF · 480 Ko</div>
-            <div class="doc-dl">Télécharger ↓</div>
-          </a>
-          <a href="#" class="doc-item">
-            <div class="doc-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c8001b" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/></svg></div>
-            <div class="doc-name">Statuts de l'Association Nationale de Classe FC8</div>
-            <div class="doc-size">PDF · 125 Ko</div>
-            <div class="doc-dl">Télécharger ↓</div>
-          </a>
-          <a href="#" class="doc-item">
-            <div class="doc-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c8001b" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/></svg></div>
-            <div class="doc-name">Calendrier officiel saison 2025 — Toutes flottes</div>
-            <div class="doc-size">PDF · 95 Ko</div>
-            <div class="doc-dl">Télécharger ↓</div>
-          </a>
-          <a href="#" class="doc-item">
-            <div class="doc-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c8001b" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/></svg></div>
-            <div class="doc-name">Plan de voilure officiel — FC8 Finot</div>
-            <div class="doc-size">PDF · 1.2 Mo</div>
-            <div class="doc-dl">Télécharger ↓</div>
-          </a>
-          <a href="#" class="doc-item">
-            <div class="doc-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c8001b" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/></svg></div>
-            <div class="doc-name">Compte-rendu AG 2024</div>
-            <div class="doc-size">PDF · 210 Ko</div>
-            <div class="doc-dl">Télécharger ↓</div>
-          </a>
-        </div>
-        <a href="#" class="view-all">Tous les documents</a>
-      </div>
-
-    </div><!-- / main col -->
-
-    <!-- SIDEBAR -->
-    <aside>
-
-      <div class="sidebar-block">
-        <div class="sb-head">Adhésion 2025</div>
-        <div class="sb-body">
-          <p>Rejoignez l'Association Nationale de Classe FC8. Ouverte aux propriétaires et aux sympathisants.</p>
-          <p><strong>Cotisation annuelle : 60 €</strong><br>Paiement sécurisé en ligne via HelloAsso.</p>
-          <a href="#" class="btn-full">Adhérer en ligne →</a>
-        </div>
-      </div>
-
-
-      <div class="sidebar-block">
-        <div class="sb-head">Liens rapides</div>
-        <div class="sb-body" style="padding:.3rem 1rem;">
-          <ul class="sb-link-list">
-            <li><a href="#">Jauge de classe (PDF)</a></li>
-            <li><a href="#">Déposer une annonce</a></li>
-            <li><a href="#">Photothèque</a></li>
-            <li><a href="#">Règles de course (FFVoile)</a></li>
-            <li><a href="#">Annuaire des clubs FC8</a></li>
-            <li><a href="#">Forum de la classe</a></li>
-            <li><a href="#staff">Contacter le bureau</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="sidebar-block">
-        <div class="sb-head">Partenaires &amp; liens</div>
-        <div class="sb-body" style="padding:.3rem 1rem;">
-          <ul class="sb-link-list">
-            <li><a href="https://ffvoile.fr" target="_blank">Fédération Française de Voile</a></li>
-            <li><a href="#" target="_blank">Bénéteau (archives FC8)</a></li>
-            <li><a href="#" target="_blank">Groupe Finot</a></li>
-            <li><a href="#" target="_blank">First Class 7.5 (successeur)</a></li>
-            <li><a href="#" target="_blank">Clase FC8 España</a></li>
-            <li><a href="#" target="_blank">Classe FC8 Portugal</a></li>
-          </ul>
-        </div>
-      </div>
-
-    </aside>
-
-  </div><!-- / two-col -->
-</div><!-- / page-wrap -->
-
-<!-- FOOTER -->
-<footer>
-  <div class="footer-inner">
-    <div class="footer-brand">
-      <div class="fb-logo"><em>First</em> Class 8</div>
-      <p>Association Nationale de Classe · Affiliée à la Fédération Française de Voile.<br>Promouvoir, animer et préserver la classe FC8 en France et en Europe.</p>
-      <div style="display:flex;gap:.5rem;align-items:center;margin-top:1rem;">
-        <div class="flag-fr"><div></div><div></div><div></div></div>
-        <div class="flag-es"><div></div><div></div><div></div></div>
-        <div class="flag-pt"><div></div><div></div></div>
-        <div class="flag-ch"></div>
-      </div>
-    </div>
-    <div>
-      <h5>La Classe</h5>
-      <a href="#presentation">Présentation</a>
-      <a href="#jauge">Règles &amp; Jauge</a>
-      <a href="#staff">Le Bureau</a>
-      <a href="#bassins">Bassins régionaux</a>
-      <a href="#">Adhésion</a>
-    </div>
-    <div>
-      <h5>Le FC8</h5>
-      <a href="#bateau">Le bateau</a>
-      <a href="#historique">Historique</a>
-      <a href="#carte">Flotte en Europe</a>
-      <a href="#docs">Documents</a>
-    </div>
-    <div>
-      <h5>Contact</h5>
-      <a href="#">association@firstclass8.fr</a>
-      <a href="#">06 00 00 00 00</a>
-      <br>
-      <h5>Médias</h5>
-      <a href="#">Facebook</a>
-      <a href="#">Instagram</a>
-      <a href="#">Photothèque</a>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <p>© 2025 Association Nationale de Classe First Class 8 · Tous droits réservés</p>
-    <p>Bénéteau · Groupe Finot · Fédération Française de Voile</p>
-  </div>
-</footer>
-
-<script>
+    <script>
 // Active nav on scroll
 const sections = document.querySelectorAll('[id]');
 const navLinks = document.querySelectorAll('.nav-link');
@@ -755,5 +756,5 @@ window.addEventListener('scroll', () => {
   });
 });
 </script>
-</body>
+  </body>
 </html>
