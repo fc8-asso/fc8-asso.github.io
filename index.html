@@ -51,7 +51,9 @@
     .logo-txt .l2{font-size:.65rem;color:var(--ink-lt);letter-spacing:.15em;text-transform:uppercase;display:block;}
 
     /* Main nav */
-    .main-nav{display:flex;align-items:stretch;flex:1;gap:0;}
+    .main-nav{display:flex;align-items:stretch;gap:0;}
+    .btn-adhesion-nav{flex:1;align-self:stretch;display:flex;align-items:center;justify-content:center;background:var(--red);color:#fff !important;font-weight:700;font-size:.88rem;letter-spacing:.03em;text-decoration:none !important;transition:background .2s;white-space:nowrap;padding:0 1.5rem;}
+    .btn-adhesion-nav:hover{background:#a50016;text-decoration:none !important;}
     .nav-item{position:relative;}
     .nav-link{display:flex;align-items:center;gap:.25rem;padding:.8rem 1rem;font-size:.85rem;font-weight:600;color:var(--ink-mid);white-space:nowrap;border-bottom:3px solid transparent;margin-bottom:-3px;transition:color .2s,border-color .2s;cursor:pointer;}
     .nav-link:hover,.nav-link.active{color:var(--blue);border-bottom-color:var(--blue);text-decoration:none;}
@@ -238,21 +240,6 @@
     footer a:hover{color:#fff;text-decoration:none;}
     .footer-bottom{max-width:1180px;margin:2rem auto 0;padding:1.2rem 1.5rem 0;border-top:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-between;align-items:center;}
     .footer-bottom p{font-size:.75rem;color:rgba(255,255,255,.3);}
-    .footer-flags{display:flex;gap:.4rem;align-items:center;}
-    .flag-fr{display:flex;border-radius:2px;overflow:hidden;width:22px;height:15px;}
-    .flag-fr div{flex:1;}
-    .flag-fr div:nth-child(1){background:#002f6c;}
-    .flag-fr div:nth-child(2){background:#fff;}
-    .flag-fr div:nth-child(3){background:#c8001b;}
-    .flag-es{display:flex;flex-direction:column;border-radius:2px;overflow:hidden;width:22px;height:15px;}
-    .flag-es div:nth-child(1){background:#c60b1e;flex:1;}
-    .flag-es div:nth-child(2){background:#ffc400;flex:1.5;}
-    .flag-es div:nth-child(3){background:#c60b1e;flex:1;}
-    .flag-pt{display:flex;border-radius:2px;overflow:hidden;width:22px;height:15px;}
-    .flag-pt div:nth-child(1){background:#006600;flex:2;}
-    .flag-pt div:nth-child(2){background:#ff0000;flex:3;}
-    .flag-ch{display:flex;align-items:center;justify-content:center;width:15px;height:15px;background:#d52b1e;border-radius:2px;flex-shrink:0;}
-    .flag-ch::after{content:'+';color:#fff;font-size:.75rem;font-weight:700;line-height:1;}
 
     /* ── MISC ── */
     .page-section{padding:2.5rem 0;border-bottom:1px solid var(--border);}
@@ -267,19 +254,6 @@
     </style>
   </head>
   <body>
-
-    <!-- TOP BAR -->
-    <div class="topbar">
-      <div class="topbar-inner">
-        <div class="topbar-links">
-          <span>Association affiliée FFVoile</span>
-          <a href="#">Contact</a>
-        </div>
-        <div class="topbar-links">
-          <a href="#" class="btn-topbar">Adhérer — 60 €/an</a>
-        </div>
-      </div>
-    </div>
 
     <!-- HEADER -->
     <header>
@@ -307,43 +281,22 @@
             <a href="#calendrier" class="nav-link">Calendrier</a>
           </div>
           <div class="nav-item">
-            <span class="nav-link">La Classe <svg viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none"/></svg></span>
-            <div class="dropdown">
-              <a href="#presentation">Présentation</a>
-              <a href="#jauge">Règles de classe &amp; Jauge</a>
-              <a href="#staff">Le Staff</a>
-              <a href="#bassins">Représentants de bassins</a>
-            </div>
+            <a href="#presentation" class="nav-link">La Classe</a>
           </div>
           <div class="nav-item">
-            <span class="nav-link">Le FC8 <svg viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none"/></svg></span>
-            <div class="dropdown">
-              <a href="#bateau">Présentation du bateau</a>
-              <a href="#technique">Fiche technique</a>
-              <a href="#historique">Historique de la classe</a>
-            </div>
+            <a href="#jauge" class="nav-link">La Jauge</a>
           </div>
           <div class="nav-item">
-            <span class="nav-link">Médias <svg viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none"/></svg></span>
-            <div class="dropdown">
-              <a href="#">Photothèque</a>
-              <a href="#">Vidéos</a>
-              <a href="#">Facebook</a>
-              <a href="#">Instagram</a>
-            </div>
+            <a href="#staff" class="nav-link">Le Bureau</a>
           </div>
           <div class="nav-item">
-            <span class="nav-link">Documents <svg viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none"/></svg></span>
-            <div class="dropdown">
-              <a href="#docs">Documents publics</a>
-              <a href="#">Documents membres</a>
-              <a href="#">Jauge officielle PDF</a>
-            </div>
+            <a href="#docs" class="nav-link">Documents</a>
           </div>
           <div class="nav-item">
             <a href="#" class="nav-link">Contact</a>
           </div>
         </nav>
+        <a href="https://www.helloasso.com/associations/association-des-proprietaires-de-first-class8/adhesions/adhesion-2026" class="btn-adhesion-nav">Adhérer — 60 €/an</a>
       </div>
     </header>
 
@@ -354,18 +307,18 @@
           <div class="hero-tag">Monotype de régate — Bénéteau × Finot</div>
           <h1>Association Nationale<br>de Classe <em>First Class 8</em></h1>
           <p class="hero-desc">
-            Défendre, animer et développer la classe FC8 en France et en Europe.<br>
+            Défendre, animer et développer la classe FC8 en France.<br>
             Depuis 1982, le voilier de référence de la régate en équipage.
           </p>
           <div class="hero-actions">
             <a href="#presentation" class="btn-white">Découvrir la classe</a>
-            <a href="#calendrier" class="btn-outline-w">Calendrier 2025</a>
+            <a href="#calendrier" class="btn-outline-w">Calendrier 2026</a>
           </div>
         </div>
         <div>
           <div class="hero-stats">
             <div class="hstat">
-              <div class="hstat-val">106</div>
+              <div class="hstat-val">??</div>
               <div class="hstat-lab">Unités en Europe</div>
             </div>
             <div class="hstat">
@@ -436,24 +389,7 @@
               <h2 class="section-title">À propos de la classe FC8 <span>Présentation</span></h2>
               <div class="boat-presentation">
                 <div class="boat-svg-panel">
-                  <svg class="boat-svg-anim" width="240" height="300" viewBox="0 0 240 300" fill="none">
-                    <line x1="115" y1="20" x2="115" y2="210" stroke="#002f6c" stroke-width="3"/>
-                    <line x1="115" y1="178" x2="190" y2="192" stroke="#002f6c" stroke-width="2.5"/>
-                    <line x1="115" y1="20" x2="185" y2="195" stroke="rgba(0,0,0,.1)" stroke-width="1"/>
-                    <line x1="115" y1="52" x2="93" y2="185" stroke="rgba(0,47,108,.35)" stroke-width="1.2" stroke-dasharray="4 3"/>
-                    <line x1="115" y1="52" x2="136" y2="185" stroke="rgba(0,47,108,.35)" stroke-width="1.2" stroke-dasharray="4 3"/>
-                    <line x1="104" y1="42" x2="127" y2="42" stroke="#c8001b" stroke-width="2"/>
-                    <text x="131" y="46" font-family="Source Sans 3" font-size="9" fill="#c8001b">7/8</text>
-                    <path d="M115 22 L190 193 L115 178 Z" fill="rgba(0,47,108,.07)" stroke="#002f6c" stroke-width="1.8"/>
-                    <path d="M115 55 L50 187 L115 182 Z" fill="rgba(200,0,27,.07)" stroke="#c8001b" stroke-width="1.8"/>
-                    <text x="148" y="130" font-family="Source Serif 4" font-weight="700" font-size="22" fill="rgba(0,47,108,.12)" transform="rotate(7,148,130)">FC8</text>
-                    <path d="M50 200 Q65 191 115 185 Q163 191 183 205 Q177 234 152 246 Q135 254 115 256 Q95 254 78 246 Q50 234 50 200Z" fill="white" stroke="#dddfe5" stroke-width="1.5"/>
-                    <path d="M53 208 Q115 197 181 210" stroke="#002f6c" stroke-width="3" fill="none"/>
-                    <path d="M55 214 Q115 203 179 216" stroke="#c8001b" stroke-width="1.2" fill="none"/>
-                    <path d="M107 254 L101 288 L115 293 L129 288 L123 254 Z" fill="#dce8ff" stroke="#002f6c" stroke-width="1.5"/>
-                    <ellipse cx="115" cy="295" rx="15" ry="6" fill="rgba(0,47,108,.45)"/>
-                    <line x1="44" y1="218" x2="188" y2="218" stroke="rgba(0,71,200,.4)" stroke-width="1.2" stroke-dasharray="8 4"/>
-                  </svg>
+                  <img src="./profil.jpg" alt="Vue de côté"/>
                   <div class="specs-mini">
                     <div class="sm-cell"><div class="sm-label">Longueur</div><div class="sm-val">7.85 <span class="sm-unit">m</span></div></div>
                     <div class="sm-cell"><div class="sm-label">Largeur</div><div class="sm-val">2.50 <span class="sm-unit">m</span></div></div>
@@ -469,7 +405,6 @@
                   <p>Le First Class 8 est né d'une commande de la <strong>Fédération Française de Voile</strong> en 1982. Jean-Marie Finot et Jacques Fauroux conçoivent un monotype radicalement sportif, destiné aux championnats Espoir. Il sera produit à <strong>965 exemplaires</strong>.</p>
                   <p>Sa signature technique : une <strong>quille relevable pivotante</strong> unique, permettant 1,83 m de tirant d'eau en régate et moins de 50 cm sur remorque. Son gréement fractionné 7/8 avec bastaques actifs exige un équipage synchronisé et technique.</p>
                   <p>Support des championnats de France pendant <strong>plus de 25 ans</strong>, il reste aujourd'hui une école incomparable de la voile en équipage.</p>
-                  <a href="#" class="more-link">Fiche complète du bateau →</a>
                 </div>
               </div>
             </div>
@@ -502,7 +437,7 @@
                   </div>
                 </div>
               </div>
-              <a href="#" class="view-all">Lire la jauge officielle complète (PDF)</a>
+              <a href="#" class="view-all">Lire la jauge officielle complète (PDF accessible aux membres de la classe)</a>
             </div>
 
             <!-- STAFF -->
@@ -530,43 +465,43 @@
                 <div class="staff-card">
                   <div class="staff-avatar">EC</div>
                   <div class="staff-name">Étienne Clémentin</div>
-                  <div class="staff-role">Responsable Bassin</div>
+                  <div class="staff-role"></div>
                   <span class="staff-basin sb-nat">??</span>
                 </div>
                 <div class="staff-card">
                   <div class="staff-avatar">EW</div>
                   <div class="staff-name">Emmanuel Winsback</div>
-                  <div class="staff-role">Responsable Bassin</div>
+                  <div class="staff-role"></div>
                   <span class="staff-basin sb-atl">??</span>
                 </div>
                 <div class="staff-card">
                   <div class="staff-avatar">BB</div>
                   <div class="staff-name">Benoit Boucher</div>
-                  <div class="staff-role">Responsable Bassin</div>
+                  <div class="staff-role"></div>
                   <span class="staff-basin sb-nat">??</span>
                 </div>
                 <div class="staff-card">
                   <div class="staff-avatar">LB</div>
                   <div class="staff-name">Luc Barais</div>
-                  <div class="staff-role">Responsable Bassin</div>
+                  <div class="staff-role"></div>
                   <span class="staff-basin sb-nat">??</span>
                 </div>
                 <div class="staff-card">
                   <div class="staff-avatar">PR</div>
                   <div class="staff-name">Pierre Yves Rollin</div>
-                  <div class="staff-role">Responsable Bassin</div>
+                  <div class="staff-role"></div>
                   <span class="staff-basin sb-nat">??</span>
                 </div>
                 <div class="staff-card">
                   <div class="staff-avatar">FL</div>
                   <div class="staff-name">Frédéric Lorente</div>
-                  <div class="staff-role">Responsable Bassin</div>
+                  <div class="staff-role"></div>
                   <span class="staff-basin sb-nat">??</span>
                 </div>
                 <div class="staff-card">
                   <div class="staff-avatar">RF</div>
                   <div class="staff-name">Rosalie Fuchs</div>
-                  <div class="staff-role">Responsable Bassin</div>
+                  <div class="staff-role"></div>
                   <span class="staff-basin sb-nat">??</span>
                 </div>
               </div>
@@ -615,7 +550,7 @@
               <div class="docs-list">
                 <a href="#" class="doc-item">
                   <div class="doc-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c8001b" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/></svg></div>
-                  <div class="doc-name">Jauge de classe FC8 — Version 2025 officielle</div>
+                  <div class="doc-name">Jauge de classe FC8 — Version 2026 officielle</div>
                   <div class="doc-size">PDF · 480 Ko</div>
                   <div class="doc-dl">Télécharger ↓</div>
                 </a>
@@ -627,7 +562,7 @@
                 </a>
                 <a href="#" class="doc-item">
                   <div class="doc-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c8001b" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/></svg></div>
-                  <div class="doc-name">Calendrier officiel saison 2025 — Toutes flottes</div>
+                  <div class="doc-name">Calendrier officiel saison 2026 — Toutes flottes</div>
                   <div class="doc-size">PDF · 95 Ko</div>
                   <div class="doc-dl">Télécharger ↓</div>
                 </a>
@@ -654,11 +589,11 @@
         <aside>
 
           <div class="sidebar-block">
-            <div class="sb-head">Adhésion 2025</div>
+            <div class="sb-head">Adhésion 2026</div>
             <div class="sb-body">
               <p>Rejoignez l'Association Nationale de Classe FC8. Ouverte aux propriétaires et aux sympathisants.</p>
               <p><strong>Cotisation annuelle : 60 €</strong><br>Paiement sécurisé en ligne via HelloAsso.</p>
-              <a href="#" class="btn-full">Adhérer en ligne →</a>
+              <a href="https://www.helloasso.com/associations/association-des-proprietaires-de-first-class8/adhesions/adhesion-2026" class="btn-full">Adhérer en ligne →</a>
             </div>
           </div>
 
@@ -668,29 +603,11 @@
             <div class="sb-body" style="padding:.3rem 1rem;">
               <ul class="sb-link-list">
                 <li><a href="#">Jauge de classe (PDF)</a></li>
-                <li><a href="#">Déposer une annonce</a></li>
-                <li><a href="#">Photothèque</a></li>
-                <li><a href="#">Règles de course (FFVoile)</a></li>
-                <li><a href="#">Annuaire des clubs FC8</a></li>
-                <li><a href="#">Forum de la classe</a></li>
                 <li><a href="#staff">Contacter le bureau</a></li>
               </ul>
             </div>
           </div>
 
-          <div class="sidebar-block">
-            <div class="sb-head">Partenaires &amp; liens</div>
-            <div class="sb-body" style="padding:.3rem 1rem;">
-              <ul class="sb-link-list">
-                <li><a href="https://ffvoile.fr" target="_blank">Fédération Française de Voile</a></li>
-                <li><a href="#" target="_blank">Bénéteau (archives FC8)</a></li>
-                <li><a href="#" target="_blank">Groupe Finot</a></li>
-                <li><a href="#" target="_blank">First Class 7.5 (successeur)</a></li>
-                <li><a href="#" target="_blank">Clase FC8 España</a></li>
-                <li><a href="#" target="_blank">Classe FC8 Portugal</a></li>
-              </ul>
-            </div>
-          </div>
 
         </aside>
 
@@ -702,28 +619,15 @@
       <div class="footer-inner">
         <div class="footer-brand">
           <div class="fb-logo"><em>First</em> Class 8</div>
-          <p>Association Nationale de Classe · Affiliée à la Fédération Française de Voile.<br>Promouvoir, animer et préserver la classe FC8 en France et en Europe.</p>
-          <div style="display:flex;gap:.5rem;align-items:center;margin-top:1rem;">
-            <div class="flag-fr"><div></div><div></div><div></div></div>
-            <div class="flag-es"><div></div><div></div><div></div></div>
-            <div class="flag-pt"><div></div><div></div></div>
-            <div class="flag-ch"></div>
-          </div>
+          <p>Association Nationale de Classe.<br>Promouvoir, animer et préserver la classe FC8 en France.</p>
         </div>
         <div>
           <h5>La Classe</h5>
           <a href="#presentation">Présentation</a>
           <a href="#jauge">Règles &amp; Jauge</a>
           <a href="#staff">Le Bureau</a>
-          <a href="#bassins">Bassins régionaux</a>
-          <a href="#">Adhésion</a>
-        </div>
-        <div>
-          <h5>Le FC8</h5>
-          <a href="#bateau">Le bateau</a>
-          <a href="#historique">Historique</a>
-          <a href="#carte">Flotte en Europe</a>
           <a href="#docs">Documents</a>
+          <a href="https://www.helloasso.com/associations/association-des-proprietaires-de-first-class8/adhesions/adhesion-2026">Adhésion</a>
         </div>
         <div>
           <h5>Contact</h5>
@@ -733,27 +637,25 @@
           <h5>Médias</h5>
           <a href="#">Facebook</a>
           <a href="#">Instagram</a>
-          <a href="#">Photothèque</a>
         </div>
       </div>
       <div class="footer-bottom">
-        <p>© 2025 Association Nationale de Classe First Class 8 · Tous droits réservés</p>
-        <p>Bénéteau · Groupe Finot · Fédération Française de Voile</p>
+        <p>© 2026 Association Nationale de Classe First Class 8 · Tous droits réservés</p>
       </div>
     </footer>
 
     <script>
-// Active nav on scroll
-const sections = document.querySelectorAll('[id]');
-const navLinks = document.querySelectorAll('.nav-link');
-window.addEventListener('scroll', () => {
-  let cur = '';
-  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 100) cur = s.id; });
-  navLinks.forEach(a => {
-    const href = a.getAttribute('href');
-    a.classList.toggle('active', href && href === '#' + cur);
-  });
-});
-</script>
+      // Active nav on scroll
+      const sections = document.querySelectorAll('[id]');
+      const navLinks = document.querySelectorAll('.nav-link');
+      window.addEventListener('scroll', () => {
+        let cur = '';
+        sections.forEach(s => { if (window.scrollY >= s.offsetTop - 100) cur = s.id; });
+        navLinks.forEach(a => {
+          const href = a.getAttribute('href');
+          a.classList.toggle('active', href && href === '#' + cur);
+        });
+      });
+    </script>
   </body>
 </html>
