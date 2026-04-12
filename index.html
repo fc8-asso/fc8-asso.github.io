@@ -152,37 +152,6 @@
     .btn-full-blue{background:var(--blue);}
     .btn-full-blue:hover{background:#001d45;}
 
-    /* ── BASSINS ── */
-    .bassins-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:1.5rem;}
-    .bassin-card{background:var(--white);border:1px solid var(--border);border-top:4px solid var(--blue);border-radius:var(--radius);padding:1.4rem 1.2rem;box-shadow:var(--sh);transition:box-shadow .2s;}
-    .bassin-card:hover{box-shadow:var(--sh-md);}
-    .bassin-card h3{font-family:'Source Serif 4',serif;font-weight:700;font-size:1.1rem;color:var(--blue);margin-bottom:.6rem;}
-    .bassin-card p{font-size:.85rem;color:var(--ink-mid);line-height:1.55;margin-bottom:.8rem;}
-    .bassin-count{display:flex;align-items:baseline;gap:.4rem;margin-bottom:.8rem;}
-    .bc-num{font-family:'Source Serif 4',serif;font-size:2rem;font-weight:700;color:var(--blue);line-height:1;}
-    .bc-lab{font-size:.75rem;color:var(--ink-lt);}
-    .bassin-links{display:flex;gap:.6rem;flex-wrap:wrap;}
-    .bassin-link{font-size:.78rem;font-weight:600;color:var(--blue2);padding:.2rem .6rem;border:1px solid var(--blue-lt);border-radius:3px;transition:all .2s;}
-    .bassin-link:hover{background:var(--blue);color:#fff;border-color:var(--blue);text-decoration:none;}
-
-    /* ── CARTE EUROPE ── */
-    .map-section{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;box-shadow:var(--sh);}
-    .map-header{background:var(--blue);color:#fff;padding:.8rem 1.2rem;display:flex;align-items:center;justify-content:space-between;}
-    .map-header h3{font-size:.9rem;font-weight:700;letter-spacing:.04em;}
-    .map-header span{font-size:.75rem;opacity:.75;}
-    .map-body{display:grid;grid-template-columns:1fr 180px;}
-    .map-svg-wrap{padding:.5rem;background:#e8eef7;position:relative;}
-    .map-legend{padding:1rem;display:flex;flex-direction:column;gap:.4rem;border-left:1px solid var(--border);}
-    .ml-title{font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-lt);margin-bottom:.3rem;}
-    .ml-item{display:flex;align-items:center;gap:.6rem;padding:.35rem .4rem;border-radius:3px;cursor:pointer;transition:background .15s;font-size:.8rem;}
-    .ml-item:hover{background:var(--blue-lt);}
-    .ml-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
-    .ml-name{flex:1;color:var(--ink-mid);}
-    .ml-count{font-weight:700;color:var(--ink);}
-    .map-total{margin-top:.5rem;padding:.7rem .4rem;border-top:1px solid var(--border);}
-    .map-total .t-val{font-family:'Source Serif 4',serif;font-size:1.6rem;font-weight:700;color:var(--blue);line-height:1;}
-    .map-total .t-lab{font-size:.68rem;color:var(--ink-lt);text-transform:uppercase;letter-spacing:.1em;}
-
     /* ── LE BATEAU (présentation) ── */
     .boat-presentation{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:center;}
     .boat-svg-panel{background:var(--blue-lt);border:1px solid var(--border);border-radius:var(--radius);padding:2rem;display:flex;flex-direction:column;align-items:center;gap:1.5rem;}
@@ -503,43 +472,6 @@
                   <div class="staff-name">Rosalie Fuchs</div>
                   <div class="staff-role"></div>
                   <span class="staff-basin sb-nat">??</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- BASSINS -->
-            <div class="page-section" id="bassins">
-              <h2 class="section-title">Les Bassins de la Classe <span>Organisation régionale</span></h2>
-              <div class="bassins-grid">
-                <div class="bassin-card">
-                  <h3>⚓ Flotte Manche</h3>
-                  <div class="bassin-count"><span class="bc-num">12</span><span class="bc-lab">unités recensées</span></div>
-                  <p>Circuit Manche — Cherbourg, Brest, Saint-Malo. Représentant : Jean-Claude Morin (CN Cherbourg).</p>
-                  <div class="bassin-links">
-                    <a href="#" class="bassin-link">Programme</a>
-                    <a href="#" class="bassin-link">Contacts</a>
-                    <a href="#" class="bassin-link">Adhérer</a>
-                  </div>
-                </div>
-                <div class="bassin-card">
-                  <h3>🌊 Flotte Atlantique</h3>
-                  <div class="bassin-count"><span class="bc-num">25</span><span class="bc-lab">unités recensées</span></div>
-                  <p>Circuit Atlantique — La Rochelle, Arcachon, Lorient. Représentante : Marie Ferreira (SN La Rochelle).</p>
-                  <div class="bassin-links">
-                    <a href="#" class="bassin-link">Programme</a>
-                    <a href="#" class="bassin-link">Contacts</a>
-                    <a href="#" class="bassin-link">Adhérer</a>
-                  </div>
-                </div>
-                <div class="bassin-card">
-                  <h3>☀️ Flotte Méditerranée</h3>
-                  <div class="bassin-count"><span class="bc-num">15</span><span class="bc-lab">unités recensées</span></div>
-                  <p>Circuit Méditerranée — Sète, Marseille, Toulon, Nice. Représentant : Nicolas Martin (CN Marseille).</p>
-                  <div class="bassin-links">
-                    <a href="#" class="bassin-link">Programme</a>
-                    <a href="#" class="bassin-link">Contacts</a>
-                    <a href="#" class="bassin-link">Adhérer</a>
-                  </div>
                 </div>
               </div>
             </div>
