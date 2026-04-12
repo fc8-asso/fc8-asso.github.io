@@ -207,18 +207,6 @@ header{background:var(--white);border-bottom:3px solid var(--blue);box-shadow:va
 .jr-t{font-size:.85rem;color:rgba(255,255,255,.82);line-height:1.55;}
 .jr-t strong{color:#fff;}
 
-/* ── CLASSEMENTS ── */
-.classement-tabs{display:flex;gap:0;border-bottom:2px solid var(--border);margin-bottom:1.5rem;}
-.ctab{padding:.6rem 1.2rem;font-size:.83rem;font-weight:600;color:var(--ink-lt);border-bottom:2px solid transparent;margin-bottom:-2px;cursor:pointer;transition:color .2s;}
-.ctab.on,.ctab:hover{color:var(--blue);border-bottom-color:var(--blue);}
-.classement-table{width:100%;border-collapse:collapse;font-size:.85rem;}
-.classement-table th{background:var(--blue);color:#fff;padding:.6rem .8rem;text-align:left;font-weight:600;font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;}
-.classement-table td{padding:.65rem .8rem;border-bottom:1px solid var(--gray-1);}
-.classement-table tr:nth-child(even) td{background:var(--gray-bg);}
-.classement-table tr:hover td{background:var(--blue-lt);}
-.rank{font-weight:700;color:var(--blue);font-family:'Source Serif 4',serif;font-size:1.1rem;}
-.rank-1{color:var(--red);}
-.pts{font-weight:700;color:var(--ink);}
 
 /* ── PETITES ANNONCES ── */
 .annonces-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;}
@@ -350,7 +338,6 @@ footer a:hover{color:#fff;text-decoration:none;}
           <a href="#jauge">Règles de classe &amp; Jauge</a>
           <a href="#staff">Le Staff</a>
           <a href="#bassins">Représentants de bassins</a>
-          <a href="#classements">Classements</a>
           <a href="#">Adhésion &amp; Certificat</a>
         </div>
       </div>
@@ -471,73 +458,6 @@ footer a:hover{color:#fff;text-decoration:none;}
             </div>
             <span class="cal-badge cb-nat">National</span>
           </div>
-      </div>
-
-      <!-- CLASSEMENTS -->
-      <div class="page-section" id="classements">
-        <h2 class="section-title">Classements <span>Saison 2025</span></h2>
-        <div class="classement-tabs">
-          <div class="ctab on">National</div>
-          <div class="ctab">Atlantique</div>
-          <div class="ctab">Méditerranée</div>
-          <div class="ctab">Manche</div>
-        </div>
-        <table class="classement-table">
-          <thead>
-            <tr>
-              <th width="50">Rang</th>
-              <th>Équipage / Voilier</th>
-              <th>Club</th>
-              <th>Manches</th>
-              <th width="80">Points</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><span class="rank rank-1">1</span></td>
-              <td><strong>Arcane</strong> — M. Bertrand</td>
-              <td>SN La Rochelle</td>
-              <td>4/4</td>
-              <td class="pts">12</td>
-            </tr>
-            <tr>
-              <td><span class="rank">2</span></td>
-              <td><strong>Huracan</strong> — Mme Martin</td>
-              <td>CN Marseille</td>
-              <td>4/4</td>
-              <td class="pts">18</td>
-            </tr>
-            <tr>
-              <td><span class="rank">3</span></td>
-              <td><strong>Cormoran</strong> — M. Perrin</td>
-              <td>SN Bordeaux</td>
-              <td>4/4</td>
-              <td class="pts">24</td>
-            </tr>
-            <tr>
-              <td><span class="rank">4</span></td>
-              <td><strong>Delta</strong> — M. Leconte</td>
-              <td>YC Brest</td>
-              <td>3/4</td>
-              <td class="pts">31</td>
-            </tr>
-            <tr>
-              <td><span class="rank">5</span></td>
-              <td><strong>Bravo Zulu</strong> — Mme Ferreira</td>
-              <td>CN Sète</td>
-              <td>4/4</td>
-              <td class="pts">35</td>
-            </tr>
-            <tr>
-              <td><span class="rank">6</span></td>
-              <td><strong>Éphémère</strong> — M. Garnier</td>
-              <td>SN Arcachon</td>
-              <td>3/4</td>
-              <td class="pts">40</td>
-            </tr>
-          </tbody>
-        </table>
-        <a href="#" class="view-all">Classement complet</a>
       </div>
 
       <!-- PRÉSENTATION -->
@@ -809,7 +729,6 @@ footer a:hover{color:#fff;text-decoration:none;}
         <div class="sb-body" style="padding:.3rem 1rem;">
           <ul class="sb-link-list">
             <li><a href="#">Jauge de classe (PDF)</a></li>
-            <li><a href="#">Classements saison 2025</a></li>
             <li><a href="#">Déposer une annonce</a></li>
             <li><a href="#">Photothèque</a></li>
             <li><a href="#">Règles de course (FFVoile)</a></li>
@@ -858,7 +777,6 @@ footer a:hover{color:#fff;text-decoration:none;}
       <a href="#jauge">Règles &amp; Jauge</a>
       <a href="#staff">Le Bureau</a>
       <a href="#bassins">Bassins régionaux</a>
-      <a href="#classements">Classements</a>
       <a href="#">Adhésion</a>
     </div>
     <div>
@@ -887,14 +805,6 @@ footer a:hover{color:#fff;text-decoration:none;}
 </footer>
 
 <script>
-// Tab switching classements
-document.querySelectorAll('.ctab').forEach(t => {
-  t.addEventListener('click', () => {
-    document.querySelectorAll('.ctab').forEach(x => x.classList.remove('on'));
-    t.classList.add('on');
-  });
-});
-
 // Active nav on scroll
 const sections = document.querySelectorAll('[id]');
 const navLinks = document.querySelectorAll('.nav-link');
